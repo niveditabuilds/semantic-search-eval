@@ -1,6 +1,6 @@
 """
 Interactive search relevance explorer.
-Type any query — see Pipeline3 vs Pipeline4 side by side.
+Type any query — see Pipeline1 vs Pipeline2 side by side.
 Labeled queries show ✓/✗ and P@5. Unlabeled queries offer live Claude labeling.
 
 Usage:
@@ -92,8 +92,8 @@ def _display_results(query, qtype, p3_out, p4_out, labels, cache, candidates):
     p4r = p4_out["results"][:5]
     impact = p4_out["filter_impact"]
 
-    p3_header = "PIPELINE 3  (Retrieval → Rerank)"
-    p4_header = f"PIPELINE 4  (+ LLM Filter)"
+    p3_header = "PIPELINE 1  (Retrieval → Rerank)"
+    p4_header = f"PIPELINE 2  (+ LLM Filter)"
     if impact:
         p4_header += f"  removed {impact['removed']}/{impact['total']}"
 
@@ -123,8 +123,8 @@ def _display_results(query, qtype, p3_out, p4_out, labels, cache, candidates):
         sign = "+" if delta >= 0 else ""
 
         print()
-        print(f"  P@5:   Pipeline3 {p3_p5:.2f}   Pipeline4 {p4_p5:.2f}   delta {sign}{delta:.2f}")
-        print(f"  NDCG:  Pipeline3 {p3_ndcg:.2f}   Pipeline4 {p4_ndcg:.2f}")
+        print(f"  P@5:   Pipeline1 {p3_p5:.2f}   Pipeline2 {p4_p5:.2f}   delta {sign}{delta:.2f}")
+        print(f"  NDCG:  Pipeline1 {p3_ndcg:.2f}   Pipeline2 {p4_ndcg:.2f}")
 
     print()
     print("─" * 60)
@@ -134,7 +134,7 @@ def main():
     print()
     print("=" * 60)
     print("  TUBI SEARCH RELEVANCE EXPLORER")
-    print("  Pipeline3 vs Pipeline4 — side by side")
+    print("  Pipeline1 vs Pipeline2 — side by side")
     print("=" * 60)
     print()
     print("  Loading models and index...")
@@ -146,7 +146,7 @@ def main():
         sys.exit(1)
 
     from rankers import precompute_embeddings, build_bm25_index
-    from pipelines import Pipeline3, Pipeline4
+    from pipelines import Pipeline1, Pipeline2
 
     embeddings = precompute_embeddings(CATALOG)
     build_bm25_index(CATALOG)
@@ -209,8 +209,8 @@ def main():
         labeled_count = sum(1 for v in labels.values() if v is not None)
 
         # Run pipelines
-        p3_out = Pipeline3.run(query, candidates)
-        p4_out = Pipeline4.run(query, candidates, labels)
+        p3_out = Pipeline1.run(query, candidates)
+        p4_out = Pipeline2.run(query, candidates, labels)
 
         _display_results(query, qtype, p3_out, p4_out, labels, cache, candidates)
 
@@ -226,8 +226,8 @@ def main():
                 cache = label_on_demand(query, candidates)
                 labels = _get_labels(query, candidates, cache)
 
-                # Re-run Pipeline4 with fresh labels
-                p4_out = Pipeline4.run(query, candidates, labels)
+                # Re-run Pipeline2 with fresh labels
+                p4_out = Pipeline2.run(query, candidates, labels)
                 print()
                 print("  Results with labels:")
                 _display_results(query, qtype, p3_out, p4_out, labels, cache, candidates)

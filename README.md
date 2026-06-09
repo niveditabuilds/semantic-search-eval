@@ -2,10 +2,12 @@
 
 **Does an LLM filter make reranking better — and on which queries does it help most?**
 
-A search relevance evaluation framework for streaming catalogs that compares two production-grade pipeline architectures:
+A search relevance evaluation framework for streaming catalogs that compares two production-grade pipeline architectures head-to-head:
 
-- **Pipeline 3** — BM25 + Semantic Retrieval → Cross-encoder Rerank
-- **Pipeline 4** — BM25 + Semantic Retrieval → LLM Filter → Cross-encoder Rerank
+- **Pipeline 1** — BM25 + Semantic Retrieval → Cross-encoder Rerank
+- **Pipeline 2** — BM25 + Semantic Retrieval → LLM Filter → Cross-encoder Rerank
+
+Pipeline 1 is the standard two-stage retrieval-rerank setup. Pipeline 2 adds one step: an LLM relevance filter that removes irrelevant candidates before the reranker runs. The question this eval answers is whether that extra step is worth it — and on which query types.
 
 Catalog: TMDb 1000 titles. Queries: auto-generated from catalog metadata. Labels: Claude Sonnet.
 
@@ -33,7 +35,7 @@ Query
             │
      ┌──────┴──────────────────────┐
      │                             │
-  Pipeline 3                    Pipeline 4
+  Pipeline 1                    Pipeline 2
   Cross-encoder rerank          LLM filter (remove Irrelevant)
          │                         │
      top-5 results             Cross-encoder rerank
@@ -78,14 +80,14 @@ Each (query, candidate title) pair is labeled independently using two different 
 
 Pairs are labeled once and cached. Re-runs load from cache, costing zero API calls on cached queries and labeling only new ones.
 
-**97% dual-prompt consistency** — the judge is stable.
+**96% dual-prompt consistency** — the judge is stable.
 
 ### Metrics
 
 - **P@5** (Precision at 5): fraction of the top-5 results that are `Relevant`. Primary metric.
 - **NDCG@5**: position-aware P@5 — a relevant result at position 1 scores higher than at position 5.
 - **Filter%**: percentage of candidates removed by the LLM filter before reranking.
-- **Delta**: P4 P@5 minus P3 P@5.
+- **Delta**: Pipeline 2 P@5 minus Pipeline 1 P@5.
 
 ---
 
@@ -96,7 +98,7 @@ Pairs are labeled once and cached. Re-runs load from cache, costing zero API cal
 AGGREGATE BY QUERY TYPE (45 queries, 1827 labeled pairs)
 ========================================================
 
-Type         Queries  P3 P@5  P4 P@5  Filter%    Delta
+Type         Queries  P1 P@5  P2 P@5  Filter%    Delta
 ──────────────────────────────────────────────────────
 genre             18    1.00    1.00      10%   + 0.00
 compound           8    1.00    1.00      16%   + 0.00
@@ -119,14 +121,14 @@ Avg LLM label consistency: 96%
 Decade queries showed dramatic improvement: **+0.36 P@5 average**, with individual queries jumping from near-zero to perfect:
 
 ```
-"10s movies"   Pipeline3: 0.20 P@5  →  Pipeline4: 1.00 P@5  (+0.80)
+"10s movies"   Pipeline 1: 0.20 P@5  →  Pipeline 2: 1.00 P@5  (+0.80)
                Filter removed 25 of 40 candidates (63%)
-               Top-5 P4: Inception ✓, The Dark Knight ✓, Interstellar ✓,
+               Top-5 P2: Inception ✓, The Dark Knight ✓, Interstellar ✓,
                          Django Unchained ✓, Guardians of the Galaxy ✓
 
-"00s movies"   Pipeline3: 0.00 P@5  →  Pipeline4: 0.40 P@5  (+0.40)
+"00s movies"   Pipeline 1: 0.00 P@5  →  Pipeline 2: 0.40 P@5  (+0.40)
 
-"90s movies"   Pipeline3: 0.00 P@5  →  Pipeline4: 0.20 P@5  (+0.20)
+"90s movies"   Pipeline 1: 0.00 P@5  →  Pipeline 2: 0.20 P@5  (+0.20)
 ```
 
 **Why decade queries benefit so much:** The cross-encoder scores titles on semantic similarity to the query string "10s movies" — which is meaningless to a neural model trained on prose. The LLM judge understands that "10s movies" means films from 2010–2019 and correctly labels older titles as Irrelevant, leaving the reranker a clean candidate pool.
@@ -134,18 +136,18 @@ Decade queries showed dramatic improvement: **+0.36 P@5 average**, with individu
 Mood queries saw the largest average gain at **+0.40 P@5**:
 
 ```
-"feel good movies"   P3: 0.20  →  P4: 1.00  (+0.80)
+"feel good movies"   Pipeline 1: 0.20  →  Pipeline 2: 1.00  (+0.80)
                      Filter removed 29 of 39 candidates (74%)
 
-"funny horror"       P3: 0.80  →  P4: 1.00  (+0.20)
+"funny horror"       Pipeline 1: 0.80  →  Pipeline 2: 1.00  (+0.20)
                      Goosebumps ✓, Gremlins ✓, Ghostbusters ✓ in top 5
 ```
 
-Long-tail queries also improved substantially: **+0.20 average**, from P3 0.80 → P4 1.00.
+Long-tail queries also improved substantially: **+0.20 average**, from Pipeline 1 0.80 → Pipeline 2 1.00.
 
 ### 2. Genre and compound queries are already at ceiling — filter adds nothing
 
-Simple genre queries already achieve **P@5 = 1.00** with Pipeline 3. The retrieval stage (BM25 + semantic) correctly surfaces only relevant titles; there's nothing to filter. Adding the LLM filter at 10–16% removal rate changes nothing.
+Simple genre queries already achieve **P@5 = 1.00** with Pipeline 1. The retrieval stage (BM25 + semantic) correctly surfaces only relevant titles; there's nothing to filter. Adding the LLM filter at 10–16% removal rate changes nothing.
 
 **Implication for production:** Running the LLM filter on genre queries costs API latency with zero metric improvement. The filter should be deployed selectively.
 
@@ -155,9 +157,9 @@ Average filter rate of 33% across all queries masks a meaningful pattern: genre 
 
 ### 4. LLM judge calibration: confidence vs ambiguity
 
-The judge is highly consistent (97%) but over-strict on abstract mood queries (`dark psychological`, `mindblowing sci-fi`, `light hearted comedy`) — labeling all 30–38 candidates as Irrelevant. These are real edge cases where the judge's context (title + genres only) isn't enough to make a correct relevance call. A more robust judge would also pass the plot summary.
+The judge is highly consistent (96%) but over-strict on abstract mood queries (`dark psychological`, `mindblowing sci-fi`) where title and genre alone aren't enough context to make a correct relevance call. A more robust judge would also pass the plot summary.
 
-**Judge quality is bounded by the input context.** Title + genre is sufficient for decade and genre queries; it's not sufficient for mood and abstract descriptive queries.
+**Judge quality is bounded by the input context.** Title + genre is sufficient for decade and genre queries; it's not sufficient for abstract descriptive queries.
 
 ---
 
@@ -169,10 +171,10 @@ Based on these results, the deployment strategy is:
 |-----------|---------------|--------|
 | Genre | No | Already at P@5 ceiling; filter adds only latency |
 | Compound | No | Already at P@5 ceiling |
-| Decade / Temporal | **Yes** | +0.32 average lift; LLM understands temporal intent |
+| Decade / Temporal | **Yes** | +0.36 average lift; LLM understands temporal intent |
 | Thematic | **Yes** | +0.10 average lift; filter cleans noisy candidates |
-| Mood | **Yes (with richer context)** | +0.20 lift but needs plot summary as input |
-| Long-tail | Needs better retrieval first | Fix recall before filtering |
+| Mood | **Yes (with richer context)** | +0.40 lift but needs plot summary as input |
+| Long-tail | **Yes** | +0.20 lift |
 
 **Query classification** can route live traffic to the right pipeline at query time — a lightweight text classifier trained on query logs handles this.
 
@@ -182,11 +184,11 @@ Based on these results, the deployment strategy is:
 
 | Scale | Pairs to label | Claude Haiku cost (est.) |
 |-------|---------------|--------------------------|
-| This eval | 1,718 | ~$0.05 |
+| This eval | 1,827 | ~$0.05 |
 | 10,000 queries × 40 candidates | 400,000 | ~$10 |
 | Production (1M queries) | 40M pairs | ~$1,000 (batch) |
 
-At production scale, the LLM judge runs offline as a batch labeler — not in the live serving path. Labels are cached, refreshed on catalog changes, and distilled into the reranker as training signal. The serving-time cost of Pipeline 4 is just the lightweight filter lookup, not a live Claude call.
+At production scale, the LLM judge runs offline as a batch labeler — not in the live serving path. Labels are cached, refreshed on catalog changes, and distilled into the reranker as training signal. The serving-time cost of Pipeline 2 is just the lightweight filter lookup, not a live Claude call.
 
 ---
 
@@ -228,17 +230,19 @@ Enter query: feel good movies
   Labels: 39 cached  |  Consistency: 97%
 ════════════════════════════════════════════════════════════
 
-  PIPELINE 3  (Retrieval → Rerank)      PIPELINE 4  (+ LLM Filter)  removed 29/39
-  ──────────────────────────────────    ──────────────────────────────────────────
-  1. Forrest Gump ✗                      1. Wayne's World ✓
-  2. Transformers: Dark of the Moon ✗    2. 102 Dalmatians ✓
-  3. The Dark Knight ✗                   3. Grease ✓
+  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)  removed 29/39
+  ───────────────────────────────────    ──────────────────────────────────────────
+  1. A Good Day to Die Hard ✗            1. Wayne's World ✓
+  2. The Good German ✗                   2. 102 Dalmatians ✓
+  3. No Good Deed ✗                      3. Grease ✓
   4. Batman v Superman ✗                 4. Wreck-It Ralph ✓
   5. Iron Man 3 ✗                        5. Trainwreck ✓
 
-  P@5:   Pipeline3 0.20   Pipeline4 1.00   delta +0.80
-  NDCG:  Pipeline3 0.20   Pipeline4 1.00
+  P@5:   Pipeline 1: 0.20   Pipeline 2: 1.00   delta +0.80
+  NDCG:  Pipeline 1: 0.20   Pipeline 2: 1.00
 ```
+
+Pipeline 1 matched on the word "good" and returned action films. Pipeline 2's LLM filter understood those aren't feel-good movies and removed them, leaving the reranker a clean pool of upbeat titles.
 
 The explorer supports any free-form query. If it's not in the labeled cache, it offers live Claude labeling for the candidate set.
 
@@ -248,9 +252,9 @@ The explorer supports any free-form query. If it's not in the labeled cache, it 
 
 ```
 semantic-search-eval/
-├── run_eval.py          # Full Pipeline 3 vs 4 evaluation
+├── run_eval.py          # Full Pipeline 1 vs 2 evaluation
 ├── explore.py           # Interactive side-by-side explorer
-├── pipelines.py         # Pipeline3, Pipeline4, _retrieve_union
+├── pipelines.py         # Pipeline1, Pipeline2, _retrieve_union
 ├── rankers.py           # BM25, semantic, cross-encoder
 ├── llm_judge.py         # Claude labeler, dual-prompt consistency
 ├── query_generator.py   # Auto-generates queries from catalog metadata
@@ -260,7 +264,7 @@ semantic-search-eval/
 │   └── fetch_catalog.py # Downloads and samples TMDb CSV
 └── results/
     ├── queries.json      # Cached query set
-    ├── llm_labels.json   # Cached LLM labels (~1,718 pairs)
+    ├── llm_labels.json   # Cached LLM labels (~1,827 pairs)
     └── eval_report.json  # Full per-query and aggregate results
 ```
 
@@ -282,7 +286,7 @@ Measure again with this eval → repeat
 
 ## Limitations
 
-- **Catalog size**: 1000 titles is demonstrably small for long-tail and mood queries where true relevant content may not exist in the catalog.
+- **Catalog size**: 1000 titles is small — recall is limited for niche and temporal queries.
 - **Labels are not ground truth**: LLM relevance labels are a proxy for user satisfaction. Real validation requires A/B testing against watch time and engagement.
-- **Judge input is title + genre only**: Mood queries need plot summary context to label correctly.
+- **Judge input is title + genre only**: Abstract mood queries need plot summary context to label correctly.
 - **No real query logs**: Queries are auto-generated from catalog metadata. Real user query distributions would differ.

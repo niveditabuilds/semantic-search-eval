@@ -39,7 +39,7 @@ def main():
 
     # --- Rankers and pipelines (models load here) ---
     from rankers import precompute_embeddings, build_bm25_index
-    from pipelines import Pipeline3, Pipeline4
+    from pipelines import Pipeline1, Pipeline2
 
     embeddings = precompute_embeddings(CATALOG)
     build_bm25_index(CATALOG)
@@ -80,8 +80,8 @@ def main():
 
         from eval import score_ranker, label_distribution, filter_impact
 
-        p3_out = Pipeline3.run(query, candidates)
-        p4_out = Pipeline4.run(query, candidates, labels)
+        p3_out = Pipeline1.run(query, candidates)
+        p4_out = Pipeline2.run(query, candidates, labels)
 
         p3_scores = score_ranker(p3_out["results"], labels)
         p4_scores = score_ranker(p4_out["results"], labels)
@@ -96,13 +96,13 @@ def main():
             "type": qtype,
             "llm_consistency": round(consistency, 3),
             "label_distribution": dist,
-            "pipeline3": p3_scores,
-            "pipeline4": p4_scores,
+            "pipeline1": p3_scores,
+            "pipeline2": p4_scores,
             "filter_impact": impact,
             "delta_p5": delta_p5,
             "top5": {
-                "pipeline3": [c["title"] for c in p3_out["results"][:5]],
-                "pipeline4": [c["title"] for c in p4_out["results"][:5]],
+                "pipeline1": [c["title"] for c in p3_out["results"][:5]],
+                "pipeline2": [c["title"] for c in p4_out["results"][:5]],
             }
         }
         all_results.append(result)
@@ -115,8 +115,8 @@ def main():
             print(f"  Filter removed:     {impact['removed']}/{impact['total']} candidates ({round(impact['pct_removed']*100)}%)")
         print()
         print(f"                    P@5    NDCG@5")
-        print(f"  {'Pipeline3':<16}  {p3_scores['p5']:.2f}   {p3_scores['ndcg5']:.2f}")
-        print(f"  {'Pipeline4':<16}  {p4_scores['p5']:.2f}   {p4_scores['ndcg5']:.2f}")
+        print(f"  {'Pipeline1':<16}  {p3_scores['p5']:.2f}   {p3_scores['ndcg5']:.2f}")
+        print(f"  {'Pipeline2':<16}  {p4_scores['p5']:.2f}   {p4_scores['ndcg5']:.2f}")
         sign = "+" if delta_p5 >= 0 else ""
         print(f"  {'─' * 29}")
         print(f"  Filter delta      {sign}{delta_p5:.2f}   {'+' if delta_ndcg >= 0 else ''}{delta_ndcg:.2f}")
@@ -130,7 +130,7 @@ def main():
         p3r = p3_out["results"][:5]
         p4r = p4_out["results"][:5]
         print()
-        print(f"  {'PIPELINE 3':<{_w+4}} {'PIPELINE 4 (+ LLM Filter)':<{_w+4}}")
+        print(f"  {'PIPELINE 1':<{_w+4}} {'PIPELINE 2 (+ LLM Filter)':<{_w+4}}")
         for i in range(5):
             pt = _fmt(p3r[i]["title"], labels.get(p3r[i]["title"], "Irrelevant")) if i < len(p3r) else ""
             qt = _fmt(p4r[i]["title"], labels.get(p4r[i]["title"], "Irrelevant")) if i < len(p4r) else ""
@@ -158,7 +158,7 @@ def main():
         vals = [r["filter_impact"]["pct_removed"] for r in rows if r["filter_impact"]]
         return round(sum(vals) / len(vals) * 100) if vals else 0
 
-    header = f"{'Type':<12} {'Queries':>7}  {'P3 P@5':>7}  {'P4 P@5':>7}  {'Filter%':>7}  {'Delta':>7}"
+    header = f"{'Type':<12} {'Queries':>7}  {'P1 P@5':>7}  {'P2 P@5':>7}  {'Filter%':>7}  {'Delta':>7}"
     print(header)
     print("─" * 58)
 
@@ -167,8 +167,8 @@ def main():
         rows = type_groups.get(qtype, [])
         if not rows:
             continue
-        p3 = avg(rows, "pipeline3", "p5")
-        p4 = avg(rows, "pipeline4", "p5")
+        p3 = avg(rows, "pipeline1", "p5")
+        p4 = avg(rows, "pipeline2", "p5")
         flt = avg_filter_pct(rows)
         delta = round(p4 - p3, 3)
         sign = "+" if delta >= 0 else ""
@@ -176,8 +176,8 @@ def main():
         overall_rows.extend(rows)
 
     print("─" * 58)
-    p3_all = avg(overall_rows, "pipeline3", "p5")
-    p4_all = avg(overall_rows, "pipeline4", "p5")
+    p3_all = avg(overall_rows, "pipeline1", "p5")
+    p4_all = avg(overall_rows, "pipeline2", "p5")
     flt_all = avg_filter_pct(overall_rows)
     delta_all = round(p4_all - p3_all, 3)
     sign_all = "+" if delta_all >= 0 else ""
@@ -198,7 +198,7 @@ def main():
 
     # Query type with most filter benefit
     type_deltas = {
-        qtype: round(avg(rows, "pipeline4", "p5") - avg(rows, "pipeline3", "p5"), 3)
+        qtype: round(avg(rows, "pipeline2", "p5") - avg(rows, "pipeline1", "p5"), 3)
         for qtype, rows in type_groups.items() if rows
     }
     best_type = max(type_deltas, key=lambda t: type_deltas[t])
@@ -217,7 +217,7 @@ def main():
     # Query with biggest gain
     best_query = max(all_results, key=lambda r: r["delta_p5"])
     print(f"Biggest single-query gain: \"{best_query['query']}\" [{best_query['type']}]")
-    print(f"  Pipeline3: {best_query['pipeline3']['p5']:.2f} P@5 → Pipeline4: {best_query['pipeline4']['p5']:.2f} P@5")
+    print(f"  Pipeline1: {best_query['pipeline1']['p5']:.2f} P@5 → Pipeline2: {best_query['pipeline2']['p5']:.2f} P@5")
     if best_query["filter_impact"]:
         print(f"  Filter removed {best_query['filter_impact']['removed']} of {best_query['filter_impact']['total']} candidates")
     print()
@@ -229,17 +229,17 @@ def main():
         "aggregate": {
             qtype: {
                 "count": len(rows),
-                "pipeline3_p5": avg(rows, "pipeline3", "p5"),
-                "pipeline4_p5": avg(rows, "pipeline4", "p5"),
+                "pipeline1_p5": avg(rows, "pipeline1", "p5"),
+                "pipeline2_p5": avg(rows, "pipeline2", "p5"),
                 "avg_filter_pct": avg_filter_pct(rows),
-                "delta_p5": round(avg(rows, "pipeline4", "p5") - avg(rows, "pipeline3", "p5"), 3),
+                "delta_p5": round(avg(rows, "pipeline2", "p5") - avg(rows, "pipeline1", "p5"), 3),
             }
             for qtype, rows in type_groups.items()
         },
         "overall": {
             "count": len(overall_rows),
-            "pipeline3_p5": p3_all,
-            "pipeline4_p5": p4_all,
+            "pipeline1_p5": p3_all,
+            "pipeline2_p5": p4_all,
             "avg_filter_pct": flt_all,
             "delta_p5": delta_all,
             "avg_llm_consistency_pct": avg_consistency,

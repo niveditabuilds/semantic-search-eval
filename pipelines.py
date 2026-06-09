@@ -1,10 +1,10 @@
 """
 Two production pipeline architectures compared in this eval.
 
-Pipeline3: Retrieval → Cross-encoder Rerank
+Pipeline1: Retrieval → Cross-encoder Rerank
   Standard two-stage pipeline. BM25 + semantic retrieval feeds a cross-encoder.
 
-Pipeline4: Retrieval → LLM Filter → Cross-encoder Rerank
+Pipeline2: Retrieval → LLM Filter → Cross-encoder Rerank
   Suppress irrelevant candidates before reranking.
   Filter is conservative — only removes candidates with a cached Irrelevant label.
   Unlabeled candidates pass through.
@@ -26,9 +26,9 @@ def _retrieve_union(query, catalog, embeddings, top_n=20):
     return union
 
 
-class Pipeline3:
+class Pipeline1:
     name = "Two-Stage (Retrieval → Rerank)"
-    short = "Pipeline3"
+    short = "Pipeline1"
 
     @staticmethod
     def run(query, candidates):
@@ -41,9 +41,9 @@ class Pipeline3:
         }
 
 
-class Pipeline4:
+class Pipeline2:
     name = "Two-Stage + LLM Filter (Retrieval → Filter → Rerank)"
-    short = "Pipeline4"
+    short = "Pipeline2"
 
     @staticmethod
     def run(query, candidates, labels):
