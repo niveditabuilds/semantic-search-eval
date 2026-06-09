@@ -56,6 +56,10 @@ Query
 
 **LLM filter is conservative.** Only candidates with a cached `Irrelevant` label are removed. Unlabeled candidates pass through. This is intentional — a false positive removal (suppressing a relevant title) is worse than leaving noise for the reranker.
 
+**Why pre-filter at all — why not let the reranker handle it?** Cross-encoders are strong at ordering but they don't discard — they score everything relative to everything else in the candidate pool. A score of 0.7 means something different in a clean pool of 10 candidates vs a noisy pool of 35. When retrieval surfaces many wrong candidates, the reranker's score distribution gets pulled by the noise and genuinely relevant titles can get crowded out. The filter clears the noise first so the reranker operates on a signal-rich pool. The "feel good movies" result demonstrates this directly: the cross-encoder kept promoting titles with "good" in the name not because it was broken, but because retrieval handed it a pool where those were the closest matches.
+
+**This approach vs retraining the ranker.** Pre-filtering is a fast, zero-retraining improvement — you can ship it as soon as you have a label cache. The longer-term play, as shown in the production loop below, is distilling these labels into the ranker as training signal so the ranker itself learns to handle noisy queries. Pre-filtering and ranker distillation are complementary: filter buys you the improvement today, distillation makes the filter unnecessary over time.
+
 ---
 
 ## Methodology
