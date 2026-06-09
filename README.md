@@ -93,6 +93,12 @@ Pairs are labeled once and cached. Re-runs load from cache, costing zero API cal
 
 ## Results
 
+**Column guide:**
+- **P1 P@5** — Pipeline 1 (Retrieval → Rerank, no filter): fraction of top-5 results that are relevant
+- **P2 P@5** — Pipeline 2 (Retrieval → LLM Filter → Rerank): same metric after the LLM filter runs
+- **Filter%** — percentage of candidates Pipeline 2 removed before reranking
+- **Delta** — P2 minus P1: how much the LLM filter improved precision
+
 ```
 ========================================================
 AGGREGATE BY QUERY TYPE (45 queries, 1827 labeled pairs)
