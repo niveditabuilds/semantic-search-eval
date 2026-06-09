@@ -1,0 +1,1843 @@
+{
+  "per_query": [
+    {
+      "query": "family",
+      "type": "genre",
+      "llm_consistency": 0.972,
+      "label_distribution": {
+        "relevant": 29,
+        "irrelevant": 7,
+        "total": 36
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 7,
+        "total": 36,
+        "pct_removed": 0.194
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Dwegons",
+          "Harry Potter and the Philosopher's Stone",
+          "Coraline",
+          "Ri\u00a2hie Ri\u00a2h",
+          "Beverly Hills Chihuahua"
+        ],
+        "pipeline4": [
+          "Dwegons",
+          "Harry Potter and the Philosopher's Stone",
+          "Coraline",
+          "Ri\u00a2hie Ri\u00a2h",
+          "Beverly Hills Chihuahua"
+        ]
+      }
+    },
+    {
+      "query": "animation",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 37,
+        "irrelevant": 0,
+        "total": 37
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 0,
+        "total": 37,
+        "pct_removed": 0.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Dwegons",
+          "Anastasia",
+          "Epic",
+          "Corpse Bride",
+          "Princess Mononoke"
+        ],
+        "pipeline4": [
+          "Dwegons",
+          "Anastasia",
+          "Epic",
+          "Corpse Bride",
+          "Princess Mononoke"
+        ]
+      }
+    },
+    {
+      "query": "adventure",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 37,
+        "irrelevant": 0,
+        "total": 37
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 0,
+        "total": 37,
+        "pct_removed": 0.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Pan",
+          "127 Hours",
+          "Shipwrecked",
+          "Kicks",
+          "The Adventures of Tintin"
+        ],
+        "pipeline4": [
+          "Pan",
+          "127 Hours",
+          "Shipwrecked",
+          "Kicks",
+          "The Adventures of Tintin"
+        ]
+      }
+    },
+    {
+      "query": "comedy",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 31,
+        "irrelevant": 2,
+        "total": 33
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 2,
+        "total": 33,
+        "pct_removed": 0.061
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "50/50",
+          "L!fe Happens",
+          "Metropolitan",
+          "They Came Together",
+          "Men with Brooms"
+        ],
+        "pipeline4": [
+          "50/50",
+          "L!fe Happens",
+          "Metropolitan",
+          "They Came Together",
+          "Men with Brooms"
+        ]
+      }
+    },
+    {
+      "query": "drama",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 33,
+        "irrelevant": 0,
+        "total": 33
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 0,
+        "total": 33,
+        "pct_removed": 0.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "George Washington",
+          "One to Another",
+          "Babel",
+          "Dead Man Walking",
+          "Meek's Cutoff"
+        ],
+        "pipeline4": [
+          "George Washington",
+          "One to Another",
+          "Babel",
+          "Dead Man Walking",
+          "Meek's Cutoff"
+        ]
+      }
+    },
+    {
+      "query": "science fiction",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 36,
+        "irrelevant": 0,
+        "total": 36
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 0,
+        "total": 36,
+        "pct_removed": 0.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Another Earth",
+          "Gattaca",
+          "The Thing",
+          "Chronicle",
+          "Tomorrowland"
+        ],
+        "pipeline4": [
+          "Another Earth",
+          "Gattaca",
+          "The Thing",
+          "Chronicle",
+          "Tomorrowland"
+        ]
+      }
+    },
+    {
+      "query": "action",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 35,
+        "irrelevant": 3,
+        "total": 38
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 3,
+        "total": 38,
+        "pct_removed": 0.079
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Action Jackson",
+          "Firestorm",
+          "Furious 7",
+          "Taken",
+          "30 Minutes or Less"
+        ],
+        "pipeline4": [
+          "Action Jackson",
+          "Firestorm",
+          "Furious 7",
+          "Taken",
+          "30 Minutes or Less"
+        ]
+      }
+    },
+    {
+      "query": "thriller",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 37,
+        "irrelevant": 0,
+        "total": 37
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 0,
+        "total": 37,
+        "pct_removed": 0.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Now You See Me",
+          "Enter the Dangerous Mind",
+          "Before I Go to Sleep",
+          "Halloween",
+          "House at the End of the Street"
+        ],
+        "pipeline4": [
+          "Now You See Me",
+          "Enter the Dangerous Mind",
+          "Before I Go to Sleep",
+          "Halloween",
+          "House at the End of the Street"
+        ]
+      }
+    },
+    {
+      "query": "fantasy",
+      "type": "genre",
+      "llm_consistency": 0.971,
+      "label_distribution": {
+        "relevant": 31,
+        "irrelevant": 4,
+        "total": 35
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 4,
+        "total": 35,
+        "pct_removed": 0.114
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Donnie Darko",
+          "Gods of Egypt",
+          "The League of Extraordinary Gentlemen",
+          "The Wizard of Oz",
+          "Spider-Man"
+        ],
+        "pipeline4": [
+          "Donnie Darko",
+          "Gods of Egypt",
+          "The League of Extraordinary Gentlemen",
+          "The Wizard of Oz",
+          "Spider-Man"
+        ]
+      }
+    },
+    {
+      "query": "crime",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 36,
+        "irrelevant": 0,
+        "total": 36
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 0,
+        "total": 36,
+        "pct_removed": 0.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Pulp Fiction",
+          "Firestorm",
+          "Small Time Crooks",
+          "Let's Go to Prison",
+          "Kids"
+        ],
+        "pipeline4": [
+          "Pulp Fiction",
+          "Firestorm",
+          "Small Time Crooks",
+          "Let's Go to Prison",
+          "Kids"
+        ]
+      }
+    },
+    {
+      "query": "mystery",
+      "type": "genre",
+      "llm_consistency": 0.971,
+      "label_distribution": {
+        "relevant": 35,
+        "irrelevant": 0,
+        "total": 35
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 0,
+        "total": 35,
+        "pct_removed": 0.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "The Prestige",
+          "Prometheus",
+          "Donnie Darko",
+          "The Return",
+          "Self/less"
+        ],
+        "pipeline4": [
+          "The Prestige",
+          "Prometheus",
+          "Donnie Darko",
+          "The Return",
+          "Self/less"
+        ]
+      }
+    },
+    {
+      "query": "history",
+      "type": "genre",
+      "llm_consistency": 0.938,
+      "label_distribution": {
+        "relevant": 28,
+        "irrelevant": 4,
+        "total": 32
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 4,
+        "total": 32,
+        "pct_removed": 0.125
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "The Egyptian",
+          "12 Years a Slave",
+          "The Elephant Man",
+          "Saving Private Ryan",
+          "Public Enemies"
+        ],
+        "pipeline4": [
+          "The Egyptian",
+          "12 Years a Slave",
+          "The Elephant Man",
+          "Saving Private Ryan",
+          "Public Enemies"
+        ]
+      }
+    },
+    {
+      "query": "war",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 31,
+        "irrelevant": 1,
+        "total": 32
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 1,
+        "total": 32,
+        "pct_removed": 0.031
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "The Imitation Game",
+          "Saving Private Ryan",
+          "Gone with the Wind",
+          "Battlefield Earth",
+          "Fury"
+        ],
+        "pipeline4": [
+          "The Imitation Game",
+          "Saving Private Ryan",
+          "Gone with the Wind",
+          "Battlefield Earth",
+          "Fury"
+        ]
+      }
+    },
+    {
+      "query": "romance",
+      "type": "genre",
+      "llm_consistency": 0.944,
+      "label_distribution": {
+        "relevant": 33,
+        "irrelevant": 3,
+        "total": 36
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 3,
+        "total": 36,
+        "pct_removed": 0.083
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Closer",
+          "Not Easily Broken",
+          "The Notebook",
+          "Conversations with Other Women",
+          "Never Again"
+        ],
+        "pipeline4": [
+          "Closer",
+          "Not Easily Broken",
+          "The Notebook",
+          "Conversations with Other Women",
+          "Never Again"
+        ]
+      }
+    },
+    {
+      "query": "horror",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 32,
+        "irrelevant": 0,
+        "total": 32
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 0,
+        "total": 32,
+        "pct_removed": 0.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Ouija",
+          "Halloween",
+          "Insidious",
+          "The Wicked Within",
+          "Carrie"
+        ],
+        "pipeline4": [
+          "Ouija",
+          "Halloween",
+          "Insidious",
+          "The Wicked Within",
+          "Carrie"
+        ]
+      }
+    },
+    {
+      "query": "western",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 16,
+        "irrelevant": 9,
+        "total": 25
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 9,
+        "total": 25,
+        "pct_removed": 0.36
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Once Upon a Time in the West",
+          "The Good, the Bad and the Ugly",
+          "Django Unchained",
+          "Meek's Cutoff",
+          "3:10 to Yuma"
+        ],
+        "pipeline4": [
+          "Once Upon a Time in the West",
+          "The Good, the Bad and the Ugly",
+          "Django Unchained",
+          "Meek's Cutoff",
+          "3:10 to Yuma"
+        ]
+      }
+    },
+    {
+      "query": "music",
+      "type": "genre",
+      "llm_consistency": 0.967,
+      "label_distribution": {
+        "relevant": 27,
+        "irrelevant": 3,
+        "total": 30
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 3,
+        "total": 30,
+        "pct_removed": 0.1
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Straight Outta Compton",
+          "Music and Lyrics",
+          "Cadillac Records",
+          "The Nutcracker",
+          "Into the Woods"
+        ],
+        "pipeline4": [
+          "Straight Outta Compton",
+          "Music and Lyrics",
+          "Cadillac Records",
+          "The Nutcracker",
+          "Into the Woods"
+        ]
+      }
+    },
+    {
+      "query": "documentary",
+      "type": "genre",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 12,
+        "irrelevant": 20,
+        "total": 32
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 20,
+        "total": 32,
+        "pct_removed": 0.625
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Touching the Void",
+          "Dolphins and Whales: Tribes of the Ocean",
+          "Beyond the Mat",
+          "The Act of Killing",
+          "Man on Wire"
+        ],
+        "pipeline4": [
+          "Touching the Void",
+          "Dolphins and Whales: Tribes of the Ocean",
+          "Beyond the Mat",
+          "The Act of Killing",
+          "Man on Wire"
+        ]
+      }
+    },
+    {
+      "query": "action adventure",
+      "type": "compound",
+      "llm_consistency": 0.971,
+      "label_distribution": {
+        "relevant": 33,
+        "irrelevant": 2,
+        "total": 35
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 2,
+        "total": 35,
+        "pct_removed": 0.057
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "The Rock",
+          "30 Minutes or Less",
+          "Nothing to Lose",
+          "Avatar",
+          "The Lone Ranger"
+        ],
+        "pipeline4": [
+          "The Rock",
+          "30 Minutes or Less",
+          "Nothing to Lose",
+          "Avatar",
+          "The Lone Ranger"
+        ]
+      }
+    },
+    {
+      "query": "action thriller",
+      "type": "compound",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 31,
+        "irrelevant": 6,
+        "total": 37
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 6,
+        "total": 37,
+        "pct_removed": 0.162
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Unknown",
+          "Jason Bourne",
+          "Taken",
+          "The Bourne Legacy",
+          "The Specialist"
+        ],
+        "pipeline4": [
+          "Unknown",
+          "Jason Bourne",
+          "Taken",
+          "The Bourne Legacy",
+          "The Specialist"
+        ]
+      }
+    },
+    {
+      "query": "drama thriller",
+      "type": "compound",
+      "llm_consistency": 0.974,
+      "label_distribution": {
+        "relevant": 29,
+        "irrelevant": 9,
+        "total": 38
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 9,
+        "total": 38,
+        "pct_removed": 0.237
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Abandon",
+          "O",
+          "The Prestige",
+          "Room",
+          "The Revenant"
+        ],
+        "pipeline4": [
+          "Abandon",
+          "O",
+          "The Prestige",
+          "Room",
+          "The Revenant"
+        ]
+      }
+    },
+    {
+      "query": "action science fiction",
+      "type": "compound",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 32,
+        "irrelevant": 3,
+        "total": 35
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 3,
+        "total": 35,
+        "pct_removed": 0.086
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "The Matrix",
+          "Lucy",
+          "Dredd",
+          "The Book of Eli",
+          "The World's End"
+        ],
+        "pipeline4": [
+          "The Matrix",
+          "Lucy",
+          "Dredd",
+          "The Book of Eli",
+          "The World's End"
+        ]
+      }
+    },
+    {
+      "query": "adventure fantasy",
+      "type": "compound",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 35,
+        "irrelevant": 3,
+        "total": 38
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 3,
+        "total": 38,
+        "pct_removed": 0.079
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Pan",
+          "Epic",
+          "The Wizard of Oz",
+          "Avatar",
+          "The Hobbit: An Unexpected Journey"
+        ],
+        "pipeline4": [
+          "Pan",
+          "Epic",
+          "The Wizard of Oz",
+          "Avatar",
+          "The Hobbit: An Unexpected Journey"
+        ]
+      }
+    },
+    {
+      "query": "drama romance",
+      "type": "compound",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 24,
+        "irrelevant": 12,
+        "total": 36
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 12,
+        "total": 36,
+        "pct_removed": 0.333
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Closer",
+          "Not Easily Broken",
+          "Me Before You",
+          "Gone with the Wind",
+          "The Longest Ride"
+        ],
+        "pipeline4": [
+          "Closer",
+          "Not Easily Broken",
+          "Me Before You",
+          "Gone with the Wind",
+          "The Longest Ride"
+        ]
+      }
+    },
+    {
+      "query": "adventure science fiction",
+      "type": "compound",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 27,
+        "irrelevant": 7,
+        "total": 34
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 7,
+        "total": 34,
+        "pct_removed": 0.206
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Tomorrowland",
+          "Allegiant",
+          "The 5th Wave",
+          "Jurassic Park",
+          "Interstellar"
+        ],
+        "pipeline4": [
+          "Tomorrowland",
+          "Allegiant",
+          "The 5th Wave",
+          "Jurassic Park",
+          "Interstellar"
+        ]
+      }
+    },
+    {
+      "query": "crime thriller",
+      "type": "compound",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 31,
+        "irrelevant": 3,
+        "total": 34
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 3,
+        "total": 34,
+        "pct_removed": 0.088
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Now You See Me",
+          "Law Abiding Citizen",
+          "Pulp Fiction",
+          "A Walk Among the Tombstones",
+          "Reservoir Dogs"
+        ],
+        "pipeline4": [
+          "Now You See Me",
+          "Law Abiding Citizen",
+          "Pulp Fiction",
+          "A Walk Among the Tombstones",
+          "Reservoir Dogs"
+        ]
+      }
+    },
+    {
+      "query": "70s movies",
+      "type": "decade",
+      "llm_consistency": 0.95,
+      "label_distribution": {
+        "relevant": 2,
+        "irrelevant": 38,
+        "total": 40
+      },
+      "pipeline3": {
+        "p5": 0.4,
+        "ndcg5": 0.85
+      },
+      "pipeline4": {
+        "p5": 0.4,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 38,
+        "total": 40,
+        "pct_removed": 0.95
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Dark Shadows",
+          "Hard Rain",
+          "Straightheads",
+          "50/50",
+          "Days of Heaven"
+        ],
+        "pipeline4": [
+          "Dark Shadows",
+          "Days of Heaven"
+        ]
+      }
+    },
+    {
+      "query": "80s movies",
+      "type": "decade",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 2,
+        "irrelevant": 38,
+        "total": 40
+      },
+      "pipeline3": {
+        "p5": 0.2,
+        "ndcg5": 0.387
+      },
+      "pipeline4": {
+        "p5": 0.4,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 38,
+        "total": 40,
+        "pct_removed": 0.95
+      },
+      "delta_p5": 0.2,
+      "top5": {
+        "pipeline3": [
+          "Watchmen",
+          "The Terminator",
+          "Hard Rain",
+          "Straightheads",
+          "Batman v Superman: Dawn of Justice"
+        ],
+        "pipeline4": [
+          "The Terminator",
+          "Time Bandits"
+        ]
+      }
+    },
+    {
+      "query": "90s movies",
+      "type": "decade",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 1,
+        "irrelevant": 39,
+        "total": 40
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.2,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 39,
+        "total": 40,
+        "pct_removed": 0.975
+      },
+      "delta_p5": 0.2,
+      "top5": {
+        "pipeline3": [
+          "Back to the Future",
+          "Let's Be Cops",
+          "Ghostbusters",
+          "Men in Black 3",
+          "Straightheads"
+        ],
+        "pipeline4": [
+          "Starship Troopers"
+        ]
+      }
+    },
+    {
+      "query": "00s movies",
+      "type": "decade",
+      "llm_consistency": 0.975,
+      "label_distribution": {
+        "relevant": 2,
+        "irrelevant": 38,
+        "total": 40
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.4,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 38,
+        "total": 40,
+        "pct_removed": 0.95
+      },
+      "delta_p5": 0.4,
+      "top5": {
+        "pipeline3": [
+          "Dr. No",
+          "The Expendables",
+          "Ghostbusters",
+          "Batman v Superman: Dawn of Justice",
+          "Straightheads"
+        ],
+        "pipeline4": [
+          "Pirates of the Caribbean: The Curse of the Black Pearl",
+          "Wild Things"
+        ]
+      }
+    },
+    {
+      "query": "10s movies",
+      "type": "decade",
+      "llm_consistency": 0.725,
+      "label_distribution": {
+        "relevant": 14,
+        "irrelevant": 26,
+        "total": 40
+      },
+      "pipeline3": {
+        "p5": 0.2,
+        "ndcg5": 0.131
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 26,
+        "total": 40,
+        "pct_removed": 0.65
+      },
+      "delta_p5": 0.8,
+      "top5": {
+        "pipeline3": [
+          "Force 10 from Navarone",
+          "10 Cloverfield Lane",
+          "Ocean's Twelve",
+          "9",
+          "The Hateful Eight"
+        ],
+        "pipeline4": [
+          "The Hateful Eight",
+          "Big Hero 6",
+          "Batman v Superman: Dawn of Justice",
+          "Minions",
+          "Mad Max: Fury Road"
+        ]
+      }
+    },
+    {
+      "query": "based on true story",
+      "type": "thematic",
+      "llm_consistency": 0.917,
+      "label_distribution": {
+        "relevant": 23,
+        "irrelevant": 13,
+        "total": 36
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 13,
+        "total": 36,
+        "pct_removed": 0.361
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Casino Jack",
+          "Race",
+          "Killer Elite",
+          "Dead Man Walking",
+          "50/50"
+        ],
+        "pipeline4": [
+          "Casino Jack",
+          "Race",
+          "Killer Elite",
+          "Dead Man Walking",
+          "50/50"
+        ]
+      }
+    },
+    {
+      "query": "revenge thriller",
+      "type": "thematic",
+      "llm_consistency": 0.914,
+      "label_distribution": {
+        "relevant": 16,
+        "irrelevant": 19,
+        "total": 35
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 19,
+        "total": 35,
+        "pct_removed": 0.543
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Paparazzi",
+          "The Specialist",
+          "Kill Bill: Vol. 2",
+          "The Expendables 2",
+          "Skin Trade"
+        ],
+        "pipeline4": [
+          "Paparazzi",
+          "The Specialist",
+          "Kill Bill: Vol. 2",
+          "The Expendables 2",
+          "Skin Trade"
+        ]
+      }
+    },
+    {
+      "query": "undercover cop",
+      "type": "thematic",
+      "llm_consistency": 0.853,
+      "label_distribution": {
+        "relevant": 10,
+        "irrelevant": 24,
+        "total": 34
+      },
+      "pipeline3": {
+        "p5": 0.8,
+        "ndcg5": 0.854
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 24,
+        "total": 34,
+        "pct_removed": 0.706
+      },
+      "delta_p5": 0.2,
+      "top5": {
+        "pipeline3": [
+          "Starsky & Hutch",
+          "The Departed",
+          "22 Jump Street",
+          "Beverly Hills Cop",
+          "Training Day"
+        ],
+        "pipeline4": [
+          "Starsky & Hutch",
+          "The Departed",
+          "22 Jump Street",
+          "Training Day",
+          "Trade"
+        ]
+      }
+    },
+    {
+      "query": "childhood wish",
+      "type": "thematic",
+      "llm_consistency": 0.897,
+      "label_distribution": {
+        "relevant": 15,
+        "irrelevant": 24,
+        "total": 39
+      },
+      "pipeline3": {
+        "p5": 0.8,
+        "ndcg5": 0.83
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 24,
+        "total": 39,
+        "pct_removed": 0.615
+      },
+      "delta_p5": 0.2,
+      "top5": {
+        "pipeline3": [
+          "Ted",
+          "The Butterfly Effect",
+          "Incendies",
+          "Liar Liar",
+          "Dreamgirls"
+        ],
+        "pipeline4": [
+          "Ted",
+          "The Butterfly Effect",
+          "Liar Liar",
+          "Dreamgirls",
+          "The Giver"
+        ]
+      }
+    },
+    {
+      "query": "save the world",
+      "type": "thematic",
+      "llm_consistency": 0.895,
+      "label_distribution": {
+        "relevant": 26,
+        "irrelevant": 12,
+        "total": 38
+      },
+      "pipeline3": {
+        "p5": 0.8,
+        "ndcg5": 0.854
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 12,
+        "total": 38,
+        "pct_removed": 0.316
+      },
+      "delta_p5": 0.2,
+      "top5": {
+        "pipeline3": [
+          "Deep Impact",
+          "Prometheus",
+          "The Green Inferno",
+          "Saving Private Ryan",
+          "The Book of Eli"
+        ],
+        "pipeline4": [
+          "Deep Impact",
+          "Prometheus",
+          "The Green Inferno",
+          "The Book of Eli",
+          "Night at the Museum: Secret of the Tomb"
+        ]
+      }
+    },
+    {
+      "query": "war movie",
+      "type": "thematic",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 20,
+        "irrelevant": 19,
+        "total": 39
+      },
+      "pipeline3": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 19,
+        "total": 39,
+        "pct_removed": 0.487
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Fury",
+          "Jarhead",
+          "First Blood",
+          "The Horseman on the Roof",
+          "Buffalo Soldiers"
+        ],
+        "pipeline4": [
+          "Fury",
+          "Jarhead",
+          "First Blood",
+          "The Horseman on the Roof",
+          "Buffalo Soldiers"
+        ]
+      }
+    },
+    {
+      "query": "feel good movies",
+      "type": "mood",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 10,
+        "irrelevant": 29,
+        "total": 39
+      },
+      "pipeline3": {
+        "p5": 0.2,
+        "ndcg5": 0.131
+      },
+      "pipeline4": {
+        "p5": 1.0,
+        "ndcg5": 1.0
+      },
+      "filter_impact": {
+        "removed": 29,
+        "total": 39,
+        "pct_removed": 0.744
+      },
+      "delta_p5": 0.8,
+      "top5": {
+        "pipeline3": [
+          "A Good Day to Die Hard",
+          "Midnight in the Garden of Good and Evil",
+          "No Good Deed",
+          "The Good German",
+          "Good Boy!"
+        ],
+        "pipeline4": [
+          "Good Boy!",
+          "102 Dalmatians",
+          "Trainwreck",
+          "The Good Dinosaur",
+          "Epic"
+        ]
+      }
+    },
+    {
+      "query": "dark psychological",
+      "type": "mood",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 0,
+        "irrelevant": 32,
+        "total": 32
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "filter_impact": {
+        "removed": 32,
+        "total": 32,
+        "pct_removed": 1.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "The Dark Hours",
+          "Insidious",
+          "The Conjuring",
+          "Donnie Darko",
+          "Ouija"
+        ],
+        "pipeline4": [
+          "The Dark Hours",
+          "Insidious",
+          "The Conjuring",
+          "Donnie Darko",
+          "Ouija"
+        ]
+      }
+    },
+    {
+      "query": "mindblowing sci fi",
+      "type": "mood",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 0,
+        "irrelevant": 38,
+        "total": 38
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "filter_impact": {
+        "removed": 38,
+        "total": 38,
+        "pct_removed": 1.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Sleep Dealer",
+          "Eternal Sunshine of the Spotless Mind",
+          "Inception",
+          "Enter the Dangerous Mind",
+          "Mad Max: Fury Road"
+        ],
+        "pipeline4": [
+          "Sleep Dealer",
+          "Eternal Sunshine of the Spotless Mind",
+          "Inception",
+          "Enter the Dangerous Mind",
+          "Mad Max: Fury Road"
+        ]
+      }
+    },
+    {
+      "query": "light hearted comedy",
+      "type": "mood",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 0,
+        "irrelevant": 34,
+        "total": 34
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "filter_impact": {
+        "removed": 34,
+        "total": 34,
+        "pct_removed": 1.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Men with Brooms",
+          "The Visitors",
+          "Beetlejuice",
+          "Metropolitan",
+          "The Sweetest Thing"
+        ],
+        "pipeline4": [
+          "Men with Brooms",
+          "The Visitors",
+          "Beetlejuice",
+          "Metropolitan",
+          "The Sweetest Thing"
+        ]
+      }
+    },
+    {
+      "query": "animated talking animals",
+      "type": "longtail",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 0,
+        "irrelevant": 38,
+        "total": 38
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "filter_impact": {
+        "removed": 38,
+        "total": 38,
+        "pct_removed": 1.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Madagascar",
+          "Ice Age",
+          "Ice Age: Dawn of the Dinosaurs",
+          "Dwegons",
+          "Spirited Away"
+        ],
+        "pipeline4": [
+          "Madagascar",
+          "Ice Age",
+          "Ice Age: Dawn of the Dinosaurs",
+          "Dwegons",
+          "Spirited Away"
+        ]
+      }
+    },
+    {
+      "query": "superhero origin story",
+      "type": "longtail",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 0,
+        "irrelevant": 34,
+        "total": 34
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "filter_impact": {
+        "removed": 34,
+        "total": 34,
+        "pct_removed": 1.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Deadpool",
+          "Iron Man 2",
+          "Megamind",
+          "Superman",
+          "Batman v Superman: Dawn of Justice"
+        ],
+        "pipeline4": [
+          "Deadpool",
+          "Iron Man 2",
+          "Megamind",
+          "Superman",
+          "Batman v Superman: Dawn of Justice"
+        ]
+      }
+    },
+    {
+      "query": "epic fantasy adventure",
+      "type": "longtail",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 0,
+        "irrelevant": 37,
+        "total": 37
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "filter_impact": {
+        "removed": 37,
+        "total": 37,
+        "pct_removed": 1.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "Epic",
+          "The Hobbit: An Unexpected Journey",
+          "Night at the Museum: Secret of the Tomb",
+          "X-Men: Days of Future Past",
+          "How to Train Your Dragon 2"
+        ],
+        "pipeline4": [
+          "Epic",
+          "The Hobbit: An Unexpected Journey",
+          "Night at the Museum: Secret of the Tomb",
+          "X-Men: Days of Future Past",
+          "How to Train Your Dragon 2"
+        ]
+      }
+    },
+    {
+      "query": "world war two",
+      "type": "longtail",
+      "llm_consistency": 1.0,
+      "label_distribution": {
+        "relevant": 0,
+        "irrelevant": 30,
+        "total": 30
+      },
+      "pipeline3": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "pipeline4": {
+        "p5": 0.0,
+        "ndcg5": 0.0
+      },
+      "filter_impact": {
+        "removed": 30,
+        "total": 30,
+        "pct_removed": 1.0
+      },
+      "delta_p5": 0.0,
+      "top5": {
+        "pipeline3": [
+          "The Good German",
+          "Fury",
+          "Shutter Island",
+          "The Land Girls",
+          "Inglourious Basterds"
+        ],
+        "pipeline4": [
+          "The Good German",
+          "Fury",
+          "Shutter Island",
+          "The Land Girls",
+          "Inglourious Basterds"
+        ]
+      }
+    }
+  ],
+  "aggregate": {
+    "genre": {
+      "count": 18,
+      "pipeline3_p5": 1.0,
+      "pipeline4_p5": 1.0,
+      "avg_filter_pct": 10,
+      "delta_p5": 0.0
+    },
+    "compound": {
+      "count": 8,
+      "pipeline3_p5": 1.0,
+      "pipeline4_p5": 1.0,
+      "avg_filter_pct": 16,
+      "delta_p5": 0.0
+    },
+    "decade": {
+      "count": 5,
+      "pipeline3_p5": 0.16,
+      "pipeline4_p5": 0.48,
+      "avg_filter_pct": 90,
+      "delta_p5": 0.32
+    },
+    "thematic": {
+      "count": 6,
+      "pipeline3_p5": 0.9,
+      "pipeline4_p5": 1.0,
+      "avg_filter_pct": 50,
+      "delta_p5": 0.1
+    },
+    "mood": {
+      "count": 4,
+      "pipeline3_p5": 0.05,
+      "pipeline4_p5": 0.25,
+      "avg_filter_pct": 94,
+      "delta_p5": 0.2
+    },
+    "longtail": {
+      "count": 4,
+      "pipeline3_p5": 0.0,
+      "pipeline4_p5": 0.0,
+      "avg_filter_pct": 100,
+      "delta_p5": 0.0
+    }
+  },
+  "overall": {
+    "count": 45,
+    "pipeline3_p5": 0.72,
+    "pipeline4_p5": 0.787,
+    "avg_filter_pct": 41,
+    "delta_p5": 0.067,
+    "avg_llm_consistency_pct": 97
+  }
+}

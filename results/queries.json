@@ -1,0 +1,182 @@
+[
+  {
+    "query": "family",
+    "type": "genre"
+  },
+  {
+    "query": "animation",
+    "type": "genre"
+  },
+  {
+    "query": "adventure",
+    "type": "genre"
+  },
+  {
+    "query": "comedy",
+    "type": "genre"
+  },
+  {
+    "query": "drama",
+    "type": "genre"
+  },
+  {
+    "query": "science fiction",
+    "type": "genre"
+  },
+  {
+    "query": "action",
+    "type": "genre"
+  },
+  {
+    "query": "thriller",
+    "type": "genre"
+  },
+  {
+    "query": "fantasy",
+    "type": "genre"
+  },
+  {
+    "query": "crime",
+    "type": "genre"
+  },
+  {
+    "query": "mystery",
+    "type": "genre"
+  },
+  {
+    "query": "history",
+    "type": "genre"
+  },
+  {
+    "query": "war",
+    "type": "genre"
+  },
+  {
+    "query": "romance",
+    "type": "genre"
+  },
+  {
+    "query": "horror",
+    "type": "genre"
+  },
+  {
+    "query": "western",
+    "type": "genre"
+  },
+  {
+    "query": "music",
+    "type": "genre"
+  },
+  {
+    "query": "documentary",
+    "type": "genre"
+  },
+  {
+    "query": "action adventure",
+    "type": "compound"
+  },
+  {
+    "query": "action thriller",
+    "type": "compound"
+  },
+  {
+    "query": "drama thriller",
+    "type": "compound"
+  },
+  {
+    "query": "action science fiction",
+    "type": "compound"
+  },
+  {
+    "query": "adventure fantasy",
+    "type": "compound"
+  },
+  {
+    "query": "drama romance",
+    "type": "compound"
+  },
+  {
+    "query": "adventure science fiction",
+    "type": "compound"
+  },
+  {
+    "query": "crime thriller",
+    "type": "compound"
+  },
+  {
+    "query": "70s movies",
+    "type": "decade"
+  },
+  {
+    "query": "80s movies",
+    "type": "decade"
+  },
+  {
+    "query": "90s movies",
+    "type": "decade"
+  },
+  {
+    "query": "00s movies",
+    "type": "decade"
+  },
+  {
+    "query": "10s movies",
+    "type": "decade"
+  },
+  {
+    "query": "based on true story",
+    "type": "thematic"
+  },
+  {
+    "query": "revenge thriller",
+    "type": "thematic"
+  },
+  {
+    "query": "undercover cop",
+    "type": "thematic"
+  },
+  {
+    "query": "childhood wish",
+    "type": "thematic"
+  },
+  {
+    "query": "save the world",
+    "type": "thematic"
+  },
+  {
+    "query": "war movie",
+    "type": "thematic"
+  },
+  {
+    "query": "feel good movies",
+    "type": "mood"
+  },
+  {
+    "query": "dark psychological",
+    "type": "mood"
+  },
+  {
+    "query": "mindblowing sci fi",
+    "type": "mood"
+  },
+  {
+    "query": "light hearted comedy",
+    "type": "mood"
+  },
+  {
+    "query": "animated talking animals",
+    "type": "longtail"
+  },
+  {
+    "query": "superhero origin story",
+    "type": "longtail"
+  },
+  {
+    "query": "epic fantasy adventure",
+    "type": "longtail"
+  },
+  {
+    "query": "world war two",
+    "type": "longtail"
+  }
+]

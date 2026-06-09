@@ -1,0 +1,6 @@
+.env
+__pycache__/
+*.pyc
+.DS_Store
+data/*.csv
+BUILD_SPEC_V2.md
