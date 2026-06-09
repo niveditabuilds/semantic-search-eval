@@ -229,9 +229,9 @@ python3 explore.py
 
 ## Interactive Demo (`explore.py`)
 
-```
-Enter query: feel good movies
+**Example 1 — Mood query: "feel good movies"**
 
+```
 ════════════════════════════════════════════════════════════
   Query: "feel good movies"  [mood]
   Labels: 39 cached  |  Consistency: 97%
@@ -249,7 +249,55 @@ Enter query: feel good movies
   NDCG:  Pipeline 1: 0.20   Pipeline 2: 1.00
 ```
 
-Pipeline 1 matched on the word "good" and returned action films. Pipeline 2's LLM filter understood those aren't feel-good movies and removed them, leaving the reranker a clean pool of upbeat titles.
+Pipeline 1 matched on the word "good" — every result has "good" in the title or is a popular action film. Pipeline 2's LLM filter understood those aren't feel-good movies and removed them, leaving the reranker a clean pool of upbeat titles.
+
+---
+
+**Example 2 — Decade query: "90s movies"**
+
+```
+════════════════════════════════════════════════════════════
+  Query: "90s movies"  [decade]
+  Labels: 40 cached  |  Consistency: 100%
+════════════════════════════════════════════════════════════
+
+  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)  removed 39/40
+  ───────────────────────────────────    ──────────────────────────────────────────
+  1. Back to the Future ✗                1. Starship Troopers ✓
+  2. Let's Be Cops ✗                     2.
+  3. Ghostbusters ✗                      3.
+  4. Men in Black 3 ✗                    4.
+  5. Straightheads ✗                     5.
+
+  P@5:   Pipeline 1: 0.00   Pipeline 2: 0.20   delta +0.20
+  NDCG:  Pipeline 1: 0.00   Pipeline 2: 1.00
+```
+
+Pipeline 1 returned popular films regardless of decade — *Back to the Future* (1985), *Ghostbusters* (1984). The LLM filter removed 39 of 40 candidates, leaving only *Starship Troopers* (1997) from the retrieved pool. P@5 is low because retrieval only found one 90s film in 1000 titles — a recall problem, not a filter problem. The filter itself worked correctly.
+
+---
+
+**Example 3 — Compound mood query: "funny horror"**
+
+```
+════════════════════════════════════════════════════════════
+  Query: "funny horror"  [mood]
+  Labels: 32 cached  |  Consistency: 100%
+════════════════════════════════════════════════════════════
+
+  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)  removed 24/32
+  ───────────────────────────────────    ──────────────────────────────────────────
+  1. Detention of the Dead ✓             1. Detention of the Dead ✓
+  2. Funny Games ✗                       2. Goosebumps ✓
+  3. Goosebumps ✓                        3. Gremlins ✓
+  4. Gremlins ✓                          4. A Beginner's Guide to Snuff ✓
+  5. A Beginner's Guide to Snuff ✓       5. Love in the Time of Monsters ✓
+
+  P@5:   Pipeline 1: 0.80   Pipeline 2: 1.00   delta +0.20
+  NDCG:  Pipeline 1: 0.80   Pipeline 2: 1.00
+```
+
+Pipeline 1 ranked *Funny Games* at position 2 — a psychological horror film with no comedy, matched on the word "funny". The LLM filter removed it, pushing all five remaining results to genuine horror-comedies.
 
 The explorer supports any free-form query. If it's not in the labeled cache, it offers live Claude labeling for the candidate set.
 
