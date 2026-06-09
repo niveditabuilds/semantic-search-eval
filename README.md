@@ -158,7 +158,7 @@ Avg LLM label consistency: 96%
 
 Simple genre queries already achieve **P@5 = 1.00** with Pipeline 1. The retrieval stage (BM25 + semantic) correctly surfaces only relevant titles; there's nothing to filter. Adding the LLM filter at 10–16% removal rate changes nothing.
 
-**Implication for production:** Running the LLM filter on genre queries costs API latency with zero metric improvement. The filter should be deployed selectively.
+**Implication for production:** The filter has no effect on genre queries, but it also costs nothing to run — labels are cached offline, so the filter at serving time is a dictionary lookup. There is no latency argument for skipping it on genre queries.
 
 ### 3. Filter rate signals query difficulty
 
@@ -172,18 +172,20 @@ At 96% dual-prompt consistency the judge is stable and reliable across the eval.
 
 ## Production Recommendation
 
-Based on these results, the deployment strategy is:
+Deploy the LLM filter universally. Labels are computed offline and cached — the filter at serving time is a cache lookup, not a live API call. There is no latency cost to running it on every query, including genre queries where it has no effect.
 
-| Query type | Deploy filter? | Reason |
-|-----------|---------------|--------|
-| Genre | No | Already at P@5 ceiling; filter adds only latency |
-| Compound | No | Already at P@5 ceiling |
-| Decade / Temporal | **Yes** | +0.36 average lift; LLM understands temporal intent |
-| Thematic | **Yes** | +0.10 average lift; filter cleans noisy candidates |
-| Mood | **Yes** | +0.40 lift — largest gain category |
-| Long-tail | **Yes** | +0.20 lift |
+The eval findings tell you *where the filter earns its keep*, which matters for prioritizing labeling coverage and understanding system behavior — not for selectively routing live traffic:
 
-**Query classification** can route live traffic to the right pipeline at query time — a lightweight text classifier trained on query logs handles this.
+| Query type | P@5 lift | What the filter does |
+|-----------|----------|----------------------|
+| Genre | 0.00 | No effect — retrieval is already precise |
+| Compound | 0.00 | No effect — retrieval is already precise |
+| Decade / Temporal | +0.36 | Removes titles from the wrong era; LLM understands temporal slang |
+| Thematic | +0.10 | Strips candidates matched by keyword but wrong in context |
+| Mood | +0.40 | Largest gain — removes literal keyword matches ("good" → "feel good") |
+| Long-tail | +0.20 | Cleans noisy candidates that lack the niche genre signal |
+
+Adding query-type routing to skip the filter on genre queries would add architectural complexity for zero production benefit.
 
 ---
 
