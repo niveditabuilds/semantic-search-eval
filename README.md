@@ -7,14 +7,13 @@ A search relevance evaluation framework for streaming catalogs that compares two
 - **Pipeline 3** — BM25 + Semantic Retrieval → Cross-encoder Rerank
 - **Pipeline 4** — BM25 + Semantic Retrieval → LLM Filter → Cross-encoder Rerank
 
-Inspired by [Etsy's LLM-as-Judge Semantic Relevance Framework (Jan 2026)](https://www.etsy.com/codeascraft/semantic-relevance-evaluation).  
 Catalog: TMDb 1000 titles. Queries: auto-generated from catalog metadata. Labels: Claude Sonnet.
 
 ---
 
 ## The Hypothesis
 
-Etsy's 2026 paper introduced an insight that applies directly to streaming search: **LLM relevance labels, used as a pre-filter before reranking, remove noise from the candidate pool and let the reranker focus on genuinely relevant titles.**
+**LLM relevance labels, used as a pre-filter before reranking, remove noise from the candidate pool and let the reranker focus on genuinely relevant titles.**
 
 The key claim:
 > LLM filtering should help most on queries where the retrieval stage surfaces many semantically-adjacent-but-wrong candidates — compound, thematic, and temporal queries — and add no value on simple genre queries where the retrieval ceiling is already 100% relevant.
@@ -158,7 +157,7 @@ Average filter rate of 33% across all queries masks a meaningful pattern: genre 
 
 The judge is highly consistent (97%) but over-strict on abstract mood queries (`dark psychological`, `mindblowing sci-fi`, `light hearted comedy`) — labeling all 30–38 candidates as Irrelevant. These are real edge cases where the judge's context (title + genres only) isn't enough to make a correct relevance call. A more robust judge would also pass the plot summary.
 
-This is a known limitation of the Etsy-style framework: **judge quality is bounded by the input context.** Title + genre is sufficient for decade and genre queries; it's not sufficient for mood and abstract descriptive queries.
+**Judge quality is bounded by the input context.** Title + genre is sufficient for decade and genre queries; it's not sufficient for mood and abstract descriptive queries.
 
 ---
 
@@ -267,11 +266,9 @@ semantic-search-eval/
 
 ---
 
-## Relation to Etsy's Work
+## The Production Loop
 
-Etsy's Jan 2026 paper uses LLM labels as **training signal** to fix a ranker trained on biased engagement data. This repo implements the **evaluation half** of that loop: the offline label-and-measure framework that tells you *where* the ranker is failing and *what kind* of query benefits from the LLM filter.
-
-The production loop would be:
+This repo implements the **evaluation half** of a larger system: the offline label-and-measure framework that tells you *where* the ranker is failing and *what kind* of query benefits from the LLM filter.
 
 ```
 Label (this eval) → Identify query types with lift → Deploy filter selectively

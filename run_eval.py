@@ -20,7 +20,7 @@ def main():
     print("SEMANTIC SEARCH RELEVANCE EVAL V2")
     print("Catalog: TMDb (1000 titles)")
     print("Comparing: Two-Stage Pipeline vs Two-Stage + LLM Filter")
-    print("Inspired by Etsy's LLM-as-Judge Framework (Jan 2026)")
+    print("LLM-as-Judge filtering vs cross-encoder reranking")
     print("=" * 56)
     print()
 

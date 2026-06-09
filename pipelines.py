@@ -5,7 +5,7 @@ Pipeline3: Retrieval → Cross-encoder Rerank
   Standard two-stage pipeline. BM25 + semantic retrieval feeds a cross-encoder.
 
 Pipeline4: Retrieval → LLM Filter → Cross-encoder Rerank
-  The Etsy insight: suppress irrelevant candidates before reranking.
+  Suppress irrelevant candidates before reranking.
   Filter is conservative — only removes candidates with a cached Irrelevant label.
   Unlabeled candidates pass through.
 """
