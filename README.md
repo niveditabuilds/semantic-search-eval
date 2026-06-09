@@ -199,7 +199,7 @@ pip install -r requirements.txt
 
 # Set API key
 cp .env.example .env
-# Edit .env: ANTHROPIC_API_KEY=sk-ant-...
+# Edit .env: ANTHROPIC_API_KEY=your_key_here
 
 # Download catalog (run once — requires the TMDb CSV)
 python3 data/fetch_catalog.py
