@@ -94,34 +94,34 @@ Pairs are labeled once and cached. Re-runs load from cache, costing zero API cal
 
 ```
 ========================================================
-AGGREGATE BY QUERY TYPE (45 queries, 1718 labeled pairs)
+AGGREGATE BY QUERY TYPE (45 queries, 1827 labeled pairs)
 ========================================================
 
 Type         Queries  P3 P@5  P4 P@5  Filter%    Delta
 ──────────────────────────────────────────────────────
 genre             18    1.00    1.00      10%   + 0.00
 compound           8    1.00    1.00      16%   + 0.00
-decade             5    0.16    0.48      90%   +0.32
+decade             5    0.16    0.52      88%   +0.36
 thematic           6    0.90    1.00      50%   +0.10
-mood               4    0.05    0.25      94%   +0.20
-longtail           4    0.00    0.00     100%   + 0.00
+mood               4    0.60    1.00      49%   +0.40
+longtail           4    0.80    1.00      57%   +0.20
 ──────────────────────────────────────────────────────
-OVERALL           45    0.72    0.79      41%   +0.07
+OVERALL           45    0.84    0.95      33%   +0.11
 
-Avg LLM label consistency: 97%
+Avg LLM label consistency: 96%
 ```
 
 ---
 
 ## Key Findings
 
-### 1. The hypothesis holds for temporal and thematic queries
+### 1. The hypothesis holds across temporal, thematic, mood, and long-tail queries
 
-Decade queries showed the most dramatic improvement: **+0.32 P@5 average**, with individual queries jumping from near-zero to perfect:
+Decade queries showed dramatic improvement: **+0.36 P@5 average**, with individual queries jumping from near-zero to perfect:
 
 ```
 "10s movies"   Pipeline3: 0.20 P@5  →  Pipeline4: 1.00 P@5  (+0.80)
-               Filter removed 26 of 40 candidates (65%)
+               Filter removed 25 of 40 candidates (63%)
                Top-5 P4: Inception ✓, The Dark Knight ✓, Interstellar ✓,
                          Django Unchained ✓, Guardians of the Galaxy ✓
 
@@ -132,12 +132,17 @@ Decade queries showed the most dramatic improvement: **+0.32 P@5 average**, with
 
 **Why decade queries benefit so much:** The cross-encoder scores titles on semantic similarity to the query string "10s movies" — which is meaningless to a neural model trained on prose. The LLM judge understands that "10s movies" means films from 2010–2019 and correctly labels older titles as Irrelevant, leaving the reranker a clean candidate pool.
 
-Mood queries with high semantic ambiguity also saw strong gains:
+Mood queries saw the largest average gain at **+0.40 P@5**:
 
 ```
 "feel good movies"   P3: 0.20  →  P4: 1.00  (+0.80)
                      Filter removed 29 of 39 candidates (74%)
+
+"funny horror"       P3: 0.80  →  P4: 1.00  (+0.20)
+                     Goosebumps ✓, Gremlins ✓, Ghostbusters ✓ in top 5
 ```
+
+Long-tail queries also improved substantially: **+0.20 average**, from P3 0.80 → P4 1.00.
 
 ### 2. Genre and compound queries are already at ceiling — filter adds nothing
 
@@ -145,11 +150,9 @@ Simple genre queries already achieve **P@5 = 1.00** with Pipeline 3. The retriev
 
 **Implication for production:** Running the LLM filter on genre queries costs API latency with zero metric improvement. The filter should be deployed selectively.
 
-### 3. 100% filter rate = retrieval failure, not filter failure
+### 3. Filter rate signals query difficulty
 
-Long-tail queries like `superhero origin story` and `animated talking animals` returned 0 relevant results in both pipelines. The LLM filter removed 100% of candidates, the Pipeline 4 fallback kicked in (restoring original candidates), and the cross-encoder still found nothing relevant.
-
-This is a **retrieval failure**, not a filter failure. The 1000-title catalog simply doesn't have enough relevant content for niche descriptive queries — or the retrieval layer isn't recalling the right titles in the first place. The LLM filter correctly identifies the absence of relevant content; the fix is upstream (denser retrieval or a larger catalog).
+Average filter rate of 33% across all queries masks a meaningful pattern: genre queries remove only 10% of candidates (retrieval is already precise), while decade and mood queries remove 49–88% (retrieval surfaces many wrong candidates that the LLM correctly strips out). High filter rate is a signal that the query type needs the filter most.
 
 ### 4. LLM judge calibration: confidence vs ambiguity
 

@@ -1153,10 +1153,10 @@
     {
       "query": "00s movies",
       "type": "decade",
-      "llm_consistency": 0.975,
+      "llm_consistency": 0.95,
       "label_distribution": {
-        "relevant": 2,
-        "irrelevant": 38,
+        "relevant": 3,
+        "irrelevant": 37,
         "total": 40
       },
       "pipeline3": {
@@ -1164,15 +1164,15 @@
         "ndcg5": 0.0
       },
       "pipeline4": {
-        "p5": 0.4,
+        "p5": 0.6,
         "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 38,
+        "removed": 37,
         "total": 40,
-        "pct_removed": 0.95
+        "pct_removed": 0.925
       },
-      "delta_p5": 0.4,
+      "delta_p5": 0.6,
       "top5": {
         "pipeline3": [
           "Dr. No",
@@ -1183,6 +1183,7 @@
         ],
         "pipeline4": [
           "Pirates of the Caribbean: The Curse of the Black Pearl",
+          "The Dark Knight",
           "Wild Things"
         ]
       }
@@ -1190,10 +1191,10 @@
     {
       "query": "10s movies",
       "type": "decade",
-      "llm_consistency": 0.725,
+      "llm_consistency": 0.7,
       "label_distribution": {
-        "relevant": 14,
-        "irrelevant": 26,
+        "relevant": 15,
+        "irrelevant": 25,
         "total": 40
       },
       "pipeline3": {
@@ -1205,9 +1206,9 @@
         "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 26,
+        "removed": 25,
         "total": 40,
-        "pct_removed": 0.65
+        "pct_removed": 0.625
       },
       "delta_p5": 0.8,
       "top5": {
@@ -1470,10 +1471,10 @@
     {
       "query": "feel good movies",
       "type": "mood",
-      "llm_consistency": 1.0,
+      "llm_consistency": 0.974,
       "label_distribution": {
-        "relevant": 10,
-        "irrelevant": 29,
+        "relevant": 15,
+        "irrelevant": 24,
         "total": 39
       },
       "pipeline3": {
@@ -1485,9 +1486,9 @@
         "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 29,
+        "removed": 24,
         "total": 39,
-        "pct_removed": 0.744
+        "pct_removed": 0.615
       },
       "delta_p5": 0.8,
       "top5": {
@@ -1501,35 +1502,35 @@
         "pipeline4": [
           "Good Boy!",
           "102 Dalmatians",
+          "Pitch Perfect 2",
           "Trainwreck",
-          "The Good Dinosaur",
-          "Epic"
+          "The Good Dinosaur"
         ]
       }
     },
     {
       "query": "dark psychological",
       "type": "mood",
-      "llm_consistency": 1.0,
+      "llm_consistency": 0.906,
       "label_distribution": {
-        "relevant": 0,
-        "irrelevant": 32,
+        "relevant": 19,
+        "irrelevant": 13,
         "total": 32
       },
       "pipeline3": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 0.6,
+        "ndcg5": 0.699
       },
       "pipeline4": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 1.0,
+        "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 32,
+        "removed": 13,
         "total": 32,
-        "pct_removed": 1.0
+        "pct_removed": 0.406
       },
-      "delta_p5": 0.0,
+      "delta_p5": 0.4,
       "top5": {
         "pipeline3": [
           "The Dark Hours",
@@ -1541,35 +1542,35 @@
         "pipeline4": [
           "The Dark Hours",
           "Insidious",
-          "The Conjuring",
           "Donnie Darko",
-          "Ouija"
+          "The Wicked Within",
+          "Beyond the Black Rainbow"
         ]
       }
     },
     {
       "query": "mindblowing sci fi",
       "type": "mood",
-      "llm_consistency": 1.0,
+      "llm_consistency": 0.947,
       "label_distribution": {
-        "relevant": 0,
-        "irrelevant": 38,
+        "relevant": 20,
+        "irrelevant": 18,
         "total": 38
       },
       "pipeline3": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 0.8,
+        "ndcg5": 0.854
       },
       "pipeline4": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 1.0,
+        "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 38,
+        "removed": 18,
         "total": 38,
-        "pct_removed": 1.0
+        "pct_removed": 0.474
       },
-      "delta_p5": 0.0,
+      "delta_p5": 0.2,
       "top5": {
         "pipeline3": [
           "Sleep Dealer",
@@ -1582,34 +1583,34 @@
           "Sleep Dealer",
           "Eternal Sunshine of the Spotless Mind",
           "Inception",
-          "Enter the Dangerous Mind",
-          "Mad Max: Fury Road"
+          "Mad Max: Fury Road",
+          "Close Encounters of the Third Kind"
         ]
       }
     },
     {
       "query": "light hearted comedy",
       "type": "mood",
-      "llm_consistency": 1.0,
+      "llm_consistency": 0.912,
       "label_distribution": {
-        "relevant": 0,
-        "irrelevant": 34,
+        "relevant": 18,
+        "irrelevant": 16,
         "total": 34
       },
       "pipeline3": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 0.8,
+        "ndcg5": 0.83
       },
       "pipeline4": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 1.0,
+        "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 34,
+        "removed": 16,
         "total": 34,
-        "pct_removed": 1.0
+        "pct_removed": 0.471
       },
-      "delta_p5": 0.0,
+      "delta_p5": 0.2,
       "top5": {
         "pipeline3": [
           "Men with Brooms",
@@ -1621,33 +1622,33 @@
         "pipeline4": [
           "Men with Brooms",
           "The Visitors",
-          "Beetlejuice",
           "Metropolitan",
-          "The Sweetest Thing"
+          "The Sweetest Thing",
+          "L!fe Happens"
         ]
       }
     },
     {
       "query": "animated talking animals",
       "type": "longtail",
-      "llm_consistency": 1.0,
+      "llm_consistency": 0.947,
       "label_distribution": {
-        "relevant": 0,
-        "irrelevant": 38,
+        "relevant": 22,
+        "irrelevant": 16,
         "total": 38
       },
       "pipeline3": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 1.0,
+        "ndcg5": 1.0
       },
       "pipeline4": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 1.0,
+        "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 38,
+        "removed": 16,
         "total": 38,
-        "pct_removed": 1.0
+        "pct_removed": 0.421
       },
       "delta_p5": 0.0,
       "top5": {
@@ -1670,26 +1671,26 @@
     {
       "query": "superhero origin story",
       "type": "longtail",
-      "llm_consistency": 1.0,
+      "llm_consistency": 0.912,
       "label_distribution": {
-        "relevant": 0,
-        "irrelevant": 34,
+        "relevant": 9,
+        "irrelevant": 25,
         "total": 34
       },
       "pipeline3": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 0.6,
+        "ndcg5": 0.655
       },
       "pipeline4": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 1.0,
+        "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 34,
+        "removed": 25,
         "total": 34,
-        "pct_removed": 1.0
+        "pct_removed": 0.735
       },
-      "delta_p5": 0.0,
+      "delta_p5": 0.4,
       "top5": {
         "pipeline3": [
           "Deadpool",
@@ -1700,36 +1701,36 @@
         ],
         "pipeline4": [
           "Deadpool",
-          "Iron Man 2",
           "Megamind",
           "Superman",
-          "Batman v Superman: Dawn of Justice"
+          "Captain America: The First Avenger",
+          "The Incredible Hulk"
         ]
       }
     },
     {
       "query": "epic fantasy adventure",
       "type": "longtail",
-      "llm_consistency": 1.0,
+      "llm_consistency": 0.973,
       "label_distribution": {
-        "relevant": 0,
-        "irrelevant": 37,
+        "relevant": 18,
+        "irrelevant": 19,
         "total": 37
       },
       "pipeline3": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 0.8,
+        "ndcg5": 0.83
       },
       "pipeline4": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 1.0,
+        "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 37,
+        "removed": 19,
         "total": 37,
-        "pct_removed": 1.0
+        "pct_removed": 0.514
       },
-      "delta_p5": 0.0,
+      "delta_p5": 0.2,
       "top5": {
         "pipeline3": [
           "Epic",
@@ -1741,35 +1742,35 @@
         "pipeline4": [
           "Epic",
           "The Hobbit: An Unexpected Journey",
-          "Night at the Museum: Secret of the Tomb",
           "X-Men: Days of Future Past",
-          "How to Train Your Dragon 2"
+          "How to Train Your Dragon 2",
+          "Pan"
         ]
       }
     },
     {
       "query": "world war two",
       "type": "longtail",
-      "llm_consistency": 1.0,
+      "llm_consistency": 0.967,
       "label_distribution": {
-        "relevant": 0,
-        "irrelevant": 30,
+        "relevant": 12,
+        "irrelevant": 18,
         "total": 30
       },
       "pipeline3": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 0.8,
+        "ndcg5": 0.83
       },
       "pipeline4": {
-        "p5": 0.0,
-        "ndcg5": 0.0
+        "p5": 1.0,
+        "ndcg5": 1.0
       },
       "filter_impact": {
-        "removed": 30,
+        "removed": 18,
         "total": 30,
-        "pct_removed": 1.0
+        "pct_removed": 0.6
       },
-      "delta_p5": 0.0,
+      "delta_p5": 0.2,
       "top5": {
         "pipeline3": [
           "The Good German",
@@ -1781,9 +1782,9 @@
         "pipeline4": [
           "The Good German",
           "Fury",
-          "Shutter Island",
           "The Land Girls",
-          "Inglourious Basterds"
+          "Inglourious Basterds",
+          "Captain America: The First Avenger"
         ]
       }
     }
@@ -1806,9 +1807,9 @@
     "decade": {
       "count": 5,
       "pipeline3_p5": 0.16,
-      "pipeline4_p5": 0.48,
-      "avg_filter_pct": 90,
-      "delta_p5": 0.32
+      "pipeline4_p5": 0.52,
+      "avg_filter_pct": 88,
+      "delta_p5": 0.36
     },
     "thematic": {
       "count": 6,
@@ -1819,25 +1820,25 @@
     },
     "mood": {
       "count": 4,
-      "pipeline3_p5": 0.05,
-      "pipeline4_p5": 0.25,
-      "avg_filter_pct": 94,
-      "delta_p5": 0.2
+      "pipeline3_p5": 0.6,
+      "pipeline4_p5": 1.0,
+      "avg_filter_pct": 49,
+      "delta_p5": 0.4
     },
     "longtail": {
       "count": 4,
-      "pipeline3_p5": 0.0,
-      "pipeline4_p5": 0.0,
-      "avg_filter_pct": 100,
-      "delta_p5": 0.0
+      "pipeline3_p5": 0.8,
+      "pipeline4_p5": 1.0,
+      "avg_filter_pct": 57,
+      "delta_p5": 0.2
     }
   },
   "overall": {
     "count": 45,
-    "pipeline3_p5": 0.72,
-    "pipeline4_p5": 0.787,
-    "avg_filter_pct": 41,
-    "delta_p5": 0.067,
-    "avg_llm_consistency_pct": 97
+    "pipeline3_p5": 0.84,
+    "pipeline4_p5": 0.947,
+    "avg_filter_pct": 33,
+    "delta_p5": 0.107,
+    "avg_llm_consistency_pct": 96
   }
 }

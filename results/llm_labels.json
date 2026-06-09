@@ -3437,18 +3437,6 @@
     "reasoning_v1": "Inception was released in 2010, making it a 2010s movie rather than a 2000s movie, so it doesn't match the user's search for '00s movies'.",
     "consistent": true
   },
-  "00s movies|||The Dark Knight": {
-    "label_v1": "Irrelevant",
-    "label_v2": "Irrelevant",
-    "reasoning_v1": "API error",
-    "consistent": true
-  },
-  "00s movies|||Avatar": {
-    "label_v1": "Irrelevant",
-    "label_v2": "Irrelevant",
-    "reasoning_v1": "API error",
-    "consistent": true
-  },
   "00s movies|||The Avengers": {
     "label_v1": "Irrelevant",
     "label_v2": "Irrelevant",
@@ -8753,12 +8741,6 @@
     "reasoning_v1": "The Martian was released in 2015, not in the 2010s decade that the user is searching for with '10s movies'.",
     "consistent": true
   },
-  "10s movies|||Frozen": {
-    "label_v1": "Irrelevant",
-    "label_v2": "Irrelevant",
-    "reasoning_v1": "API error",
-    "consistent": true
-  },
   "10s movies|||Batman v Superman: Dawn of Justice": {
     "label_v1": "Relevant",
     "label_v2": "Irrelevant",
@@ -10305,6 +10287,2220 @@
     "label_v1": "Irrelevant",
     "label_v2": "Irrelevant",
     "reasoning_v1": "Despite having 'Good' in the title, this is a dark war/crime drama about murder and post-WWII investigation, which contradicts the user's intent to find uplifting, feel-good entertainment.",
+    "consistent": true
+  },
+  "funny|||Funny Games": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Despite containing the word 'funny' in the title, this is a horror/thriller about torture and terrorism that would disappoint users searching for comedic content.",
+    "consistent": true
+  },
+  "funny|||Minions": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title has Comedy as a genre and Minions are widely known for their humorous, slapstick entertainment that directly satisfies a search for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Interstellar": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Interstellar is a serious science fiction drama about space exploration and has no comedic elements that would satisfy someone searching for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Deadpool": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Deadpool is explicitly categorized as a Comedy and described as having a 'dark, twisted sense of humor,' making it a meaningful match for users searching for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Guardians of the Galaxy": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Guardians of the Galaxy is widely known for its comedic elements, humor, and funny dialogue despite being categorized as action/sci-fi, making it a satisfying result for users searching for funny content.",
+    "consistent": true
+  },
+  "funny|||Mad Max: Fury Road": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Mad Max: Fury Road is an intense action thriller with no comedic elements, making it completely unsuitable for users searching for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Jurassic World": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Jurassic World is primarily an action/adventure film about dinosaurs with no indication of comedy content that would satisfy someone searching for 'funny' entertainment.",
+    "consistent": true
+  },
+  "funny|||Pirates of the Caribbean: The Curse of the Black Pearl": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Pirates of the Caribbean has comedic moments, it's primarily an adventure/action film and doesn't meaningfully satisfy a user searching specifically for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Dawn of the Planet of the Apes": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Dawn of the Planet of the Apes is a serious science fiction drama about survival and conflict, with no comedic elements that would satisfy a user searching for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||The Hunger Games: Mockingjay - Part 1": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Hunger Games: Mockingjay - Part 1 is a serious dystopian thriller with no comedic elements, making it completely unrelated to a search for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Big Hero 6": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title has Comedy as one of its genres and contains humorous elements through the character Baymax and group dynamics that would satisfy a user searching for funny content.",
+    "consistent": true
+  },
+  "funny|||Terminator Genisys": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Terminator Genisys is a science fiction action thriller with no comedic elements, making it completely unrelated to a search for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Captain America: Civil War": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Captain America: Civil War is primarily an action/adventure superhero film with no indication of comedy elements, so it would not satisfy users searching for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Whiplash": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Whiplash is a intense psychological drama about pursuing perfection through brutal instruction, which has no meaningful connection to someone searching for funny content.",
+    "consistent": true
+  },
+  "funny|||The Dark Knight": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Dark Knight is a serious crime drama/thriller with no comedic elements, making it completely unrelated to a search for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||The Martian": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While The Martian has comedic elements, it's primarily categorized as Drama/Adventure/Science Fiction and a user searching for 'funny' content would likely be disappointed to find this serious survival story in top results.",
+    "consistent": true
+  },
+  "funny|||Inception": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Inception is a serious sci-fi thriller about dream infiltration and corporate espionage, with no comedic elements that would satisfy a user searching for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Frozen": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Frozen is primarily a dramatic adventure about sisterhood and self-discovery, not a comedy, so users searching for 'funny' content would not find it satisfying.",
+    "consistent": true
+  },
+  "funny|||Batman v Superman: Dawn of Justice": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Batman v Superman is a serious superhero drama with no comedy elements, making it completely unrelated to a search for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||Avatar": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Avatar is primarily an action/adventure sci-fi film with no comedy elements, so it would not satisfy a user searching for something funny.",
+    "consistent": true
+  },
+  "funny|||The Hangover": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Hangover is a well-known comedy film that directly satisfies a user's intent to find funny content when searching for 'funny'.",
+    "consistent": true
+  },
+  "funny|||Boat Trip": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is categorized as Comedy and comedies are typically intended to be funny, which directly matches the search intent for humorous content.",
+    "consistent": true
+  },
+  "funny|||Failure to Launch": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is categorized as Comedy genre and users searching for 'funny' content would expect to find comedic movies like this one.",
+    "consistent": true
+  },
+  "funny|||You Got Served": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is categorized as Drama with a plot about hip-hop dance competition that shows no clear comedic elements to satisfy a search for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||We're the Millers": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a comedy film that would satisfy a user searching for funny content to watch.",
+    "consistent": true
+  },
+  "funny|||Bad Words": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is categorized as Comedy genre and has a humorous premise about an adult competing in a children's spelling bee for revenge, which would satisfy users searching for funny content.",
+    "consistent": true
+  },
+  "funny|||The Big Short": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is listed as a Comedy genre and the user searching for 'funny' content would reasonably expect to find comedic films in their results.",
+    "consistent": true
+  },
+  "funny|||Never Again": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is categorized as Comedy genre and has a romantic comedy plot that would satisfy users searching for funny content.",
+    "consistent": true
+  },
+  "funny|||Dumb and Dumber To": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a comedy film that would satisfy a user searching for funny content.",
+    "consistent": true
+  },
+  "funny|||The Hangover Part II": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a comedy film that would satisfy a user searching for funny content, as comedies are specifically designed to be humorous and entertaining.",
+    "consistent": true
+  },
+  "funny|||The Intern": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is categorized as Comedy genre and would satisfy a user searching for funny content to watch.",
+    "consistent": true
+  },
+  "funny|||Men with Brooms": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly described as a 'witty and clever comedy' which directly matches the user's search intent for funny content.",
+    "consistent": true
+  },
+  "funny|||Small Time Crooks": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is categorized as Comedy genre and has a humorous plot about bumbling crooks, which directly satisfies a user searching for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||50/50": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly categorized as a comedy and described as a comedy in the plot summary, which directly matches the user's search for funny content.",
+    "consistent": true
+  },
+  "funny|||That's My Boy": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a comedy film which directly matches the user's intent to find funny content for entertainment.",
+    "consistent": true
+  },
+  "funny|||50 First Dates": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a comedy film that would satisfy a user searching for funny content to watch.",
+    "consistent": true
+  },
+  "funny|||Mooz-lum": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title 'Mooz-lum' is a serious drama about Muslim identity and post-9/11 experiences, which has no connection to the comedy intent of searching for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||L!fe Happens": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a comedy genre film which directly matches the user's search intent for 'funny' content.",
+    "consistent": true
+  },
+  "funny|||17 Again": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is classified as Comedy genre and would satisfy a user searching for funny content to watch.",
+    "consistent": true
+  },
+  "funny horror|||Funny Games": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Despite having 'Funny' in the title and being classified as Horror, 'Funny Games' is actually a serious psychological thriller about torture and terrorism with no comedic elements, making it unsuitable for users seeking horror-comedy content.",
+    "consistent": true
+  },
+  "funny horror|||Goosebumps": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches the search intent as it combines both horror and comedy genres, making it a perfect fit for someone seeking funny horror content.",
+    "consistent": true
+  },
+  "funny horror|||Tales from the Hood": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title fits the 'funny horror' query as it's a horror anthology with comedic elements and dark humor, satisfying users looking for horror content with humorous aspects.",
+    "consistent": false
+  },
+  "funny horror|||Halloween": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Halloween is a horror film, it is a serious psychological thriller with no comedic elements, so it does not satisfy the 'funny' aspect of the search query.",
+    "consistent": true
+  },
+  "funny horror|||A Beginner's Guide to Snuff": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches the query as it's explicitly categorized in both Comedy and Horror genres, making it a funny horror film that would satisfy users searching for this specific combination.",
+    "consistent": true
+  },
+  "funny horror|||Carrie": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Carrie is a horror film, it is a serious psychological horror drama about bullying and telekinetic revenge rather than a comedy-horror that would satisfy someone searching for 'funny horror'.",
+    "consistent": true
+  },
+  "funny horror|||The Lords of Salem": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is purely horror/thriller with no comedic elements, failing to satisfy the 'funny' aspect of the search query.",
+    "consistent": true
+  },
+  "funny horror|||Seed of Chucky": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title perfectly matches the search intent as it's explicitly described as a horror comedy from the Chucky franchise, which are known for blending scares with humor.",
+    "consistent": true
+  },
+  "funny horror|||Unnatural": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains horror elements, there is no indication it has comedic or funny aspects that would satisfy a user searching for 'funny horror'.",
+    "consistent": true
+  },
+  "funny horror|||Ouija": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title only matches the horror aspect of the query but lacks any comedic elements that would satisfy the 'funny' component of the search intent.",
+    "consistent": true
+  },
+  "funny horror|||Interview with the Vampire": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'Interview with the Vampire' is a horror title, it is a serious gothic drama about love and existential themes rather than a comedy-horror that would satisfy someone searching for 'funny horror'.",
+    "consistent": true
+  },
+  "funny horror|||The Dead Undead": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title is in the horror genre, there is no indication it is comedic or funny, which is a key component of the search query.",
+    "consistent": true
+  },
+  "funny horror|||The Thing": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Thing is a serious horror film focused on suspense and terror rather than comedy, so it does not satisfy the user's intent for funny horror content.",
+    "consistent": true
+  },
+  "funny horror|||Insidious: Chapter 2": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'Insidious: Chapter 2' is a horror film, it is a serious supernatural thriller with no comedic elements, so it does not satisfy the 'funny' aspect of the search query.",
+    "consistent": true
+  },
+  "funny horror|||Mirrors": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'Mirrors' is a horror film, it has no comedic elements and would disappoint users specifically searching for funny horror content.",
+    "consistent": true
+  },
+  "funny horror|||The Conjuring 2": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Conjuring 2 is a serious supernatural horror film focused on malicious spirits and does not contain the comedic elements that would satisfy a search for 'funny horror'.",
+    "consistent": true
+  },
+  "funny horror|||Detention of the Dead": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title perfectly matches the search intent as it's explicitly categorized as both Comedy and Horror genres, making it a funny horror film that would satisfy users looking for comedic horror content.",
+    "consistent": true
+  },
+  "funny horror|||The Shallows": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Shallows is a serious survival thriller about a shark attack with no comedic elements, failing to satisfy the 'funny' aspect of the search query.",
+    "consistent": true
+  },
+  "funny horror|||Alleluia! The Devil's Carnival": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains horror elements, there is no indication it is comedic or funny, which is a key requirement of the search query.",
+    "consistent": true
+  },
+  "funny horror|||Shark Night": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'Shark Night' is a horror film, there's no indication it's a comedy or intentionally funny, so it doesn't satisfy the 'funny horror' search intent.",
+    "consistent": true
+  },
+  "funny horror|||Out of the Dark": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title is in the horror genre, there is no indication it is funny or comedic, which is a key requirement of the search query.",
+    "consistent": true
+  },
+  "funny horror|||Saw": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Saw is a horror film, it is known for being dark, gruesome, and psychologically disturbing rather than funny, so it does not satisfy the user's intent for comedic horror content.",
+    "consistent": true
+  },
+  "funny horror|||Ghostbusters": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Ghostbusters is a comedy film with supernatural/horror elements involving ghosts and paranormal threats, making it a perfect match for users seeking funny horror content.",
+    "consistent": true
+  },
+  "funny horror|||Love in the Time of Monsters": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches the search intent as it's explicitly categorized as both Horror and Comedy genres, and the plot description confirms it's a comedic take on horror with a cheesy, humorous premise.",
+    "consistent": true
+  },
+  "funny horror|||A Nightmare on Elm Street Part 2: Freddy's Revenge": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While this is a horror film, there is no indication from the title, genre, or plot description that it contains comedic or funny elements that would satisfy a user searching for 'funny horror'.",
+    "consistent": true
+  },
+  "funny horror|||Insidious": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Insidious is a serious supernatural horror film focused on dark spirits and family terror, which does not contain the comedic elements that users searching for 'funny horror' would expect.",
+    "consistent": true
+  },
+  "funny horror|||The Hangover": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Hangover is a pure comedy with no horror elements, so it doesn't satisfy the user's intent to find content that combines both funny and horror genres.",
+    "consistent": true
+  },
+  "funny horror|||Night at the Museum": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains comedy elements, it lacks any horror genre classification and is actually a family-friendly film, making it a poor match for users specifically seeking 'funny horror' content.",
+    "consistent": true
+  },
+  "funny horror|||Shutter": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is a serious supernatural horror film about ghostly manifestations and tragedy, which does not contain the comedy elements that users searching for 'funny horror' would expect.",
+    "consistent": true
+  },
+  "funny horror|||Final Destination 3": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Final Destination 3 is a serious horror film about death and fate rather than a comedy-horror that would satisfy someone searching for 'funny horror' content.",
+    "consistent": true
+  },
+  "funny horror|||Gremlins": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Gremlins perfectly matches the query as it's explicitly categorized in both Horror and Comedy genres, making it a classic example of funny horror content.",
+    "consistent": true
+  },
+  "funny horror|||House at the End of the Street": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This title is a serious psychological horror/thriller about murder and trauma, which does not satisfy the search intent for horror content that is funny or comedic in nature.",
+    "consistent": true
+  },
+  "animated|||Sausage Party": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly listed as an Animation genre and described as an 'R-rated CG animated movie', directly matching the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Anastasia": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly categorized as Animation genre and the plot description confirms it's an animated film, directly matching the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Madagascar": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches the search intent as it is explicitly listed in the Animation genre and described as 'this animated family film' in the plot summary.",
+    "consistent": true
+  },
+  "animated|||Antz": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly listed as Animation genre and the plot description confirms it's an animated film, directly matching the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Mary Poppins": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The plot explicitly mentions that the movie contains 'sequences of live action blended with the movements of animated figures,' making it a relevant result for users searching for animated content.",
+    "consistent": true
+  },
+  "animated|||Ice Age: The Meltdown": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly described as an animated movie and has Animation as its primary genre, directly matching the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Minions": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches the search intent as 'Minions' is explicitly categorized as Animation genre, making it a perfect fit for users searching for animated content.",
+    "consistent": true
+  },
+  "animated|||Interstellar": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Interstellar is a live-action science fiction film, not an animated movie, so it does not match the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Deadpool": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Deadpool is a live-action film, not an animated movie, so it does not match the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Guardians of the Galaxy": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Guardians of the Galaxy is a live-action film, not an animated one, so it does not match the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Mad Max: Fury Road": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Mad Max: Fury Road is a live-action film, not an animated movie, so it does not match the search intent for 'animated' content.",
+    "consistent": true
+  },
+  "animated|||Jurassic World": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Jurassic World is a live-action film with CGI dinosaurs, not an animated movie, so it doesn't match the user's intent to find animated content.",
+    "consistent": true
+  },
+  "animated|||Pirates of the Caribbean: The Curse of the Black Pearl": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Pirates of the Caribbean is a live-action film, not an animated movie, so it doesn't match the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Dawn of the Planet of the Apes": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Dawn of the Planet of the Apes is a live-action film with CGI apes, not an animated movie, so it doesn't match the user's intent to find animated content.",
+    "consistent": true
+  },
+  "animated|||The Hunger Games: Mockingjay - Part 1": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Hunger Games: Mockingjay - Part 1 is a live-action film, not an animated movie, so it doesn't match the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Big Hero 6": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is directly relevant as it belongs to the Animation genre and the user searching for 'animated' content would be satisfied finding this animated film.",
+    "consistent": true
+  },
+  "animated|||Terminator Genisys": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Terminator Genisys is a live-action science fiction film, not an animated movie, so it does not match the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Captain America: Civil War": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Captain America: Civil War is a live-action superhero film, not an animated movie, so it does not match the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Whiplash": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Whiplash is a live-action drama film about drumming and has no connection to animated content that the user is searching for.",
+    "consistent": true
+  },
+  "animated|||The Dark Knight": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Dark Knight is a live-action film, not an animated title, so it does not match the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Dwegons": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is categorized under the Animation genre, which directly matches the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Coraline": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Coraline is explicitly categorized as Animation genre, which directly matches the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Howl's Moving Castle": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is directly relevant since 'Howl's Moving Castle' is an animated film and matches the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||The Princess and the Frog": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is directly relevant as it belongs to the Animation genre, which perfectly matches a user searching for animated content.",
+    "consistent": true
+  },
+  "animated|||Frozen": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Frozen is clearly an animated movie as indicated by its Animation genre, which directly matches the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Ice Age": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Ice Age is clearly an animated movie as indicated by the Animation genre, which directly matches the user's search for 'animated' content.",
+    "consistent": true
+  },
+  "animated|||The Adventures of Tintin": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly listed as having the Animation genre, which directly matches the user's search for 'animated' content.",
+    "consistent": true
+  },
+  "animated|||Mulan": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Mulan is clearly an animated film as indicated by the Animation genre, directly matching the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||9": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title has Animation as one of its primary genres, directly matching the user's search intent for animated content.",
+    "consistent": true
+  },
+  "animated|||Shrek": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Shrek is clearly an animated movie as indicated by the Animation genre, which directly matches the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||The Nut Job": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is directly relevant since it belongs to the Animation genre, which perfectly matches the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Robots": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is directly relevant as it belongs to the Animation genre, which perfectly matches the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Ice Age: Dawn of the Dinosaurs": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly categorized as Animation genre, which directly matches the user's search for 'animated' content.",
+    "consistent": true
+  },
+  "animated|||Spirited Away": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Spirited Away is explicitly listed as having the Animation genre, directly matching the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Despicable Me": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly categorized as Animation genre, which directly matches the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||The Lion King": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title has Animation as one of its genres, directly matching the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||The Good Dinosaur": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly labeled as Animation genre and would satisfy a user searching for animated content.",
+    "consistent": true
+  },
+  "animated|||Toy Story 2": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Toy Story 2 is explicitly listed as an Animation genre film, directly matching the user's search for animated content.",
+    "consistent": true
+  },
+  "animated|||Up": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title 'Up' is explicitly listed as an Animation genre film, directly matching the user's search for 'animated' content.",
+    "consistent": true
+  },
+  "00s movies|||The Dark Knight": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Dark Knight was released in 2008, making it a 2000s movie that directly matches the user's search for films from that decade.",
+    "consistent": false
+  },
+  "00s movies|||Avatar": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "API error",
+    "consistent": true
+  },
+  "10s movies|||Frozen": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Frozen was released in 2013, making it a 2010s movie that matches the user's search for '10s movies' referring to that decade.",
+    "consistent": false
+  },
+  "feel good movies|||Once Upon a Time in the West": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This classic western about land disputes and danger does not match the feel-good genre expectation, as it deals with serious themes of conflict and threat rather than uplifting, positive content.",
+    "consistent": true
+  },
+  "feel good movies|||The Sweetest Thing": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This romantic comedy about finding love and following your heart aligns well with the 'feel good movies' query as it appears to have an uplifting, positive storyline typical of feel-good entertainment.",
+    "consistent": true
+  },
+  "feel good movies|||Forrest Gump": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Forrest Gump is widely considered a feel-good movie due to its uplifting themes of perseverance, kindness, and triumph over adversity despite challenges.",
+    "consistent": true
+  },
+  "feel good movies|||Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Dr. Strangelove is a dark satirical comedy about nuclear war, which does not match the intent of users searching for uplifting, positive 'feel good movies'.",
+    "consistent": true
+  },
+  "feel good movies|||Valley of the Heart's Delight": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This drama about a kidnapping, lynching, and racial tension in 1933 does not match the user's intent to find uplifting, positive movies that make them feel good.",
+    "consistent": true
+  },
+  "feel good movies|||The Chronicles of Riddick": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Chronicles of Riddick is a dark, violent action/sci-fi film that does not match the uplifting, positive emotional experience users seek when searching for 'feel good movies'.",
+    "consistent": true
+  },
+  "feel good movies|||Now You See Me": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "A thriller/crime movie about FBI agents tracking bank-robbing magicians does not match the intent of someone searching for uplifting, positive entertainment that would make them feel good.",
+    "consistent": true
+  },
+  "feel good movies|||Straight Outta Compton": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the movie may have uplifting moments, it primarily deals with frustration, anger, and life in dangerous circumstances, which doesn't align with the typical expectation of 'feel good movies' that users seek for comfort and positive emotions.",
+    "consistent": true
+  },
+  "feel good movies|||Fugly": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'Fugly' has comedy elements, the inclusion of thriller genre and the incomplete plot description doesn't clearly indicate it would satisfy someone specifically searching for feel-good movies.",
+    "consistent": true
+  },
+  "feel good movies|||Lost in Translation": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Lost in Translation is widely regarded as a contemplative, emotionally uplifting film about human connection and finding meaning, which aligns well with the 'feel good movies' search intent despite its drama classification.",
+    "consistent": false
+  },
+  "feel good movies|||Pitch Perfect 2": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Pitch Perfect 2 is a light-hearted comedy with uplifting themes about friendship and overcoming challenges, which aligns well with the 'feel good movies' search intent.",
+    "consistent": true
+  },
+  "feel good movies|||Funny Games": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This horror/thriller film about torture and terrorization directly contradicts the user's intent to find uplifting, positive movies that make them feel good.",
+    "consistent": true
+  },
+  "feel good movies|||Ghostbusters": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Ghostbusters is a light-hearted comedy that provides entertainment and humor, making it a suitable feel-good movie choice.",
+    "consistent": true
+  },
+  "dark psychological|||Enter the Dangerous Mind": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a psychological thriller with a dark premise involving an introverted musician's obsession, which directly matches the 'dark psychological' search intent.",
+    "consistent": true
+  },
+  "dark psychological|||Abandon": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly described as a psychological thriller with dark themes involving disappearance and pressure, directly matching the user's search for dark psychological content.",
+    "consistent": true
+  },
+  "dark psychological|||The Sixth Sense": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Sixth Sense is a psychological thriller with dark themes involving death, supernatural horror, and mental distress, which directly matches what users searching for 'dark psychological' content would expect.",
+    "consistent": true
+  },
+  "dark psychological|||Ouija": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title has dark supernatural elements, it's a standard horror film about a spirit board rather than a psychological thriller that explores complex mental themes.",
+    "consistent": true
+  },
+  "dark psychological|||Interview with the Vampire": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches the search intent as it features dark psychological themes through a vampire's internal struggle with loneliness, betrayal, and moral conflict over his dark nature.",
+    "consistent": true
+  },
+  "dark psychological|||Lucy": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "While the plot mentions a 'dark deal,' the film is primarily an action/sci-fi about superhuman evolution rather than the psychological thriller or dark psychological drama that users searching 'dark psychological' would expect.",
+    "consistent": false
+  },
+  "dark psychological|||Out of the Dark": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains the word 'dark' and is in the horror/thriller genres, it describes a supernatural haunted house story rather than the psychological thriller content that users searching for 'dark psychological' would expect.",
+    "consistent": true
+  },
+  "dark psychological|||Wicked Blood": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The plot describes a dark underworld with violence and fear that would appeal to users seeking dark psychological content, despite the genres not explicitly including psychological thriller.",
+    "consistent": true
+  },
+  "dark psychological|||The Wicked Within": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The plot description explicitly mentions 'dark secrets emerge' and involves psychological tension within a family dealing with trauma, which aligns well with someone searching for dark psychological content.",
+    "consistent": true
+  },
+  "dark psychological|||Harry Potter and the Half-Blood Prince": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the movie contains some dark elements with Voldemort's past, it's primarily categorized as Adventure/Fantasy/Family and doesn't match the psychological thriller or dark psychological drama intent that users would expect from this query.",
+    "consistent": true
+  },
+  "dark psychological|||Dark Shadows": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains the word 'dark', this is a comedy/fantasy about vampires rather than the dark psychological content the user is seeking.",
+    "consistent": true
+  },
+  "dark psychological|||Insidious": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film contains dark supernatural elements and psychological horror themes that align with what users searching for 'dark psychological' content would expect to find.",
+    "consistent": true
+  },
+  "dark psychological|||The Conjuring": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While The Conjuring contains dark themes, it's a supernatural horror film rather than a psychological thriller that explores the human psyche and mental states that users searching for 'dark psychological' content would expect.",
+    "consistent": true
+  },
+  "dark psychological|||The Maid's Room": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The plot describes dark family secrets and psychological elements involving suspicion of a terrible crime, which aligns with someone searching for dark psychological content.",
+    "consistent": true
+  },
+  "dark psychological|||Batman: The Dark Knight Returns, Part 2": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "While the title contains 'dark' in the name, this is an action/animation superhero film that doesn't match the psychological thriller or drama intent suggested by 'dark psychological'.",
+    "consistent": false
+  },
+  "dark psychological|||Batman Forever": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Batman Forever contains the word 'dark' and some crime elements, it's primarily a superhero action film rather than the dark psychological thriller or drama that users searching for 'dark psychological' content would expect.",
+    "consistent": true
+  },
+  "dark psychological|||The Dark Knight Rises": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains the word 'dark', this is primarily an action superhero film rather than the psychological thriller or drama that users searching for 'dark psychological' content would expect.",
+    "consistent": true
+  },
+  "dark psychological|||8MM": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film follows a surveillance specialist down an 'increasingly dark and frightening path' involving obsessive investigation, which aligns well with the psychological thriller aspects users would expect from a 'dark psychological' search.",
+    "consistent": true
+  },
+  "dark psychological|||Transformers: Age of Extinction": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a science fiction action movie about robots that has no meaningful connection to dark psychological themes, despite containing the word 'dark' in a previous movie title reference.",
+    "consistent": true
+  },
+  "dark psychological|||The Dark Hours": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches the search intent as it features a psychiatrist protagonist in a horror/thriller setting that promises psychological terror and disturbing elements.",
+    "consistent": true
+  },
+  "dark psychological|||Light from the Darkroom": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains the word 'dark', the content is about religious faith and pilgrimage rather than dark psychological themes like mental manipulation, psychological horror, or complex psychological narratives that users would expect from this query.",
+    "consistent": true
+  },
+  "dark psychological|||Beyond the Black Rainbow": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film features psychological horror elements with a disturbed captive, mind control technology, and a deranged therapist, which aligns well with someone searching for dark psychological content.",
+    "consistent": true
+  },
+  "dark psychological|||Lights Out": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title fits the psychological aspect through themes of sanity, childhood fears, and unexplained terrifying events that test mental stability, combined with dark horror/thriller elements.",
+    "consistent": true
+  },
+  "dark psychological|||Thor: The Dark World": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains the word 'dark', it's an action/adventure superhero film that doesn't match the psychological thriller genre intent of the search query.",
+    "consistent": true
+  },
+  "dark psychological|||Mirrors": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title fits the query as horror/thriller films involving supernatural forces targeting a family through mirrors would contain dark psychological elements and themes.",
+    "consistent": true
+  },
+  "dark psychological|||The Exorcist": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Exorcist is a classic psychological horror film that explores dark themes of possession, mental deterioration, and religious crisis, which directly aligns with someone searching for 'dark psychological' content.",
+    "consistent": true
+  },
+  "dark psychological|||Donnie Darko": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Donnie Darko is a well-known dark psychological thriller that explores themes of mental illness, manipulation, and psychological disturbance, directly matching what users searching for 'dark psychological' content would expect.",
+    "consistent": true
+  },
+  "dark psychological|||From Dusk Till Dawn": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'From Dusk Till Dawn' is a horror/thriller, it's primarily an action-packed vampire film rather than a dark psychological exploration, making it unlikely to satisfy users specifically seeking psychological content.",
+    "consistent": true
+  },
+  "dark psychological|||The Dark Knight": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Dark Knight contains significant psychological themes through the Joker's chaotic manipulation and Harvey Dent's transformation, along with dark crime and thriller elements that align with the search intent.",
+    "consistent": true
+  },
+  "dark psychological|||Midnight in the Garden of Good and Evil": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The film involves a murder trial and crime elements that align with dark psychological themes, though it may not be as intensely psychological as some users might expect.",
+    "consistent": false
+  },
+  "dark psychological|||Nightcrawler": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Nightcrawler is a dark psychological thriller that explores the disturbing psyche of its protagonist Lou Bloom as he becomes increasingly unethical and manipulative in pursuit of success.",
+    "consistent": true
+  },
+  "dark psychological|||Before I Go to Sleep": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film's plot involves psychological thriller elements with dark themes of memory loss, traumatic past, and questioning reality and trust, which aligns with what users searching for 'dark psychological' content would expect.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Minions": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Minions is a family-friendly animated comedy with no science fiction elements, making it completely unrelated to a search for mind-blowing sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Interstellar": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Interstellar is a highly acclaimed science fiction film with mind-bending concepts about time dilation, wormholes, and interdimensional travel that would satisfy users seeking 'mindblowing sci fi' content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Deadpool": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Deadpool is primarily an action-comedy superhero film rather than a science fiction movie, and doesn't match the 'mindblowing sci fi' search intent.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Guardians of the Galaxy": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Guardians of the Galaxy is a popular science fiction film with impressive visual effects and cosmic adventure elements that would satisfy users searching for engaging sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Mad Max: Fury Road": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Mad Max: Fury Road is a highly acclaimed science fiction film with spectacular action and worldbuilding that would satisfy users searching for impressive sci-fi content.",
+    "consistent": false
+  },
+  "mindblowing sci fi|||Jurassic World": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Jurassic World is technically science fiction, it's a mainstream action-adventure film about dinosaurs that doesn't deliver the cerebral, thought-provoking, or 'mindblowing' sci-fi experience the user is seeking.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Pirates of the Caribbean: The Curse of the Black Pearl": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a fantasy adventure film about pirates, not science fiction, so it doesn't match the user's search for sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Dawn of the Planet of the Apes": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This is a well-regarded science fiction film with compelling premise about intelligent apes and post-apocalyptic themes that would satisfy users seeking impressive sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||The Hunger Games: Mockingjay - Part 1": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While The Hunger Games has sci-fi elements, it's a mainstream dystopian franchise that doesn't match the 'mindblowing' qualifier which implies users are seeking more innovative, thought-provoking, or lesser-known sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Big Hero 6": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Big Hero 6 has some sci-fi elements with robots and technology, it's primarily a family-friendly animated adventure that doesn't match the 'mindblowing' intensity expectation of the query.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Terminator Genisys": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Terminator Genisys is a science fiction film with time travel and futuristic war elements that could satisfy users looking for impressive sci-fi content.",
+    "consistent": false
+  },
+  "mindblowing sci fi|||Captain America: Civil War": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Captain America: Civil War has science fiction elements, it's primarily a superhero action film that doesn't deliver the 'mindblowing' cerebral or thought-provoking sci-fi experience the query implies.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Whiplash": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Whiplash is a drama about music and has no science fiction elements, making it completely unrelated to a search for sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||The Dark Knight": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Dark Knight is a superhero crime thriller, not science fiction, so it doesn't match the user's intent to find sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||The Martian": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Martian is a well-regarded science fiction film about survival on Mars that would satisfy users looking for impressive sci-fi content, even though it leans more toward realistic rather than mind-bending sci-fi.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Inception": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Inception is a highly acclaimed science fiction film with complex, mind-bending concepts about dreams and reality that would satisfy users searching for 'mindblowing sci fi' content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Frozen": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Frozen is an animated family film about princesses and magic, not a science fiction title that would satisfy someone searching for mind-blowing sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Batman v Superman: Dawn of Justice": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Batman v Superman is primarily a superhero action film in the Fantasy genre rather than science fiction, and doesn't match the 'mindblowing sci fi' intent.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Avatar": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Avatar is a widely acclaimed science fiction film with groundbreaking visual effects and an immersive alien world that would satisfy users seeking mind-blowing sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Fight Club": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Fight Club is a psychological drama about underground fighting and consumerism, not science fiction, so it doesn't match the user's intent to find mindblowing sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Transcendence": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film is a science fiction thriller exploring technological singularity and AI transcending human intelligence, which directly matches the user's intent for mind-bending sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Another Earth": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film matches the sci-fi genre requirement and features a conceptually mind-blowing premise of discovering a duplicate Earth, which would satisfy users seeking thought-provoking science fiction.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||The Thing": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Thing is a highly acclaimed science fiction horror film known for its innovative special effects and psychological tension that would satisfy users seeking mind-blowing sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Unnatural": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title has a scientific premise, it's categorized as Thriller/Action/Horror rather than sci-fi, and the plot focuses on monster/creature horror rather than the mind-bending concepts typically associated with 'mindblowing sci fi'.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Cloud Atlas": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Cloud Atlas is a science fiction film with complex, interconnected narratives spanning multiple time periods that many viewers would consider mind-blowing due to its ambitious scope and intricate storytelling structure.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||The World's End": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains sci-fi elements, it's primarily a comedy that doesn't deliver the 'mindblowing' sci-fi experience users are seeking with this query.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Decoys": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'Decoys' is technically science fiction, it's primarily a low-budget horror/thriller about alien seduction rather than the mind-bending, thought-provoking sci-fi content that users searching for 'mindblowing sci fi' would expect.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Close Encounters of the Third Kind": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Close Encounters of the Third Kind is a widely acclaimed science fiction classic known for its spectacular UFO encounters and groundbreaking visual effects that would satisfy someone searching for mindblowing sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Solaris": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Solaris is a highly acclaimed science fiction film known for its complex, mind-bending exploration of consciousness, reality, and alien intelligence that would satisfy users seeking thought-provoking sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Tomorrowland": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Tomorrowland is science fiction, it's primarily a family-friendly adventure film that doesn't deliver the intense, mind-bending experience implied by 'mindblowing sci fi'.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||In Time": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a science fiction film with a unique, thought-provoking premise about time as currency that would satisfy someone looking for mindblowing sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Eternal Sunshine of the Spotless Mind": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This acclaimed sci-fi film about memory erasure technology fits the 'mindblowing' descriptor perfectly due to its innovative concept and thought-provoking exploration of memory and identity.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||District 9": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "District 9 is a critically acclaimed science fiction film known for its innovative approach to alien themes and social commentary, which would satisfy users searching for impressive sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Chronicle": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Chronicle is a science fiction film about teenagers gaining supernatural powers, which could be considered 'mindblowing' due to its unique found-footage approach and telekinetic abilities storyline that would satisfy users seeking impressive sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Good Boy!": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title has science fiction elements, it's clearly a family comedy that would not satisfy users searching for 'mindblowing sci fi' content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Sleep Dealer": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a science fiction film with an innovative, thought-provoking premise about virtual reality, digital networks, and futuristic technology that would satisfy someone seeking 'mindblowing sci fi' content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Area 51": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a science fiction movie about alien conspiracies and secret government facilities, which aligns with the user's search for compelling sci-fi content.",
+    "consistent": true
+  },
+  "mindblowing sci fi|||Enter the Dangerous Mind": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a psychological thriller about underground dubstep music, not a science fiction film, so it doesn't match the user's intent for 'mindblowing sci fi' content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Light from the Darkroom": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title appears to be a serious religious drama about faith being tested during a pilgrimage, which does not match the user's intent for light-hearted comedic content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Guardians of the Galaxy": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "While not primarily a comedy, Guardians of the Galaxy is widely known for its humorous tone, witty dialogue, and light-hearted approach that would satisfy users seeking entertaining, feel-good content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Dying of the Light": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a serious thriller/drama about a CIA agent seeking revenge against a terrorist, which has no connection to light-hearted comedy content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Shine a Light": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a music documentary about the Rolling Stones, not a light-hearted comedy as requested by the user.",
+    "consistent": true
+  },
+  "light hearted comedy|||50/50": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 50/50 is categorized as a comedy, its central theme of cancer diagnosis and struggle with a life-threatening disease makes it a dramedy that would not satisfy users seeking light-hearted entertainment.",
+    "consistent": true
+  },
+  "light hearted comedy|||L!fe Happens": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a comedy about friends dealing with pregnancy and maintaining normalcy, which aligns with light-hearted comedic content that users searching for this genre would find satisfying.",
+    "consistent": true
+  },
+  "light hearted comedy|||Boat Trip": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly categorized as Comedy and the premise of two men mistakenly ending up on the wrong cruise suggests light-hearted comedic situations that align with the search intent.",
+    "consistent": true
+  },
+  "light hearted comedy|||Coffee Town": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a comedy about three friends with a carefree existence, which aligns well with the light-hearted comedy search intent.",
+    "consistent": true
+  },
+  "light hearted comedy|||The Big Short": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'The Big Short' is categorized as a comedy, it's a dark satirical drama about financial collapse that would not satisfy users seeking light-hearted entertainment.",
+    "consistent": true
+  },
+  "light hearted comedy|||Surfer, Dude": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title is categorized as comedy, the plot description emphasizes existential crisis and soul searching, which suggests a more serious, introspective tone rather than the light-hearted content the user is seeking.",
+    "consistent": true
+  },
+  "light hearted comedy|||The Visitors": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly described as a comedy with an outrageous, wacky tone that involves misadventures and mayhem, which aligns well with the light-hearted comedy search intent.",
+    "consistent": true
+  },
+  "light hearted comedy|||Outside Bet": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is categorized as Comedy and the plot about print workers buying a racehorse suggests a light-hearted comedic premise that would satisfy someone searching for light hearted comedy.",
+    "consistent": true
+  },
+  "light hearted comedy|||Da Sweet Blood of Jesus": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title is tagged as comedy, the dark plot about blood addiction contradicts the 'light hearted' aspect of the query, making it unsuitable for users seeking upbeat, cheerful comedy content.",
+    "consistent": true
+  },
+  "light hearted comedy|||They Came Together": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is categorized as Comedy and the plot about a small business owner facing corporate pressure suggests a light-hearted romantic comedy scenario that would satisfy users looking for light hearted comedy content.",
+    "consistent": false
+  },
+  "light hearted comedy|||The Croods": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Croods is explicitly categorized as a comedy with a light-hearted prehistoric adventure plot that would satisfy users looking for entertaining, family-friendly comedic content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Mystic Pizza": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Mystic Pizza is a comedy about teenage coming-of-age that has a generally light-hearted tone despite some dramatic elements, making it a reasonable match for users seeking light-hearted comedy content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Men with Brooms": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is explicitly described as a 'witty and clever comedy' which directly matches the user's search for light hearted comedy content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Modern Times": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Modern Times contains comedy elements, it's primarily a social commentary drama about industrial society's struggles, which doesn't match the light-hearted tone the user is seeking.",
+    "consistent": true
+  },
+  "light hearted comedy|||Despicable Me 2": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Despicable Me 2 is an animated family comedy with humor and whimsical elements that would satisfy users looking for light-hearted entertainment.",
+    "consistent": true
+  },
+  "light hearted comedy|||Bad Grandpa": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is a comedy featuring a lighthearted premise of an elderly man traveling with his young grandson, which aligns with the user's search for light hearted comedy content.",
+    "consistent": false
+  },
+  "light hearted comedy|||The Hangover": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Hangover is a popular comedy film that, despite having some raucous elements, maintains a fundamentally light-hearted tone with its absurd situations and comedic friendship dynamics that would satisfy users looking for light-hearted comedy content.",
+    "consistent": false
+  },
+  "light hearted comedy|||Funny Games": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a horror/thriller about torture and terrorism, which is the complete opposite of a light-hearted comedy despite having 'Funny' in the title.",
+    "consistent": true
+  },
+  "light hearted comedy|||Dumb and Dumber To": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This is a comedy film featuring dimwitted characters in absurd situations, which aligns well with someone seeking light-hearted comedic entertainment.",
+    "consistent": true
+  },
+  "light hearted comedy|||The Sweetest Thing": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a romantic comedy that would satisfy users seeking light hearted entertainment, as romantic comedies are typically upbeat and comedic in tone.",
+    "consistent": true
+  },
+  "light hearted comedy|||National Lampoon\u2019s Van Wilder": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This is a comedy film about college antics and fun schemes, which aligns well with someone searching for light-hearted comedic content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Beetlejuice": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Beetlejuice is classified as a comedy, it's a dark supernatural comedy about death and haunting rather than the light-hearted tone the user is seeking.",
+    "consistent": true
+  },
+  "light hearted comedy|||Forrest Gump": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Forrest Gump has comedy elements, it is primarily a dramatic film dealing with serious themes and would not satisfy someone specifically seeking light-hearted comedy.",
+    "consistent": true
+  },
+  "light hearted comedy|||The Mighty": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title is categorized as comedy, the plot description reveals a serious drama about disability and bullying that would not satisfy someone seeking light-hearted entertainment.",
+    "consistent": true
+  },
+  "light hearted comedy|||Metropolitan": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is described as a 'sparkling comedic chronicle' with 'wit' and 'hilariously highbrow observations,' indicating it's a light-hearted comedy that would satisfy users searching for this genre.",
+    "consistent": true
+  },
+  "light hearted comedy|||30 Minutes or Less": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While this title is categorized as comedy, the plot involving kidnapping, bombs, and bank robbery is too dark and intense to satisfy someone specifically searching for 'light hearted' comedy.",
+    "consistent": true
+  },
+  "light hearted comedy|||Failure to Launch": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This is a comedy about adults living with their parents, which typically falls into the light-hearted romantic comedy genre that would satisfy users searching for light hearted comedy content.",
+    "consistent": true
+  },
+  "light hearted comedy|||Bad Words": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'Bad Words' is categorized as a comedy, the plot description reveals a misanthropic protagonist seeking revenge, which contradicts the 'light hearted' aspect of the search query.",
+    "consistent": true
+  },
+  "light hearted comedy|||Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Dr. Strangelove is classified as a comedy, it's a dark satirical film about nuclear war that would not satisfy users looking for light-hearted content.",
+    "consistent": true
+  },
+  "light hearted comedy|||That's My Boy": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'That's My Boy' is a comedy, the plot involving a father reconnecting with his son before the son's wedding suggests a more dramatic or awkward comedy rather than the light-hearted tone the user is seeking.",
+    "consistent": true
+  },
+  "animated talking animals|||Madagascar": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Madagascar is an animated film featuring talking zoo animals (lion, hippo, zebra, and giraffe) as the main characters, which directly matches the search query for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Animals": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a drama about human addiction and homelessness, not an animated film featuring talking animals as the user is searching for.",
+    "consistent": true
+  },
+  "animated talking animals|||First Love, Last Rites": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a drama about human relationships with no animated content or talking animals, making it completely unrelated to the search query.",
+    "consistent": true
+  },
+  "animated talking animals|||Planet of the Apes": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the movie features talking apes, it is not animated and the apes are portrayed by actors in costumes/makeup, which doesn't satisfy the user's intent for animated content featuring talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Walking and Talking": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a live-action comedy-drama about human relationships with no animated content or talking animals, making it completely unrelated to the search query.",
+    "consistent": true
+  },
+  "animated talking animals|||Sausage Party": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The movie features animated food items that talk and have personalities, which satisfies the query for animated talking characters even though they're not traditional animals.",
+    "consistent": true
+  },
+  "animated talking animals|||The Protector": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is about live-action elephants and human characters rather than animated talking animals, which doesn't match the user's search intent for animated content with speaking animal characters.",
+    "consistent": true
+  },
+  "animated talking animals|||Bowling for Columbine": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This documentary about gun violence has no connection to animated talking animals and would confuse users searching for animated content featuring animal characters.",
+    "consistent": true
+  },
+  "animated talking animals|||Anastasia": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Anastasia is animated, the plot focuses on human characters and the Russian royal family story rather than talking animals as the main characters.",
+    "consistent": true
+  },
+  "animated talking animals|||Antz": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Antz is an animated film featuring talking ants and other insects as the main characters, directly matching the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Mary Poppins": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "While Mary Poppins contains some animated sequences, it is primarily a live-action musical about a magical nanny rather than being focused on animated talking animals as the main characters.",
+    "consistent": false
+  },
+  "animated talking animals|||Ice Age: The Meltdown": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Ice Age: The Meltdown features animated talking animals as the main characters (Diego, Manny, and Sid), directly matching the user's search intent.",
+    "consistent": true
+  },
+  "animated talking animals|||Minions": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Minions are animated talking creatures that communicate through their distinctive language, directly matching the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Interstellar": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Interstellar is a live-action science fiction film about space exploration with no animated content or talking animals, making it completely unrelated to the user's search for animated content featuring talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Deadpool": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Deadpool is a live-action superhero film about a human mercenary with no animated talking animals, making it completely unrelated to the search query.",
+    "consistent": true
+  },
+  "animated talking animals|||Guardians of the Galaxy": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Guardians of the Galaxy features prominent animated talking animal characters including Rocket Raccoon and Groot who are central to the story.",
+    "consistent": true
+  },
+  "animated talking animals|||Mad Max: Fury Road": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Mad Max: Fury Road is a live-action post-apocalyptic film with human characters and contains no animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Jurassic World": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Jurassic World features dinosaurs that are not animated nor do they talk, making it completely unrelated to a search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Pirates of the Caribbean: The Curse of the Black Pearl": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Pirates of the Caribbean features human characters and live-action adventure with no animated talking animals, making it completely unrelated to the search query.",
+    "consistent": true
+  },
+  "animated talking animals|||Dawn of the Planet of the Apes": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the movie features intelligent apes, it uses realistic CGI rather than animation and doesn't match the typical expectation of 'animated talking animals' which usually refers to cartoon-style family entertainment.",
+    "consistent": true
+  },
+  "animated talking animals|||Ice Age": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Ice Age is an animated film featuring talking animal characters (mammoth, saber-toothed tiger, and sloth) which directly matches the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Ice Age: Dawn of the Dinosaurs": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title features animated talking animals (mammoth, sloth, and saber-toothed tiger) which directly matches the user's search intent.",
+    "consistent": true
+  },
+  "animated talking animals|||Dwegons": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is an animated film featuring colorful creatures (likely talking animals) that would satisfy a user searching for animated content with talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||The Princess and the Frog": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film features animated talking animals including a frog prince and other anthropomorphic characters, directly matching the user's search for animated content with talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||G-Force": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "G-Force features animated talking guinea pigs, a mole, and a fly as the main characters, directly matching the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||A Bug's Life": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "A Bug's Life is an animated film featuring talking insects (bugs) which directly matches the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Penguins of Madagascar": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This is an animated movie featuring penguins as the main characters who talk and have distinct personalities, directly matching the search intent for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Shrek": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Shrek is an animated movie featuring talking animals including the main character Donkey and other fairy tale creatures, directly matching the search query.",
+    "consistent": true
+  },
+  "animated talking animals|||Howl's Moving Castle": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title is animated, it does not feature talking animals as main characters or themes, focusing instead on human characters and magical elements.",
+    "consistent": true
+  },
+  "animated talking animals|||Ratatouille": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Ratatouille is an animated film featuring a talking rat as the main character, which directly matches the search query for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Toy Story 2": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Toy Story 2 is an animated film featuring talking toy characters including animals like Rex the dinosaur and Bullseye the horse, which satisfies the user's search for animated talking animals.",
+    "consistent": false
+  },
+  "animated talking animals|||Toy Story 3": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Toy Story 3 is an animated film featuring talking toys including animals like Rex the dinosaur and other characters that speak, which satisfies the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||The Nut Job": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is an animated film featuring talking animals (specifically a squirrel named Surly as the main character), which directly matches the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||The Lion King": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Lion King is an animated film featuring talking animals as the main characters, directly matching the user's search intent.",
+    "consistent": true
+  },
+  "animated talking animals|||Spirited Away": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Spirited Away is an animated film featuring talking animal-like creatures and spirits that interact with the main character throughout the story.",
+    "consistent": true
+  },
+  "animated talking animals|||The Good Dinosaur": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The movie features Arlo, an animated dinosaur character who talks, directly matching the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Shrek 2": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Shrek 2 is an animated film featuring talking animal characters like Donkey and other fantasy creatures, directly matching the user's search for animated talking animals.",
+    "consistent": true
+  },
+  "animated talking animals|||Monsters, Inc.": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Monsters, Inc. is animated, the main characters are monsters rather than animals, so it doesn't satisfy the specific search intent for 'animated talking animals.'",
+    "consistent": true
+  },
+  "superhero origin story|||Deadpool": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Deadpool explicitly tells the origin story of Wade Wilson becoming the superhero Deadpool, directly matching the user's search for superhero origin stories.",
+    "consistent": true
+  },
+  "superhero origin story|||Megamind": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Megamind is fundamentally a superhero origin story that subverts the traditional narrative by showing a villain's transformation into a hero after defeating his nemesis.",
+    "consistent": false
+  },
+  "superhero origin story|||The Incredibles": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Incredibles focuses on an established superhero returning to action rather than depicting how someone becomes a superhero for the first time, which is what 'origin story' specifically refers to.",
+    "consistent": true
+  },
+  "superhero origin story|||Superman": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Superman is a classic superhero origin story that directly matches the user's search intent for content about how superheroes get their powers and begin their heroic journey.",
+    "consistent": false
+  },
+  "superhero origin story|||Birdman": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Birdman references superhero themes, it's actually a drama about a fading actor rather than an actual superhero origin story that users searching this query would expect to find.",
+    "consistent": true
+  },
+  "superhero origin story|||Hancock": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Hancock is about a superhero, the plot focuses on image rehabilitation rather than his origin story, which is what the user is specifically searching for.",
+    "consistent": true
+  },
+  "superhero origin story|||Iron Man 2": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Iron Man 2 is a sequel that focuses on Tony Stark dealing with the consequences of being a known superhero rather than telling his origin story, which was covered in the first Iron Man film.",
+    "consistent": true
+  },
+  "superhero origin story|||The Iceman": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is about a real-life contract killer's biography, not a fictional superhero's origin story that users would expect when searching for superhero content.",
+    "consistent": true
+  },
+  "superhero origin story|||The Notebook": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Notebook is a romantic drama about a love story affected by Alzheimer's and has no connection to superheroes or origin stories.",
+    "consistent": true
+  },
+  "superhero origin story|||Babel": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Babel is a drama about interconnected families dealing with tragedy and has no connection to superheroes or origin stories.",
+    "consistent": true
+  },
+  "superhero origin story|||Son of God": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Jesus could be considered a heroic figure with supernatural abilities, 'Son of God' is a religious drama about a historical/religious figure rather than a superhero origin story in the conventional sense that users would expect when searching for that term.",
+    "consistent": true
+  },
+  "superhero origin story|||Interview with the Vampire": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Interview with the Vampire is a vampire horror story about an immortal's life experiences, not a superhero origin story about gaining powers and becoming a hero.",
+    "consistent": true
+  },
+  "superhero origin story|||Dolphin Tale": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is about a boy's friendship with an injured dolphin and contains no superhero elements or origin story themes that would satisfy someone searching for superhero content.",
+    "consistent": true
+  },
+  "superhero origin story|||The Curious Case of Benjamin Button": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Curious Case of Benjamin Button is about aging backwards and has no connection to superheroes or origin stories that would satisfy someone searching for superhero content.",
+    "consistent": true
+  },
+  "superhero origin story|||Intolerance": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a historical drama about prejudice and intolerance with no superhero characters or origin story elements that would satisfy someone searching for superhero content.",
+    "consistent": true
+  },
+  "superhero origin story|||Veer-Zaara": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a drama/romance film about cross-border love between two people, not a superhero origin story about how someone gains superpowers or becomes a hero.",
+    "consistent": true
+  },
+  "superhero origin story|||Light from the Darkroom": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This title is about a religious pilgrimage story with no apparent superhero elements or origin story characteristics that would satisfy someone searching for superhero content.",
+    "consistent": true
+  },
+  "superhero origin story|||George Washington": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is about children covering up a mistake in a small town, which has no connection to superhero characters or their origin stories.",
+    "consistent": true
+  },
+  "superhero origin story|||Closer": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title 'Closer' is a drama/romance about adultery and relationships, which has no connection to superhero origin stories that users would be searching for.",
+    "consistent": true
+  },
+  "superhero origin story|||Schindler's List": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Schindler's List is a historical drama about the Holocaust and has no connection to superhero content or origin stories.",
+    "consistent": true
+  },
+  "superhero origin story|||Batman v Superman: Dawn of Justice": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While this movie features superheroes, it focuses on an established Batman and Superman in conflict rather than depicting their origin stories, which is what the user is specifically searching for.",
+    "consistent": true
+  },
+  "superhero origin story|||Superman IV: The Quest for Peace": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Superman IV is a sequel focused on nuclear disarmament rather than an origin story about how Superman became a superhero.",
+    "consistent": true
+  },
+  "superhero origin story|||Batman Begins": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Batman Begins is a quintessential superhero origin story that depicts Bruce Wayne's transformation into Batman, directly matching the user's search intent.",
+    "consistent": true
+  },
+  "superhero origin story|||The Man from U.N.C.L.E.": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Man from U.N.C.L.E. is a spy action film about secret agents during the Cold War, not a superhero origin story about characters gaining superpowers.",
+    "consistent": true
+  },
+  "superhero origin story|||Batman & Robin": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This Batman movie focuses on established superheroes battling villains rather than depicting the origin stories of how the characters became superheroes.",
+    "consistent": true
+  },
+  "superhero origin story|||The Incredible Hulk": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Incredible Hulk is a well-known superhero film that depicts Bruce Banner's transformation into the Hulk, which is fundamentally an origin story about how he became this superhero.",
+    "consistent": true
+  },
+  "superhero origin story|||Captain America: The Winter Soldier": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While this is a superhero movie, it focuses on Captain America in his established role rather than telling his origin story, which would be covered in 'Captain America: The First Avenger'.",
+    "consistent": true
+  },
+  "superhero origin story|||Batman Forever": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Batman Forever focuses on an established Batman confronting villains rather than depicting his origin story of how he became a superhero.",
+    "consistent": true
+  },
+  "superhero origin story|||Spider-Man": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Spider-Man is a classic superhero origin story that directly matches the query, as it depicts Peter Parker gaining his superpowers after being bitten by a spider.",
+    "consistent": true
+  },
+  "superhero origin story|||Watchmen": {
+    "label_v1": "Relevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Watchmen features costumed vigilantes and explores their backstories and motivations, which aligns with the superhero origin story theme even though it focuses more on deconstruction of the genre.",
+    "consistent": false
+  },
+  "superhero origin story|||Iron Man": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Iron Man is a classic superhero origin story that shows Tony Stark's transformation from billionaire engineer to superhero after his captivity, directly matching the user's search intent.",
+    "consistent": true
+  },
+  "superhero origin story|||The League of Extraordinary Gentlemen": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title features superhero-like characters, it focuses on already established literary figures banding together rather than depicting the origin story of how characters gained their powers or became heroes.",
+    "consistent": true
+  },
+  "superhero origin story|||Spider-Man 3": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Spider-Man 3 is a sequel that focuses on new villains and relationship drama rather than depicting Spider-Man's origin story, which would be found in the first Spider-Man movie.",
+    "consistent": true
+  },
+  "superhero origin story|||Captain America: The First Avenger": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This movie directly matches the query as it tells the origin story of Captain America, showing how Steve Rogers transforms from a sickly man into a superhero.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Hobbit: An Unexpected Journey": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches all query elements as it's a fantasy adventure film featuring an epic quest with dragons, wizards, and a journey to reclaim a homeland.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Epic": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches the query perfectly with 'Epic' in the name and contains both Fantasy and Adventure genres with a plot involving a battle between good and evil forces, which aligns with epic fantasy adventure expectations.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||X-Men: Days of Future Past": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches the query as it's categorized as Adventure and Fantasy genres and the plot description explicitly uses the word 'epic' to describe the battle, making it a suitable match for someone searching for epic fantasy adventure content.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Night at the Museum: Secret of the Tomb": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the movie contains adventure and fantasy elements, it's primarily a family comedy that doesn't match the epic fantasy tone users would expect from this query.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Good Dinosaur": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains adventure elements, it's primarily a family-friendly animated film about dinosaurs rather than the epic fantasy genre that users would expect when searching for 'epic fantasy adventure.'",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Rescue Dawn": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While 'Rescue Dawn' contains adventure elements and an epic survival story, it's a realistic war drama rather than a fantasy film, failing to meet the core 'fantasy' requirement of the search query.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Mirror Mirror": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches the query as it's explicitly described as an 'epic battle' in a fantasy setting with adventure elements, featuring classic good vs. evil themes that align with epic fantasy adventure expectations.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||How to Train Your Dragon 2": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches all three query terms with Fantasy and Adventure genres plus an epic storyline involving dragons and fantastical worlds.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Interview with the Vampire": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the plot mentions an 'epic life story,' the title is primarily horror/romance genre focused on vampires rather than the fantasy adventure with heroic quests that users searching for 'epic fantasy adventure' would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The World's End": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "This is a comedy/sci-fi about friends on a pub crawl, which has no meaningful connection to epic fantasy adventure content that users would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Captain America: Civil War": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the movie contains adventure elements, it's primarily a superhero action film set in a modern/sci-fi context rather than the fantasy genre that users searching for 'epic fantasy adventure' would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Empire Strikes Back": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains adventure elements and epic storytelling, it is fundamentally science fiction rather than fantasy, making it a poor match for users specifically searching for fantasy content.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Pompeii": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "While the movie has epic adventure elements, it's a historical drama set in ancient Rome rather than a fantasy adventure, lacking the magical or fantastical elements that users searching for 'epic fantasy adventure' would expect.",
+    "consistent": false
+  },
+  "epic fantasy adventure|||Once Upon a Time in the West": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the film is described as 'epic,' it is a western genre film rather than a fantasy adventure, making it a poor match for users specifically searching for fantasy content.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||300: Rise of an Empire": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the movie contains epic battle scenes, it's classified as Action/War rather than fantasy and lacks the magical or fantastical elements that users searching for 'epic fantasy adventure' would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Notebook": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Notebook is a romance/drama about a love story, not a fantasy adventure with magical or fantastical elements that users searching for 'epic fantasy adventure' would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Secret Life of Walter Mitty": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the movie contains adventure and fantasy elements, it's primarily a contemporary dramedy about personal growth rather than the epic fantasy adventure with magical worlds, quests, and heroic journeys that users searching this query would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Alice Through the Looking Glass": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title is fantasy genre, it's a whimsical children's adventure rather than the epic, sweeping fantasy adventure that users searching for 'epic fantasy adventure' would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Charlie and the Chocolate Factory": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains fantasy and adventure elements, it is a whimsical family story rather than the epic, grand-scale fantasy adventure that users searching for 'epic fantasy adventure' would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Underworld: Rise of the Lycans": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches the query as it's a fantasy adventure film with epic battle elements between supernatural factions, fitting what users searching for 'epic fantasy adventure' would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Chronicles of Narnia: Prince Caspian": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a fantasy adventure film that matches all key elements of the query - it's part of an epic fantasy series with clear adventure elements involving magical worlds and heroic quests.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Hobbit: The Battle of the Five Armies": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is a fantasy adventure film featuring epic battles and heroic quests, directly matching all key elements of the search query.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Wizard of Oz": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Wizard of Oz is a classic fantasy adventure story that matches the user's search for epic fantasy adventure content, featuring a magical world, quest narrative, and fantastical characters.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Hunger Games": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While The Hunger Games has adventure and fantasy elements, it's primarily a dystopian science fiction story focused on survival competition rather than the epic fantasy adventure with magical worlds and heroic quests that users searching this term typically expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Chronicles of Narnia: The Voyage of the Dawn Treader": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches the query as it's a fantasy adventure film with epic scope, featuring a magical journey to the edges of the world in the beloved Narnia universe.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Warcraft": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches the query as it's a fantasy genre film featuring an epic adventure with war, multiple worlds, and opposing armies facing extinction.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Amazing Spider-Man 2": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title has Adventure and Fantasy genres, Spider-Man 2 is a modern superhero film that doesn't match the 'epic fantasy adventure' intent which typically refers to sword-and-sorcery or magical world settings.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Hellboy II: The Golden Army": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches the query as it's an adventure fantasy film with epic elements including ancient pacts, supernatural creatures, and a battle to save humanity from destruction.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Thor: The Dark World": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Thor: The Dark World is a fantasy adventure film featuring epic cosmic battles and a heroic journey to save the universe from darkness, which directly matches the search intent for epic fantasy adventure content.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Avatar": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches the query as it's classified in Adventure and Fantasy genres and features an epic-scale story with fantastical elements on an alien world.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Lord of the Rings: The Two Towers": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Lord of the Rings: The Two Towers is a quintessential epic fantasy adventure film that perfectly matches all three key terms in the query with its grand scale, fantasy elements, and adventure storyline.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Frozen": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While Frozen contains adventure elements, it is primarily an animated family film rather than an epic fantasy adventure, which typically implies a more serious, grand-scale fantasy story with heroic quests.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Jungle Book": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While The Jungle Book contains fantasy and adventure elements, it's primarily a family-oriented coming-of-age story that lacks the epic scale and heroic quest elements that users searching for 'epic fantasy adventure' would expect.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Pan": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title matches all key aspects of the query with its fantasy genre, adventure elements, and epic scope involving battles to save an entire magical world.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Lord of the Rings: The Return of the King": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Lord of the Rings: The Return of the King is a quintessential epic fantasy adventure film that perfectly matches all three key terms in the search query with its grand scale, fantasy genre, and adventure elements.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||Into the Woods": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains fantasy elements, it's primarily a musical comedy about fairy tale characters rather than an epic adventure, making it unlikely to satisfy users seeking grand-scale fantasy adventures.",
+    "consistent": true
+  },
+  "epic fantasy adventure|||The Chronicles of Narnia: The Lion, the Witch and the Wardrobe": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title directly matches the query as it is a fantasy adventure film featuring epic battles between good and evil in a magical kingdom.",
+    "consistent": true
+  },
+  "world war two|||Captain America: Civil War": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Despite having 'war' in the title, this is a modern superhero film about a fictional conflict between Avengers characters, not about World War Two historical events that the user is searching for.",
+    "consistent": true
+  },
+  "world war two|||Schindler's List": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Schindler's List is directly set during World War II and tells a true story from that historical period, making it highly relevant to users searching for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||The Huntsman: Winter's War": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is a fantasy adventure film about fictional characters and has no connection to World War Two history or themes.",
+    "consistent": true
+  },
+  "world war two|||The Pianist": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The Pianist is directly about World War Two, featuring a Jewish-Polish pianist's survival story during the second world war in Warsaw, which clearly matches the user's search intent.",
+    "consistent": true
+  },
+  "world war two|||Warcraft": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Warcraft is a fantasy film about orcs and magic that has no connection to World War Two historical content that the user is searching for.",
+    "consistent": true
+  },
+  "world war two|||A Bridge Too Far": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "This is a World War II historical drama about a specific WWII operation, directly matching what users searching for 'world war two' content would expect to find.",
+    "consistent": true
+  },
+  "world war two|||The Imitation Game": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film is explicitly set during World War II and focuses on the crucial code-breaking efforts that were central to the Allied war effort, directly satisfying a user's search for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||The League of Extraordinary Gentlemen": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The plot mentions preventing 'a world war' but is set in Victorian times with fictional characters, not about World War Two specifically which users would expect from that query.",
+    "consistent": true
+  },
+  "world war two|||Inglourious Basterds": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film is explicitly set during World War II in Nazi-occupied France and centers around American soldiers fighting Nazis, directly matching the user's search for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||Fury": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The movie Fury is directly set during World War II and focuses on combat in the final months of the war, making it highly relevant to users searching for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||The Thin Red Line": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film is explicitly about a World War II battle and directly matches the user's search intent for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||The Land Girls": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The title is set during World War II and focuses on the wartime experience of women working on British farms while men were fighting, which directly connects to the search query about World War Two.",
+    "consistent": true
+  },
+  "world war two|||The Good German": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film is set in Berlin just after World War Two ends and involves the Potsdam negotiations between Allied powers, making it directly connected to the WWII time period and events.",
+    "consistent": true
+  },
+  "world war two|||World War Z": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "While the title contains 'World War', this is a zombie apocalypse movie with no connection to the historical World War Two period that users would be searching for.",
+    "consistent": true
+  },
+  "world war two|||Captain America: The First Avenger": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The movie is predominantly set during World War II and features historical elements like Adolf Hitler and the Nazi regime, making it a meaningful match for users searching for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||A Beginner's Guide to Snuff": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is about two brothers making a horror film and has no connection to World War Two historical content that the user is searching for.",
+    "consistent": true
+  },
+  "world war two|||Shutter Island": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "While the main character is a World War II veteran, the movie is primarily a psychological thriller set in a mental hospital with WWII being only background context, not the main focus a user searching for 'world war two' content would expect.",
+    "consistent": false
+  },
+  "world war two|||Black Hawk Down": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Black Hawk Down depicts the 1993 Battle of Mogadishu in Somalia, which is unrelated to World War Two that occurred from 1939-1945.",
+    "consistent": true
+  },
+  "world war two|||Transcendence": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is about computer scientists and technological singularity with no connection to World War Two, so users searching for WWII content would be confused to find this science fiction thriller in their results.",
+    "consistent": true
+  },
+  "world war two|||X-Men: Days of Future Past": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "X-Men: Days of Future Past is a science fiction superhero film about mutants time traveling to prevent a dystopian future, with no meaningful connection to World War Two historical content that users would expect from this query.",
+    "consistent": true
+  },
+  "world war two|||Saving Private Ryan": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "Saving Private Ryan is a well-known World War II film that directly depicts the D-Day invasion and other WWII events, making it highly relevant to users searching for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||Apocalypse Now": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Apocalypse Now is about the Vietnam War, not World War Two, so it would not satisfy a user specifically searching for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||The Statement": {
+    "label_v1": "Relevant",
+    "label_v2": "Relevant",
+    "reasoning_v1": "The film is explicitly set during World War II and deals with its aftermath in France, directly matching the user's search intent for World War Two content.",
+    "consistent": true
+  },
+  "world war two|||War of the Worlds": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title 'War of the Worlds' is about an alien invasion science fiction story, not about World War Two historical content that the user is searching for.",
+    "consistent": true
+  },
+  "world war two|||Battlefield Earth": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is about a futuristic alien invasion set in the year 3000, which has no meaningful connection to World War Two despite having 'War' as a genre.",
+    "consistent": true
+  },
+  "world war two|||Spaced Invaders": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The title is about Martians misunderstanding a fictional radio broadcast and has no connection to actual World War Two content that users would be searching for.",
+    "consistent": true
+  },
+  "world war two|||Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Dr. Strangelove is a Cold War satire about nuclear warfare, not a World War Two film, so it doesn't match the user's search intent for WWII content.",
+    "consistent": true
+  },
+  "world war two|||The Man from U.N.C.L.E.": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The Man from U.N.C.L.E. is set during the Cold War era, not World War Two, and focuses on espionage between the US and Soviet Union rather than WWII events, making it unrelated to what users searching for 'world war two' content would expect.",
+    "consistent": true
+  },
+  "world war two|||Iron Man 2": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "Iron Man 2 is a modern superhero film with no connection to World War Two history, warfare, or themes that would satisfy someone searching for WWII content.",
+    "consistent": true
+  },
+  "world war two|||Battleship": {
+    "label_v1": "Irrelevant",
+    "label_v2": "Irrelevant",
+    "reasoning_v1": "The movie 'Battleship' is about a modern alien invasion involving naval warfare, not about World War Two historical events that the user is searching for.",
     "consistent": true
   }
 }
