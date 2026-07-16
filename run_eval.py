@@ -10,6 +10,12 @@ load_dotenv()
 if not os.environ.get("ANTHROPIC_API_KEY"):
     print("ERROR: ANTHROPIC_API_KEY not set. Copy .env.example to .env and add your key.")
     sys.exit(1)
+# The eval judge must be an independent model from the system judge that drives
+# the Pipeline 2 filter (see eval_judge.py). Default eval judge is Claude Haiku
+# (Anthropic key); if configured for OpenAI, its key is required instead.
+if os.environ.get("JUDGE_PROVIDER") == "openai" and not os.environ.get("OPENAI_API_KEY"):
+    print("ERROR: JUDGE_PROVIDER=openai but OPENAI_API_KEY not set.")
+    sys.exit(1)
 
 RESULTS_DIR = Path(__file__).parent / "results"
 RESULTS_DIR.mkdir(exist_ok=True)
@@ -58,9 +64,14 @@ def main():
 
     print(f"{len(judge_pairs)} (query, title) pairs to label")
 
-    # --- LLM Judge ---
-    from llm_judge import label_pairs, get_labels_for_query, get_consistency_for_query
-    cache = label_pairs(judge_pairs)
+    # --- Judges ---
+    # System judge (Claude) drives the Pipeline 2 filter. Eval judge (GPT) is the
+    # independent ground truth used to score both pipelines. Keeping them separate
+    # is what makes Pipeline 2's P@5 gain a measurement instead of a tautology.
+    import llm_judge
+    import eval_judge
+    system_cache = llm_judge.label_pairs(judge_pairs)
+    eval_cache = eval_judge.label_pairs(judge_pairs)
 
     # --- Eval loop ---
     print()
@@ -70,23 +81,35 @@ def main():
     print()
 
     all_results = []
+    kappa_pairs_by_type = defaultdict(list)
+    kappa_pairs_overall = []
 
     for q in queries:
         query = q["query"]
         qtype = q["type"]
         candidates = query_candidates[query]
-        labels = get_labels_for_query(query, candidates, cache)
-        consistency = get_consistency_for_query(query, candidates, cache)
+        system_labels = llm_judge.get_labels_for_query(query, candidates, system_cache)
+        eval_labels = eval_judge.get_labels_for_query(query, candidates, eval_cache)
 
-        from eval import score_ranker, label_distribution, filter_impact
+        from eval import (
+            score_ranker, label_distribution, filter_impact,
+            cross_model_agreement, label_pairs_for_query,
+        )
 
         p3_out = Pipeline1.run(query, candidates)
-        p4_out = Pipeline2.run(query, candidates, labels)
+        p4_out = Pipeline2.run(query, candidates, system_labels)
 
-        p3_scores = score_ranker(p3_out["results"], labels)
-        p4_scores = score_ranker(p4_out["results"], labels)
-        dist = label_distribution(candidates, labels)
+        # Score both pipelines against the GPT eval labels only — never against
+        # the Claude system labels that produced the Pipeline 2 filter.
+        p3_scores = score_ranker(p3_out["results"], eval_labels)
+        p4_scores = score_ranker(p4_out["results"], eval_labels)
+        dist = label_distribution(candidates, eval_labels)
         impact = p4_out["filter_impact"]
+        agreement = cross_model_agreement(candidates, system_labels, eval_labels)
+
+        query_kappa_pairs = label_pairs_for_query(candidates, system_labels, eval_labels)
+        kappa_pairs_by_type[qtype].extend(query_kappa_pairs)
+        kappa_pairs_overall.extend(query_kappa_pairs)
 
         delta_p5 = round(p4_scores["p5"] - p3_scores["p5"], 3)
         delta_ndcg = round(p4_scores["ndcg5"] - p3_scores["ndcg5"], 3)
@@ -94,7 +117,7 @@ def main():
         result = {
             "query": query,
             "type": qtype,
-            "llm_consistency": round(consistency, 3),
+            "cross_model_agreement": agreement,
             "label_distribution": dist,
             "pipeline1": p3_scores,
             "pipeline2": p4_scores,
@@ -109,8 +132,8 @@ def main():
 
         # --- Print query block ---
         print(f'[{qtype.upper()}] "{query}"')
-        print(f"  Label distribution: {dist['relevant']} Relevant / {dist['irrelevant']} Irrelevant  ({dist['total']} candidates)")
-        print(f"  LLM consistency:    {round(consistency * 100)}%")
+        print(f"  Label distribution: {dist['relevant']} Relevant / {dist['irrelevant']} Irrelevant  ({dist['total']} candidates)  [GPT eval labels]")
+        print(f"  Cross-model agreement (Claude vs GPT): {round(agreement * 100)}%")
         if impact:
             print(f"  Filter removed:     {impact['removed']}/{impact['total']} candidates ({round(impact['pct_removed']*100)}%)")
         print()
@@ -132,8 +155,8 @@ def main():
         print()
         print(f"  {'PIPELINE 1':<{_w+4}} {'PIPELINE 2 (+ LLM Filter)':<{_w+4}}")
         for i in range(5):
-            pt = _fmt(p3r[i]["title"], labels.get(p3r[i]["title"], "Irrelevant")) if i < len(p3r) else ""
-            qt = _fmt(p4r[i]["title"], labels.get(p4r[i]["title"], "Irrelevant")) if i < len(p4r) else ""
+            pt = _fmt(p3r[i]["title"], eval_labels.get(p3r[i]["title"], "Irrelevant")) if i < len(p3r) else ""
+            qt = _fmt(p4r[i]["title"], eval_labels.get(p4r[i]["title"], "Irrelevant")) if i < len(p4r) else ""
             print(f"  {i+1}. {pt:<{_w+2}} {i+1}. {qt:<{_w+2}}")
 
         print()
@@ -184,10 +207,27 @@ def main():
     print(f"{'OVERALL':<12} {len(overall_rows):>7}  {p3_all:>7.2f}  {p4_all:>7.2f}  {flt_all:>6}%  {sign_all}{delta_all:>6.2f}")
     print()
 
-    avg_consistency = round(
-        sum(r["llm_consistency"] for r in all_results) / len(all_results) * 100
+    from eval import cohens_kappa
+
+    avg_agreement = round(
+        sum(r["cross_model_agreement"] for r in all_results) / len(all_results) * 100
     ) if all_results else 0
-    print(f"Avg LLM label consistency: {avg_consistency}%")
+    print(f"Avg cross-model agreement (Claude vs GPT): {avg_agreement}%")
+    print()
+
+    print("Cohen's kappa by query type (Claude system labels vs GPT eval labels):")
+    kappa_by_type = {}
+    for qtype in ["genre", "compound", "decade", "thematic", "mood", "longtail"]:
+        pairs = kappa_pairs_by_type.get(qtype)
+        if not pairs:
+            continue
+        kappa = cohens_kappa(pairs)
+        kappa_by_type[qtype] = kappa
+        kappa_str = f"{kappa:.3f}" if kappa is not None else "n/a"
+        print(f"  {qtype:<12} kappa={kappa_str}  (n={len(pairs)})")
+    overall_kappa = cohens_kappa(kappa_pairs_overall)
+    overall_kappa_str = f"{overall_kappa:.3f}" if overall_kappa is not None else "n/a"
+    print(f"  {'OVERALL':<12} kappa={overall_kappa_str}  (n={len(kappa_pairs_overall)})")
     print()
 
     # --- Key Finding (dynamic) ---
@@ -233,6 +273,7 @@ def main():
                 "pipeline2_p5": avg(rows, "pipeline2", "p5"),
                 "avg_filter_pct": avg_filter_pct(rows),
                 "delta_p5": round(avg(rows, "pipeline2", "p5") - avg(rows, "pipeline1", "p5"), 3),
+                "cohens_kappa": kappa_by_type.get(qtype),
             }
             for qtype, rows in type_groups.items()
         },
@@ -242,7 +283,8 @@ def main():
             "pipeline2_p5": p4_all,
             "avg_filter_pct": flt_all,
             "delta_p5": delta_all,
-            "avg_llm_consistency_pct": avg_consistency,
+            "avg_cross_model_agreement_pct": avg_agreement,
+            "cohens_kappa": overall_kappa,
         }
     }
     report_path = RESULTS_DIR / "eval_report.json"

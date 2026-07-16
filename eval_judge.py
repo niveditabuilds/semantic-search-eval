@@ -1,31 +1,54 @@
 """
-System judge: labels (query, candidate) pairs with Claude.
+Eval judge: labels (query, candidate) pairs with an independent model.
 
-These labels feed the Pipeline 2 LLM filter ONLY (see pipelines.py).
-They must never be used to score P@5/NDCG — that would let the filter
-grade its own homework. Scoring uses eval_judge.py's GPT labels instead.
+These labels are the ground truth used to score P@5/NDCG for BOTH
+pipelines (see eval.py / run_eval.py). They must never be read by
+pipelines.py or used to drive the Pipeline 2 filter — that's what
+llm_judge.py's system labels (system_labels.json) are for. Keeping the
+judge that grades the filter separate from the judge that built it is
+what makes Pipeline 2's P@5 gain a real result instead of a tautology.
+
+The eval judge is a DIFFERENT model from the system judge (Sonnet drives
+the filter; this judge is Haiku), so cross-model agreement / Cohen's kappa
+measure how much two independent judges concur. The model name is baked into
+the cache key, so swapping the eval model (e.g. back to GPT) never collides
+with existing labels — set JUDGE_PROVIDER=openai + OPENAI_JUDGE_MODEL to do so.
 """
 
 import json
 import os
+import random
 import threading
-from concurrent.futures import ThreadPoolExecutor, as_completed
+import time
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from dotenv import load_dotenv
-import anthropic
 
 load_dotenv()
 
 RESULTS_DIR = Path(__file__).parent / "results"
-LABELS_PATH = RESULTS_DIR / "system_labels.json"
+LABELS_PATH = RESULTS_DIR / "eval_labels.json"
 
-MODEL = "claude-sonnet-4-5-20250929"
-PROMPT_VERSION = "v3"
+# The eval judge provider/model. Default: Claude Haiku via the Anthropic key.
+# Set JUDGE_PROVIDER=openai (+ OPENAI_JUDGE_MODEL, OPENAI_API_KEY) to use GPT.
+PROVIDER = os.environ.get("JUDGE_PROVIDER", "anthropic")
+if PROVIDER == "openai":
+    MODEL = os.environ.get("OPENAI_JUDGE_MODEL", "gpt-4o-mini")
+else:
+    MODEL = os.environ.get("ANTHROPIC_JUDGE_MODEL", "claude-haiku-4-5-20251001")
+PROMPT_VERSION = "v1"
 
 # Parallel API calls. Labeling is I/O-bound (network latency dominates), so a
 # thread pool cuts wall-clock time roughly by MAX_WORKERS with no CPU cost.
+# Keep this at or below the provider tier's requests-per-minute headroom — on a
+# low tier a high worker count just produces a 429 storm.
 MAX_WORKERS = int(os.environ.get("JUDGE_MAX_WORKERS", "8"))
+
+# Per-request retry budget for transient rate limits. We handle backoff ourselves
+# and disable the client's blind auto-retries, so a burst of 429s waits and
+# recovers instead of silently burning a daily request budget.
+MAX_RETRIES = int(os.environ.get("JUDGE_MAX_RETRIES", "6"))
 
 JUDGE_PROMPT = """
 You are evaluating search relevance for a streaming platform.
@@ -55,14 +78,54 @@ def cache_key(query, title):
     return f"{MODEL}|||{PROMPT_VERSION}|||{query}|||{title}"
 
 
-def _call_judge(client, prompt):
+def _make_client():
+    if PROVIDER == "openai":
+        from openai import OpenAI
+        # max_retries=0: we own retry/backoff below.
+        return OpenAI(api_key=os.environ["OPENAI_API_KEY"], max_retries=0)
+    import anthropic
+    return anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"], max_retries=0)
+
+
+def _rate_limit_errors():
+    if PROVIDER == "openai":
+        from openai import RateLimitError
+        return (RateLimitError,)
+    import anthropic
+    return (anthropic.RateLimitError,)
+
+
+def _raw_completion(client, prompt):
+    if PROVIDER == "openai":
+        response = client.chat.completions.create(
+            model=MODEL,
+            temperature=0,
+            response_format={"type": "json_object"},
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return response.choices[0].message.content.strip()
     response = client.messages.create(
         model=MODEL,
         max_tokens=128,
         temperature=0,
         messages=[{"role": "user", "content": prompt}],
     )
-    raw = response.content[0].text.strip()
+    return response.content[0].text.strip()
+
+
+def _call_judge(client, prompt):
+    # Retry transient per-minute rate limits with exponential backoff + jitter.
+    # A daily-cap 429 (requests-per-day) won't clear within the run, so we stop
+    # retrying it and let the caller skip the pair (uncached, retried next run).
+    rate_errs = _rate_limit_errors()
+    for attempt in range(MAX_RETRIES):
+        try:
+            raw = _raw_completion(client, prompt)
+            break
+        except rate_errs as e:
+            if "per day" in str(e).lower() or attempt == MAX_RETRIES - 1:
+                raise
+            time.sleep(min(2 ** attempt, 30) + random.uniform(0, 1))
     # Strip markdown code fences if present
     if raw.startswith("```"):
         raw = raw.split("```")[1]
@@ -105,9 +168,9 @@ def label_pairs(query_candidate_pairs):
         1 for (q, _, c) in query_candidate_pairs
         if cache_key(q, c["title"]) in cache
     )
-    print(f"Running system judge (Claude)...      loaded {loaded} labels from cache")
+    print(f"Running eval judge ({PROVIDER}:{MODEL})...      loaded {loaded} labels from cache")
 
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
+    client = _make_client()
 
     # De-duplicate the work: many (query, title) pairs repeat across the pair list.
     todo = {}
@@ -159,49 +222,8 @@ def label_pairs(query_candidate_pairs):
 
 
 def get_labels_for_query(query, candidates, cache):
-    """Return a dict of title -> label for these candidates. Used by pipelines.py only."""
+    """Return a dict of title -> label for these candidates. Used by eval.py only."""
     return {
         c["title"]: cache.get(cache_key(query, c["title"]), {}).get("label", "Irrelevant")
         for c in candidates
     }
-
-
-def label_on_demand(query, candidates):
-    """
-    Label all candidates for a single query in real time.
-    Called from explore.py for unlabeled queries.
-    Saves to cache after every API call.
-    Returns updated cache.
-    """
-    RESULTS_DIR.mkdir(exist_ok=True)
-    cache = _load_cache()
-
-    client = anthropic.Anthropic(api_key=os.environ["ANTHROPIC_API_KEY"])
-    to_label = [c for c in candidates if cache_key(query, c["title"]) not in cache]
-
-    if not to_label:
-        print("  All candidates already labeled.")
-        return cache
-
-    print(f"  Labeling {len(to_label)} candidates with Claude...")
-    for i, candidate in enumerate(to_label, 1):
-        key = cache_key(query, candidate["title"])
-        prompt = _prompt_for(query, candidate)
-
-        print(f"  {i}/{len(to_label)}: {candidate['title'][:40]}", end="", flush=True)
-
-        try:
-            r = _call_judge(client, prompt)
-            label = r.get("label", "Irrelevant")
-            print(f" → {label}")
-            cache[key] = {
-                "label": label,
-                "reasoning": r.get("reasoning", ""),
-                "model": MODEL,
-                "prompt_version": PROMPT_VERSION,
-            }
-            LABELS_PATH.write_text(json.dumps(cache, indent=2), encoding="utf-8")
-        except Exception as e:
-            print(f" → ERROR: {e} (skipped, will retry next time)")
-
-    return cache

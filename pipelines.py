@@ -8,6 +8,11 @@ Pipeline2: Retrieval → LLM Filter → Cross-encoder Rerank
   Suppress irrelevant candidates before reranking.
   Filter is conservative — only removes candidates with a cached Irrelevant label.
   Unlabeled candidates pass through.
+
+  The `labels` passed into Pipeline2.run must be system_labels (Claude, from
+  llm_judge.py). Never pass eval_labels (GPT, from eval_judge.py) here — those
+  are reserved for scoring in eval.py and must stay independent of the filter
+  they're grading, or P@5 comparisons between the two pipelines are circular.
 """
 
 from rankers import bm25_retrieve, semantic_rank, cross_encoder_rerank
@@ -47,7 +52,10 @@ class Pipeline2:
 
     @staticmethod
     def run(query, candidates, labels):
-        """candidates: precomputed union from _retrieve_union"""
+        """
+        candidates: precomputed union from _retrieve_union
+        labels: system_labels (Claude) title -> "Relevant"/"Irrelevant" — never eval_labels
+        """
         # Conservative filter: only remove confirmed Irrelevant candidates
         filtered = [
             c for c in candidates

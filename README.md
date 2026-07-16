@@ -9,7 +9,7 @@ A search relevance evaluation framework for streaming catalogs that compares two
 
 Pipeline 1 is the standard two-stage retrieval-rerank setup. Pipeline 2 adds one step: an LLM relevance filter that removes irrelevant candidates before the reranker runs. The question this eval answers is whether that extra step is worth it — and on which query types.
 
-Catalog: TMDb 1000 titles. Queries: auto-generated from catalog metadata. Labels: Claude Sonnet.
+Catalog: TMDb 1000 titles. Queries: auto-generated from catalog metadata. Labels: two independent judges — Claude Sonnet drives the filter, a separate judge (Claude Haiku by default, GPT optional) scores the result.
 
 ---
 
@@ -20,7 +20,9 @@ Catalog: TMDb 1000 titles. Queries: auto-generated from catalog metadata. Labels
 The key claim:
 > LLM filtering should help most on queries where the retrieval stage surfaces many semantically-adjacent-but-wrong candidates — compound, thematic, and temporal queries — and add no value on simple genre queries where the retrieval ceiling is already 100% relevant.
 
-This repo tests that claim end-to-end, on a real catalog, with 45 programmatically-generated queries, 1,718 LLM-labeled pairs, and a dual-prompt consistency check.
+This repo tests that claim end-to-end, on a real catalog, with 45 programmatically-generated queries and two independent LLM judges: a **system judge** (Claude Sonnet) whose labels drive the Pipeline 2 filter, and a separate **eval judge** (a different model — Claude Haiku by default, or GPT) whose labels are the *only* labels used to score P@5/NDCG for both pipelines. Cross-model agreement and Cohen's kappa (by query type) report how much the two judges agree — without ever letting the filter's own judge grade its output.
+
+> **Why two judges?** An earlier version of this eval used one judge for both jobs: the same labels that removed candidates in Pipeline 2 were then used to score it. That's circular — a filter that deletes everything its judge calls Irrelevant, then gets graded by that same judge, is structurally guaranteed to look good. Splitting the labels into two independent stores (a different model for scoring, which never sees the filter's decisions) is what makes Pipeline 2's measured lift a real result instead of a tautology.
 
 ---
 
@@ -49,7 +51,8 @@ Query
 |-----------|----------------|------|
 | BM25 | `rank_bm25` | Keyword recall — catches exact title/genre matches |
 | Semantic retrieval | `all-MiniLM-L6-v2` | Dense recall — catches semantic similarity |
-| LLM judge | Claude (dual-prompt) | Labels each candidate Relevant / Irrelevant |
+| System judge | Claude Sonnet (`llm_judge.py`) | Labels each candidate Relevant / Irrelevant — drives the Pipeline 2 filter only |
+| Eval judge | Independent model (`eval_judge.py`) — Claude Haiku default, GPT optional | Independently labels each candidate — used only to score P@5/NDCG for both pipelines |
 | Cross-encoder reranker | `ms-marco-MiniLM-L-6-v2` | Precision stage — scores query-title relevance |
 
 **Why both BM25 and semantic retrieval?** Each covers different failure modes. BM25 finds "horror movies" even when genre isn't in the embedding. Semantic retrieval finds "dark psychological thriller" when BM25 finds nothing. The union maximizes recall before the precision stage runs.
@@ -78,13 +81,22 @@ All queries are auto-generated from catalog metadata using Claude. No queries ar
 | Long-tail | 4 | `animated talking animals`, `superhero origin story`, `world war two` |
 | **Total** | **45** | |
 
-### LLM judge
+### LLM judges
 
-Each (query, candidate title) pair is labeled independently using two different prompt framings — a direct phrasing and a user-intent phrasing. `label_v1` is canonical for metrics. The second label is used for consistency scoring only.
+Each (query, candidate title) pair is labeled by two independent judges, each writing to its own cache:
 
-Pairs are labeled once and cached. Re-runs load from cache, costing zero API calls on cached queries and labeling only new ones.
+- **System judge** (`llm_judge.py`, Claude Sonnet) → `results/system_labels.json`. These labels drive the Pipeline 2 filter — `pipelines.py` reads only this file.
+- **Eval judge** (`eval_judge.py`, a *different* model) → `results/eval_labels.json`. These labels are the sole ground truth for P@5/NDCG — `eval.py`'s scoring functions read only this file. Defaults to Claude Haiku; set `JUDGE_PROVIDER=openai` (with `OPENAI_JUDGE_MODEL` + `OPENAI_API_KEY`) to run it as GPT for a fully cross-provider check.
 
-**96% dual-prompt consistency** — the judge is stable.
+Separating the two prevents the eval from being circular: if the same labels both filtered candidates out and graded the result, Pipeline 2 could never lose — it would just be scored against its own decisions. Each judge writes to its own store, keyed by model name + prompt version, so the two never collide and swapping the eval model never contaminates the filter's labels.
+
+The judge prompt includes the title's **release year** (so decade queries like "80s movies" don't rely on the model recalling release dates from memory), runs at **`temperature=0`**, and caches under a key that includes the **model name and prompt version**, so a prompt or model change invalidates stale entries automatically instead of silently reusing them.
+
+Both judges are labeled once and cached. Re-runs load from cache, costing zero API calls on cached queries and labeling only new ones. A failed API call is **never cached as a fabricated `Irrelevant` label** — it's skipped and retried on the next run, so a transient outage or exhausted quota can't quietly poison the label set.
+
+**Cross-model agreement and Cohen's kappa** (by query type) replace the old dual-prompt consistency check as the judge-quality signal — see Results below. This is a stronger check: a model agreeing with itself across two prompt phrasings says nothing about whether the labels are *correct*, only that they're *stable*. Agreement between two independent models is a real inter-annotator signal.
+
+> **Note on the results below:** these were produced with the default eval judge (Claude Haiku) — cross-*model* but same-provider as the Sonnet filter. That still breaks the circularity (different model, separate store, scoring never sees the filter's labels). For a fully cross-*provider* run, set `JUDGE_PROVIDER=openai` and re-run; labels are keyed by model, so the GPT run coexists with the Haiku one rather than overwriting it.
 
 ### Metrics
 
@@ -97,6 +109,8 @@ Pairs are labeled once and cached. Re-runs load from cache, costing zero API cal
 
 ## Results
 
+Scored against the **independent eval judge** (1,602 (query, title) pairs, each labeled by both judges).
+
 **Column guide:**
 - **P1 P@5** — Pipeline 1 (Retrieval → Rerank, no filter): fraction of top-5 results that are relevant
 - **P2 P@5** — Pipeline 2 (Retrieval → LLM Filter → Rerank): same metric after the LLM filter runs
@@ -105,103 +119,123 @@ Pairs are labeled once and cached. Re-runs load from cache, costing zero API cal
 
 ```
 ========================================================
-AGGREGATE BY QUERY TYPE (45 queries, 1827 labeled pairs)
+AGGREGATE BY QUERY TYPE (45 queries, 1602 labeled pairs)
 ========================================================
 
 Type         Queries  P1 P@5  P2 P@5  Filter%    Delta
 ──────────────────────────────────────────────────────
-genre             18    1.00    1.00      10%   + 0.00
-compound           8    1.00    1.00      16%   + 0.00
-decade             5    0.16    0.52      88%   +0.36
-thematic           6    0.90    1.00      50%   +0.10
-mood               4    0.60    1.00      49%   +0.40
-longtail           4    0.80    1.00      57%   +0.20
+genre             18    1.00    1.00      14%   + 0.00
+compound           8    1.00    1.00      18%   + 0.00
+decade             5    0.24    0.48      93%   +0.24
+thematic           6    0.90    0.93      61%   +0.03
+mood               4    0.65    1.00      60%   +0.35
+longtail           4    0.70    0.95      59%   +0.25
 ──────────────────────────────────────────────────────
-OVERALL           45    0.84    0.95      33%   +0.11
-
-Avg LLM label consistency: 96%
+OVERALL           45    0.84    0.93      38%   +0.09
 ```
+
+**Judge-quality check** (system judge vs independent eval judge):
+
+```
+Avg cross-model agreement:  92%
+Cohen's kappa (overall):    0.820   (substantial agreement)
+
+Cohen's kappa by query type
+──────────────────────────────
+compound   0.845   (n=287)
+longtail   0.822   (n=139)
+genre      0.767   (n=612)
+mood       0.710   (n=143)
+thematic   0.665   (n=221)
+decade     0.504   (n=200)   ← weakest agreement
+```
+
+Full per-query detail is written to `results/eval_report.json`.
 
 ---
 
 ## Key Findings
 
-### 1. The LLM filter helps on every query type except genre and compound
+### 1. The filter adds nothing on 26 of 45 queries — and that's the honest result
 
-**Mood queries** saw the largest average gain at **+0.40 P@5**:
+Every **genre** (18) and **compound** (8) query is already at **P@5 = 1.00 with retrieval alone**, and the filter moves them **+0.00** — even when it removes a lot (documentary −62%, western −36%, music −33%). Retrieval is already at ceiling; there's nothing left to fix.
+
+This is the cleanest evidence the circularity fix worked. A ceiling *cannot* be inflated by self-grading, so genre/compound reading exactly +0.00 under an independent judge is what an honest eval should show. Under the old single-judge design these still read +0.00 (you can't inflate 1.00), which is the sanity check — but the categories below tell a different story once the judge is independent.
+
+### 2. Where the filter earns its keep: mood, long-tail, decade
+
+| Type | Delta | Flagship query |
+|------|------:|----------------|
+| mood | **+0.35** | `feel good movies` 0.20 → **1.00** (filter cut 27 of 39) |
+| longtail | **+0.25** | `superhero origin story` 0.60 → 1.00 |
+| decade | **+0.24** | `00s movies` 0.40 → 1.00 (biggest single-query gain) |
+
+These are queries where retrieval surfaces *semantically-adjacent-but-wrong* candidates — a title containing "good", or a popular film from the wrong era — and the filter strips them before the reranker locks them into the top-5. `feel good movies` is the canonical case: Pipeline 1 matched on the literal word "good" (*A Good Day to Die Hard*, *No Good Deed*, *The Good German*); the filter removed them and Pipeline 2 reached 1.00.
+
+### 3. Decade is a filter *success* and a recall *failure* — and they're separable
+
+Decade queries have the **highest filter rates in the eval (85–98%)** but the **lowest P@5 (0.48 avg)**. The split within the category is the story:
 
 ```
-"feel good movies"   Pipeline 1: 0.20  →  Pipeline 2: 1.00  (+0.80)
-                     Filter removed 29 of 39 candidates (74%)
-                     Pipeline 1 matched on the word "good" — returned A Good Day to Die Hard,
-                     No Good Deed, The Good German. Pipeline 2 returned Grease, Wreck-It Ralph,
-                     Trainwreck.
-
-"funny horror"       Pipeline 1: 0.80  →  Pipeline 2: 1.00  (+0.20)
-                     Goosebumps ✓, Gremlins ✓, Ghostbusters ✓ in top 5
+"00s movies"   P1 0.40 → P2 1.00  (+0.60)   filter cut 85%   — enough right-era films exist
+"90s movies"   P1 0.00 → P2 0.40  (+0.40)   filter cut 95%
+"80s movies"   P1 0.20 → P2 0.40  (+0.20)   filter cut 95%
+"70s movies"   P1 0.20 → P2 0.20  (+0.00)   filter cut 98%   — nothing left to promote
+"10s movies"   P1 0.40 → P2 0.40  (+0.00)   filter cut 92%   — judges disagree (see #4)
 ```
 
-**Decade queries** improved by **+0.36 P@5 average**. The cross-encoder has no understanding of temporal slang — "10s movies" is meaningless to a neural model trained on prose. The LLM correctly interprets it as films from 2010–2019:
+When the catalog holds only a handful of era-correct films, the filter can strip *all* the noise and there still aren't five right answers to fill the top-5. **The filter can't add what retrieval never retrieved.** High filter rate signals query *difficulty*, not filter *benefit* — the two are decoupled.
 
-```
-"10s movies"   Pipeline 1: 0.20 P@5  →  Pipeline 2: 1.00 P@5  (+0.80)
-               Filter removed 25 of 40 candidates (63%)
-               Top-5 P2: Inception ✓, The Dark Knight ✓, Interstellar ✓,
-                         Django Unchained ✓, Guardians of the Galaxy ✓
+### 4. Cross-model agreement is where the honest caveat lives
 
-"00s movies"   Pipeline 1: 0.00 P@5  →  Pipeline 2: 0.40 P@5  (+0.40)
+Overall the two independent judges agree **92%** of the time (**kappa 0.820, substantial**), so the eval labels aren't arbitrary. But agreement is uneven, and the weak spot is pointed:
 
-"90s movies"   Pipeline 1: 0.00 P@5  →  Pipeline 2: 0.20 P@5  (+0.20)
-```
+- **decade has the lowest kappa (0.504)**, and `10s movies` alone drops to **0.50 agreement** — the two models genuinely can't agree on what counts as a 2010s film. This is the exact category where the filter does the *most* work (92–98% removal). **The filter's heaviest lifting rests on its judges' shakiest agreement** — a flag the old single-model dual-prompt consistency stat (a reported 96%) could never surface, because a model agreeing with itself says nothing about whether the label is right.
+- Abstract queries also dip: `mindblowing sci fi` 0.74, `childhood wish` 0.74, `music` 0.77 — subjective intent is harder for two models to converge on.
 
-**Thematic queries** improved by **+0.10**, from Pipeline 1 0.90 → Pipeline 2 1.00. Pipeline 1 was already strong; the filter adds a consistent finishing layer.
+### 5. The circularity mattered — and it's visible in the numbers
 
-**Long-tail queries** improved by **+0.20**, from Pipeline 1 0.80 → Pipeline 2 1.00.
+Under the old self-graded design, **thematic** showed +0.10; graded independently it's **+0.03**. That collapse is the filter no longer grading its own homework. More structurally: the old eval had mood, thematic, and long-tail all hitting **P2 = 1.00**, because the filter removed everything its judge called Irrelevant and was then scored by that *same* judge — the survivors were Relevant by construction. Under an independent judge, P2 falls below 1.00 on decade (0.48), thematic (0.93), and long-tail (0.95), because the eval judge sometimes calls a *filter-kept* title Irrelevant — something the filter's own judge, by definition, never would. That gap is the circularity made visible.
 
-### 2. Genre and compound queries are already at ceiling — filter adds nothing
-
-Simple genre queries already achieve **P@5 = 1.00** with Pipeline 1. The retrieval stage (BM25 + semantic) correctly surfaces only relevant titles; there's nothing to filter. Adding the LLM filter at 10–16% removal rate changes nothing.
-
-**Implication for production:** The filter has no effect on genre queries, but it also costs nothing to run — labels are cached offline, so the filter at serving time is a dictionary lookup. There is no latency argument for skipping it on genre queries.
-
-### 3. Filter rate signals query difficulty
-
-Average filter rate of 33% across all queries masks a meaningful pattern: genre queries remove only 10% of candidates (retrieval is already precise), while decade and mood queries remove 49–88% (retrieval surfaces many wrong candidates that the LLM correctly strips out). High filter rate is a signal that the query type needs the filter most.
-
-### 4. LLM judge quality is bounded by input context
-
-At 96% dual-prompt consistency the judge is stable and reliable across the eval. The one known limitation: for highly abstract single-word queries (e.g. `dark`, `funny` alone), title and genre without a plot summary gives the judge insufficient context. Passing the plot summary as additional input would make the judge more robust on these edge cases.
+*(Caveat: the old-vs-new comparison isn't a perfectly controlled A/B — the old numbers scored with Sonnet, these with Haiku. Read the direction — deltas equal-or-smaller under independent grading, ceilings unchanged — not the exact decimals.)*
 
 ---
 
 ## Production Recommendation
 
-Deploy the LLM filter universally. Labels are computed offline and cached — the filter at serving time is a cache lookup, not a live API call. There is no latency cost to running it on every query, including genre queries where it has no effect.
+**Ship the filter** — labels are computed offline and cached, so at serving time it's a dictionary lookup, not a live API call. There's no latency cost to leaving it on for every query, including genre queries where it's inert.
 
-The eval findings tell you *where the filter earns its keep*, which matters for prioritizing labeling coverage and understanding system behavior — not for selectively routing live traffic:
+Where the filter actually moves the metric:
 
-| Query type | P@5 lift | What the filter does |
-|-----------|----------|----------------------|
-| Genre | 0.00 | No effect — retrieval is already precise |
-| Compound | 0.00 | No effect — retrieval is already precise |
-| Decade / Temporal | +0.36 | Removes titles from the wrong era; LLM understands temporal slang |
-| Thematic | +0.10 | Strips candidates matched by keyword but wrong in context |
-| Mood | +0.40 | Largest gain — removes literal keyword matches ("good" → "feel good") |
-| Long-tail | +0.20 | Cleans noisy candidates that lack the niche genre signal |
+| Query type | P@5 lift | Inter-judge kappa | What the filter does |
+|-----------|---------:|------------------:|----------------------|
+| Genre | +0.00 | 0.767 | No effect — retrieval already at ceiling |
+| Compound | +0.00 | 0.845 | No effect — retrieval already at ceiling |
+| Mood | +0.35 | 0.710 | Largest gain — removes literal keyword matches (`good` → `feel good`) |
+| Long-tail | +0.25 | 0.822 | Cleans niche candidates that lack the subgenre signal |
+| Decade | +0.24 | **0.504** | Strips wrong-era titles — but see caveat |
+| Thematic | +0.03 | 0.665 | Marginal — retrieval was already strong |
 
-Adding query-type routing to skip the filter on genre queries would add architectural complexity for zero production benefit.
+**Two caveats the corrected eval surfaces that the old one hid:**
+
+1. **Decade is the least defensible win.** It has the biggest filter deltas *and* the lowest inter-judge agreement (kappa 0.504). Before leaning on it in production, validate temporal relevance against real release-date metadata rather than model judgment.
+2. **Decade needs a recall fix, not more filtering.** The filter already removes 85–98% of decade candidates and P@5 is still only 0.48 — the bottleneck is that retrieval surfaces too few era-correct films. Better temporal retrieval / metadata filtering will move decade P@5 far more than the LLM filter can.
+
+The earlier "deploy everywhere, it's free, no caveats" framing came partly from the circular eval overstating the filter's reach. It's still worth deploying — just with eyes open about where its decisions are solid (mood, long-tail) versus shaky (decade).
 
 ---
 
 ## Cost & Scale
 
-| Scale | Pairs to label | Claude Haiku cost (est.) |
-|-------|---------------|--------------------------|
-| This eval | 1,827 | ~$0.05 |
-| 10,000 queries × 40 candidates | 400,000 | ~$10 |
-| Production (1M queries) | 40M pairs | ~$1,000 (batch) |
+Every pair is labeled twice — once by the system judge (Sonnet) and once by the independent eval judge (Haiku or GPT) — so total labeling cost is roughly double the old single-judge design.
 
-At production scale, the LLM judge runs offline as a batch labeler — not in the live serving path. Labels are cached, refreshed on catalog changes, and distilled into the reranker as training signal. The serving-time cost of Pipeline 2 is just the lightweight filter lookup, not a live Claude call.
+| Scale | Pairs to label | System judge (est.) | Eval judge (est.) |
+|-------|---------------|--------------------|------------------|
+| This eval | 1,602 | ~$0.05 | ~$0.02 |
+| 10,000 queries × 40 candidates | 400,000 | ~$10 | ~$5 |
+| Production (1M queries) | 40M pairs | ~$1,000 (batch) | ~$500 (batch) |
+
+At production scale, only the **system judge** needs to run continuously — it's the one that drives the live filter. The **eval judge** only runs over a representative sample to keep measuring whether the filter still helps; it's an offline measurement judge, not a serving-path dependency. Labels are cached, refreshed on catalog changes, and distilled into the reranker as training signal. The serving-time cost of Pipeline 2 is just the filter lookup, not a live API call.
 
 ---
 
@@ -211,17 +245,22 @@ At production scale, the LLM judge runs offline as a batch labeler — not in th
 # Install dependencies
 pip install -r requirements.txt
 
-# Set API key
+# Set API key. The default eval judge (Claude Haiku) uses the same Anthropic key
+# as the Sonnet system judge — one key runs the whole eval.
 cp .env.example .env
 # Edit .env: ANTHROPIC_API_KEY=your_key_here
+#
+# Optional — for a fully cross-provider eval judge (GPT instead of Haiku):
+#   export JUDGE_PROVIDER=openai
+#   Edit .env: OPENAI_API_KEY=your_key_here
 
 # Download catalog (run once — requires the TMDb CSV)
 python3 data/fetch_catalog.py
 
 # Run full eval
 python3 run_eval.py
-# First run: calls Claude API for labeling (~$0.05 for 45 queries)
-# Subsequent runs: loads from cache instantly
+# First run: labels each pair with both judges (~$0.07 for 45 queries)
+# Subsequent runs: loads from cache instantly; only new/failed pairs are re-labeled
 
 # Interactive explorer — test any query side by side
 python3 explore.py
@@ -235,77 +274,64 @@ python3 explore.py
 
 ## Interactive Demo (`explore.py`)
 
-**Example 1 — Mood query: "feel good movies"**
+Titles marked ✓/✗ below reflect the **independent eval-judge** labels — the same labels used to score P@5.
+
+**Example 1 — Mood query: "feel good movies"** (filter removed 27/39)
 
 ```
-════════════════════════════════════════════════════════════
-  Query: "feel good movies"  [mood]
-  Labels: 39 cached  |  Consistency: 97%
-════════════════════════════════════════════════════════════
-
-  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)  removed 29/39
-  ───────────────────────────────────    ──────────────────────────────────────────
-  1. A Good Day to Die Hard ✗            1. Wayne's World ✓
-  2. The Good German ✗                   2. 102 Dalmatians ✓
-  3. No Good Deed ✗                      3. Grease ✓
-  4. Batman v Superman ✗                 4. Wreck-It Ralph ✓
-  5. Iron Man 3 ✗                        5. Trainwreck ✓
+  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)
+  ───────────────────────────────────    ───────────────────────────────
+  1. A Good Day to Die Hard        ✗     1. 102 Dalmatians              ✓
+  2. Midnight in the Garden of G.. ✗     2. Pitch Perfect 2             ✓
+  3. No Good Deed                  ✗     3. Trainwreck                  ✓
+  4. The Good German               ✗     4. The Good Dinosaur           ✓
+  5. Good Boy!                     ✓     5. The Sweetest Thing          ✓
 
   P@5:   Pipeline 1: 0.20   Pipeline 2: 1.00   delta +0.80
-  NDCG:  Pipeline 1: 0.20   Pipeline 2: 1.00
+  NDCG:  Pipeline 1: 0.39   Pipeline 2: 1.00
 ```
 
-Pipeline 1 matched on the word "good" — every result has "good" in the title or is a popular action film. Pipeline 2's LLM filter understood those aren't feel-good movies and removed them, leaving the reranker a clean pool of upbeat titles.
+Pipeline 1 matched on the literal word "good" — four of its top five are action/drama films with "good" in the title. The filter removed them, and Pipeline 2's reranker operated on a clean pool of genuinely feel-good titles.
 
 ---
 
-**Example 2 — Decade query: "90s movies"**
+**Example 2 — Decade query: "00s movies"** (filter removed 34/40)
 
 ```
-════════════════════════════════════════════════════════════
-  Query: "90s movies"  [decade]
-  Labels: 40 cached  |  Consistency: 100%
-════════════════════════════════════════════════════════════
+  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)
+  ───────────────────────────────────    ───────────────────────────────
+  1. Dr. No                        ✗     1. Straightheads               ✓
+  2. The Expendables               ✓     2. Pirates of the Caribbean..  ✓
+  3. Ghostbusters                  ✗     3. The Dark Knight             ✓
+  4. Batman v Superman: Dawn of .. ✗     4. Inception                   ✓
+  5. Straightheads                 ✓     5. Funny Games                 ✓
 
-  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)  removed 39/40
-  ───────────────────────────────────    ──────────────────────────────────────────
-  1. Back to the Future ✗                1. Starship Troopers ✓
-  2. Let's Be Cops ✗                     2.
-  3. Ghostbusters ✗                      3.
-  4. Men in Black 3 ✗                    4.
-  5. Straightheads ✗                     5.
-
-  P@5:   Pipeline 1: 0.00   Pipeline 2: 0.20   delta +0.20
-  NDCG:  Pipeline 1: 0.00   Pipeline 2: 1.00
+  P@5:   Pipeline 1: 0.40   Pipeline 2: 1.00   delta +0.60
+  NDCG:  Pipeline 1: 0.62   Pipeline 2: 1.00
 ```
 
-Pipeline 1 returned popular films regardless of decade — *Back to the Future* (1985), *Ghostbusters* (1984). The LLM filter removed 39 of 40 candidates, leaving only *Starship Troopers* (1997) from the retrieved pool. P@5 is low because retrieval only found one 90s film in 1000 titles — a recall problem, not a filter problem. The filter itself worked correctly.
+Pipeline 1 surfaced popular films from the wrong era — *Dr. No* (1962), *Ghostbusters* (1984). The filter used the release year in the judge prompt to strip everything outside 2000–2009, and Pipeline 2's top five are all genuine 2000s films. (This is the eval's biggest single-query gain — but note decade queries also have the lowest cross-model agreement; see Key Finding #4.)
 
 ---
 
-**Example 3 — Compound mood query: "funny horror"**
+**Example 3 — Long-tail query: "superhero origin story"** (filter removed 26/34)
 
 ```
-════════════════════════════════════════════════════════════
-  Query: "funny horror"  [mood]
-  Labels: 32 cached  |  Consistency: 100%
-════════════════════════════════════════════════════════════
+  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)
+  ───────────────────────────────────    ───────────────────────────────
+  1. Deadpool                      ✓     1. Deadpool                    ✓
+  2. Iron Man 2                    ✗     2. Megamind                    ✓
+  3. Megamind                      ✓     3. Superman                    ✓
+  4. Superman                      ✓     4. Captain America: The First. ✓
+  5. Batman v Superman: Dawn of .. ✗     5. The Incredible Hulk         ✓
 
-  PIPELINE 1  (Retrieval → Rerank)       PIPELINE 2  (+ LLM Filter)  removed 24/32
-  ───────────────────────────────────    ──────────────────────────────────────────
-  1. Detention of the Dead ✓             1. Detention of the Dead ✓
-  2. Funny Games ✗                       2. Goosebumps ✓
-  3. Goosebumps ✓                        3. Gremlins ✓
-  4. Gremlins ✓                          4. A Beginner's Guide to Snuff ✓
-  5. A Beginner's Guide to Snuff ✓       5. Love in the Time of Monsters ✓
-
-  P@5:   Pipeline 1: 0.80   Pipeline 2: 1.00   delta +0.20
-  NDCG:  Pipeline 1: 0.80   Pipeline 2: 1.00
+  P@5:   Pipeline 1: 0.60   Pipeline 2: 1.00   delta +0.40
+  NDCG:  Pipeline 1: 0.91   Pipeline 2: 1.00
 ```
 
-Pipeline 1 ranked *Funny Games* at position 2 — a psychological horror film with no comedy, matched on the word "funny". The LLM filter removed it, pushing all five remaining results to genuine horror-comedies.
+Pipeline 1 mixed in superhero *sequels* (*Iron Man 2*, *Batman v Superman*) that aren't origin stories. The filter removed them, leaving only true origin films.
 
-The explorer supports any free-form query. If it's not in the labeled cache, it offers live Claude labeling for the candidate set.
+The explorer supports any free-form query. If it's not in the labeled cache, it offers live labeling for the candidate set.
 
 ---
 
@@ -317,16 +343,18 @@ semantic-search-eval/
 ├── explore.py           # Interactive side-by-side explorer
 ├── pipelines.py         # Pipeline1, Pipeline2, _retrieve_union
 ├── rankers.py           # BM25, semantic, cross-encoder
-├── llm_judge.py         # Claude labeler, dual-prompt consistency
+├── llm_judge.py         # System judge (Claude Sonnet) — labels feed the Pipeline 2 filter only
+├── eval_judge.py        # Eval judge (Haiku/GPT) — labels feed P@5/NDCG scoring only
 ├── query_generator.py   # Auto-generates queries from catalog metadata
-├── eval.py              # P@5, NDCG@5, filter_impact
+├── eval.py              # P@5, NDCG@5, filter_impact, cross-model agreement, Cohen's kappa
 ├── catalog.py           # 1000-title TMDb catalog (auto-generated)
 ├── data/
 │   └── fetch_catalog.py # Downloads and samples TMDb CSV
 └── results/
-    ├── queries.json      # Cached query set
-    ├── llm_labels.json   # Cached LLM labels (~1,827 pairs)
-    └── eval_report.json  # Full per-query and aggregate results
+    ├── queries.json       # Cached query set
+    ├── system_labels.json # Cached Sonnet labels — read only by pipelines.py  (gitignored, regenerated)
+    ├── eval_labels.json   # Cached eval-judge labels — read only by eval.py   (gitignored, regenerated)
+    └── eval_report.json   # Full per-query and aggregate results
 ```
 
 ---
@@ -347,7 +375,8 @@ Measure again with this eval → repeat
 
 ## Limitations
 
-- **Catalog size**: 1000 titles is small — recall is limited for niche and temporal queries.
-- **Labels are not ground truth**: LLM relevance labels are a proxy for user satisfaction. Real validation requires A/B testing against watch time and engagement.
-- **Judge input is title + genre only**: Abstract mood queries need plot summary context to label correctly.
+- **Catalog size**: 1000 titles is small — recall is limited for niche and temporal queries. This is the binding constraint on decade queries (see Key Finding #3), where the filter can't promote era-correct films that retrieval never surfaced.
+- **Labels are not ground truth**: LLM relevance labels are a proxy for user satisfaction. Real validation requires A/B testing against watch time and engagement. Cross-model agreement (kappa 0.82) tells you the two judges concur, not that they're *right*.
+- **Same-provider eval judge by default**: the default eval judge (Claude Haiku) is a different model but the same provider as the Sonnet filter. This breaks the circularity, but a fully cross-provider check (`JUDGE_PROVIDER=openai`) is a stronger guard against shared model biases — run it when quota allows.
+- **Judge input is title, genres, release year, and plot summary**: still bounded — abstract mood/thematic queries remain the hardest to label (their lower kappa reflects this), and no amount of metadata fully resolves subjective intent.
 - **No real query logs**: Queries are auto-generated from catalog metadata. Real user query distributions would differ.

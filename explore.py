@@ -20,8 +20,10 @@ if not os.environ.get("ANTHROPIC_API_KEY"):
     print("ERROR: ANTHROPIC_API_KEY not set.")
     sys.exit(1)
 
+import llm_judge
+
 RESULTS_DIR = Path(__file__).parent / "results"
-LABELS_PATH = RESULTS_DIR / "llm_labels.json"
+LABELS_PATH = llm_judge.LABELS_PATH
 QUERIES_PATH = RESULTS_DIR / "queries.json"
 
 W = 26  # column width for side-by-side display
@@ -33,13 +35,9 @@ def _load_cache():
     return {}
 
 
-def _cache_key(query, title):
-    return f"{query}|||{title}"
-
-
 def _get_labels(query, candidates, cache):
     return {
-        c["title"]: cache.get(_cache_key(query, c["title"]), {}).get("label_v1")
+        c["title"]: cache.get(llm_judge.cache_key(query, c["title"]), {}).get("label")
         for c in candidates
     }
 
@@ -55,17 +53,6 @@ def _fmt(title, label):
     return f"{truncated} {mark}"
 
 
-def _consistency(query, candidates, cache):
-    entries = [
-        cache[_cache_key(query, c["title"])]
-        for c in candidates
-        if _cache_key(query, c["title"]) in cache
-    ]
-    if not entries:
-        return None
-    return round(sum(1 for e in entries if e.get("consistent", True)) / len(entries) * 100)
-
-
 def _detect_query_type(query, known_queries):
     for q in known_queries:
         if q["query"] == query.lower():
@@ -74,15 +61,13 @@ def _detect_query_type(query, known_queries):
 
 
 def _display_results(query, qtype, p3_out, p4_out, labels, cache, candidates):
-    labeled_count = sum(1 for c in candidates if _cache_key(query, c["title"]) in cache)
-    consistency = _consistency(query, candidates, cache)
+    labeled_count = sum(1 for c in candidates if llm_judge.cache_key(query, c["title"]) in cache)
 
     print()
     print("═" * 60)
     print(f'  Query: "{query}"  [{qtype}]')
     if labeled_count > 0:
-        cons_str = f"  |  Consistency: {consistency}%" if consistency is not None else ""
-        print(f"  Labels: {labeled_count} cached{cons_str}")
+        print(f"  Labels: {labeled_count} cached (Claude system labels)")
     else:
         print("  Labels: none cached")
     print("═" * 60)
@@ -190,7 +175,7 @@ def main():
                 for q in qs:
                     labeled = sum(
                         1 for title_key in cache
-                        if title_key.startswith(f"{q}|||")
+                        if f"|||{q}|||" in title_key
                     )
                     print(f"    \"{q}\"  ({labeled} labeled)")
             print()
