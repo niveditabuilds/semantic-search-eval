@@ -1,0 +1,3021 @@
+{
+  "overall": {
+    "count": 45,
+    "pipeline1_p5": 0.844,
+    "pipeline2_p5": 0.929,
+    "avg_filter_pct": 38,
+    "delta_p5": 0.085,
+    "avg_cross_model_agreement_pct": 92,
+    "cohens_kappa": 0.82
+  },
+  "aggregate": {
+    "genre": {
+      "count": 18,
+      "pipeline1_p5": 1.0,
+      "pipeline2_p5": 1.0,
+      "avg_filter_pct": 14,
+      "delta_p5": 0.0,
+      "cohens_kappa": 0.767
+    },
+    "compound": {
+      "count": 8,
+      "pipeline1_p5": 1.0,
+      "pipeline2_p5": 1.0,
+      "avg_filter_pct": 18,
+      "delta_p5": 0.0,
+      "cohens_kappa": 0.845
+    },
+    "decade": {
+      "count": 5,
+      "pipeline1_p5": 0.24,
+      "pipeline2_p5": 0.48,
+      "avg_filter_pct": 93,
+      "delta_p5": 0.24,
+      "cohens_kappa": 0.504
+    },
+    "thematic": {
+      "count": 6,
+      "pipeline1_p5": 0.9,
+      "pipeline2_p5": 0.933,
+      "avg_filter_pct": 61,
+      "delta_p5": 0.033,
+      "cohens_kappa": 0.665
+    },
+    "mood": {
+      "count": 4,
+      "pipeline1_p5": 0.65,
+      "pipeline2_p5": 1.0,
+      "avg_filter_pct": 60,
+      "delta_p5": 0.35,
+      "cohens_kappa": 0.71
+    },
+    "longtail": {
+      "count": 4,
+      "pipeline1_p5": 0.7,
+      "pipeline2_p5": 0.95,
+      "avg_filter_pct": 59,
+      "delta_p5": 0.25,
+      "cohens_kappa": 0.822
+    }
+  },
+  "type_order": [
+    "genre",
+    "compound",
+    "decade",
+    "thematic",
+    "mood",
+    "longtail"
+  ],
+  "queries": [
+    {
+      "query": "family",
+      "type": "genre",
+      "filter_removed": 7,
+      "filter_total": 36,
+      "filter_pct": 19,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Dwegons",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Harry Potter and the Philosopher's Stone",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "Coraline",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Ri\u00a2hie Ri\u00a2h",
+          "year": 1994,
+          "label": "Relevant"
+        },
+        {
+          "title": "Beverly Hills Chihuahua",
+          "year": 2008,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Dwegons",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Harry Potter and the Philosopher's Stone",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "Coraline",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Ri\u00a2hie Ri\u00a2h",
+          "year": 1994,
+          "label": "Relevant"
+        },
+        {
+          "title": "Beverly Hills Chihuahua",
+          "year": 2008,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "animation",
+      "type": "genre",
+      "filter_removed": 0,
+      "filter_total": 37,
+      "filter_pct": 0,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Dwegons",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Anastasia",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "Epic",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Corpse Bride",
+          "year": 2005,
+          "label": "Relevant"
+        },
+        {
+          "title": "Princess Mononoke",
+          "year": 1997,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Dwegons",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Anastasia",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "Epic",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Corpse Bride",
+          "year": 2005,
+          "label": "Relevant"
+        },
+        {
+          "title": "Princess Mononoke",
+          "year": 1997,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "adventure",
+      "type": "genre",
+      "filter_removed": 0,
+      "filter_total": 37,
+      "filter_pct": 0,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Pan",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "127 Hours",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Shipwrecked",
+          "year": 1990,
+          "label": "Relevant"
+        },
+        {
+          "title": "Kicks",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Adventures of Tintin",
+          "year": 2011,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Pan",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "127 Hours",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Shipwrecked",
+          "year": 1990,
+          "label": "Relevant"
+        },
+        {
+          "title": "Kicks",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Adventures of Tintin",
+          "year": 2011,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "comedy",
+      "type": "genre",
+      "filter_removed": 2,
+      "filter_total": 33,
+      "filter_pct": 6,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "50/50",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "L!fe Happens",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Metropolitan",
+          "year": 1990,
+          "label": "Relevant"
+        },
+        {
+          "title": "They Came Together",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Men with Brooms",
+          "year": 2002,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "50/50",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "L!fe Happens",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Metropolitan",
+          "year": 1990,
+          "label": "Relevant"
+        },
+        {
+          "title": "They Came Together",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Men with Brooms",
+          "year": 2002,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "drama",
+      "type": "genre",
+      "filter_removed": 0,
+      "filter_total": 33,
+      "filter_pct": 0,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "George Washington",
+          "year": 2000,
+          "label": "Relevant"
+        },
+        {
+          "title": "One to Another",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Babel",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dead Man Walking",
+          "year": 1995,
+          "label": "Relevant"
+        },
+        {
+          "title": "Meek's Cutoff",
+          "year": 2010,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "George Washington",
+          "year": 2000,
+          "label": "Relevant"
+        },
+        {
+          "title": "One to Another",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Babel",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dead Man Walking",
+          "year": 1995,
+          "label": "Relevant"
+        },
+        {
+          "title": "Meek's Cutoff",
+          "year": 2010,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "science fiction",
+      "type": "genre",
+      "filter_removed": 1,
+      "filter_total": 36,
+      "filter_pct": 3,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 97,
+      "p1": [
+        {
+          "title": "Another Earth",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Gattaca",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Thing",
+          "year": 1982,
+          "label": "Relevant"
+        },
+        {
+          "title": "Chronicle",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Tomorrowland",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Another Earth",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Gattaca",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Thing",
+          "year": 1982,
+          "label": "Relevant"
+        },
+        {
+          "title": "Chronicle",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Tomorrowland",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "action",
+      "type": "genre",
+      "filter_removed": 4,
+      "filter_total": 38,
+      "filter_pct": 10,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 95,
+      "p1": [
+        {
+          "title": "Action Jackson",
+          "year": 1988,
+          "label": "Relevant"
+        },
+        {
+          "title": "Firestorm",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Furious 7",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Taken",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "30 Minutes or Less",
+          "year": 2011,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Action Jackson",
+          "year": 1988,
+          "label": "Relevant"
+        },
+        {
+          "title": "Firestorm",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Furious 7",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Taken",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "30 Minutes or Less",
+          "year": 2011,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "thriller",
+      "type": "genre",
+      "filter_removed": 1,
+      "filter_total": 37,
+      "filter_pct": 3,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 97,
+      "p1": [
+        {
+          "title": "Now You See Me",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Enter the Dangerous Mind",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Before I Go to Sleep",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Halloween",
+          "year": 1978,
+          "label": "Relevant"
+        },
+        {
+          "title": "House at the End of the Street",
+          "year": 2012,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Now You See Me",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Enter the Dangerous Mind",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Before I Go to Sleep",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Halloween",
+          "year": 1978,
+          "label": "Relevant"
+        },
+        {
+          "title": "House at the End of the Street",
+          "year": 2012,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "fantasy",
+      "type": "genre",
+      "filter_removed": 5,
+      "filter_total": 35,
+      "filter_pct": 14,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 97,
+      "p1": [
+        {
+          "title": "Donnie Darko",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "Gods of Egypt",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "The League of Extraordinary Gentlemen",
+          "year": 2003,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Wizard of Oz",
+          "year": 1939,
+          "label": "Relevant"
+        },
+        {
+          "title": "Spider-Man",
+          "year": 2002,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Donnie Darko",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "Gods of Egypt",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "The League of Extraordinary Gentlemen",
+          "year": 2003,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Wizard of Oz",
+          "year": 1939,
+          "label": "Relevant"
+        },
+        {
+          "title": "Spider-Man",
+          "year": 2002,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "crime",
+      "type": "genre",
+      "filter_removed": 1,
+      "filter_total": 36,
+      "filter_pct": 3,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Pulp Fiction",
+          "year": 1994,
+          "label": "Relevant"
+        },
+        {
+          "title": "Firestorm",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Small Time Crooks",
+          "year": 2000,
+          "label": "Relevant"
+        },
+        {
+          "title": "Let's Go to Prison",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Kids",
+          "year": 1995,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Pulp Fiction",
+          "year": 1994,
+          "label": "Relevant"
+        },
+        {
+          "title": "Firestorm",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Small Time Crooks",
+          "year": 2000,
+          "label": "Relevant"
+        },
+        {
+          "title": "Let's Go to Prison",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Kids",
+          "year": 1995,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "mystery",
+      "type": "genre",
+      "filter_removed": 4,
+      "filter_total": 35,
+      "filter_pct": 11,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 86,
+      "p1": [
+        {
+          "title": "The Prestige",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Prometheus",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Donnie Darko",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Return",
+          "year": 2003,
+          "label": "Relevant"
+        },
+        {
+          "title": "Self/less",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Prestige",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Prometheus",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Donnie Darko",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Return",
+          "year": 2003,
+          "label": "Relevant"
+        },
+        {
+          "title": "Self/less",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "history",
+      "type": "genre",
+      "filter_removed": 9,
+      "filter_total": 32,
+      "filter_pct": 28,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 91,
+      "p1": [
+        {
+          "title": "The Egyptian",
+          "year": 1954,
+          "label": "Relevant"
+        },
+        {
+          "title": "12 Years a Slave",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Elephant Man",
+          "year": 1980,
+          "label": "Relevant"
+        },
+        {
+          "title": "Saving Private Ryan",
+          "year": 1998,
+          "label": "Relevant"
+        },
+        {
+          "title": "Public Enemies",
+          "year": 2009,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Egyptian",
+          "year": 1954,
+          "label": "Relevant"
+        },
+        {
+          "title": "12 Years a Slave",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Elephant Man",
+          "year": 1980,
+          "label": "Relevant"
+        },
+        {
+          "title": "Saving Private Ryan",
+          "year": 1998,
+          "label": "Relevant"
+        },
+        {
+          "title": "Public Enemies",
+          "year": 2009,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "war",
+      "type": "genre",
+      "filter_removed": 5,
+      "filter_total": 32,
+      "filter_pct": 16,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 88,
+      "p1": [
+        {
+          "title": "The Imitation Game",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Saving Private Ryan",
+          "year": 1998,
+          "label": "Relevant"
+        },
+        {
+          "title": "Gone with the Wind",
+          "year": 1939,
+          "label": "Relevant"
+        },
+        {
+          "title": "Battlefield Earth",
+          "year": 2000,
+          "label": "Relevant"
+        },
+        {
+          "title": "Fury",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Imitation Game",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Saving Private Ryan",
+          "year": 1998,
+          "label": "Relevant"
+        },
+        {
+          "title": "Gone with the Wind",
+          "year": 1939,
+          "label": "Relevant"
+        },
+        {
+          "title": "Battlefield Earth",
+          "year": 2000,
+          "label": "Relevant"
+        },
+        {
+          "title": "Fury",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "romance",
+      "type": "genre",
+      "filter_removed": 4,
+      "filter_total": 36,
+      "filter_pct": 11,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 86,
+      "p1": [
+        {
+          "title": "Closer",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Not Easily Broken",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Notebook",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Conversations with Other Women",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Never Again",
+          "year": 2002,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Closer",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Not Easily Broken",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Notebook",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Conversations with Other Women",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Never Again",
+          "year": 2002,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "horror",
+      "type": "genre",
+      "filter_removed": 0,
+      "filter_total": 32,
+      "filter_pct": 0,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Ouija",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Halloween",
+          "year": 1978,
+          "label": "Relevant"
+        },
+        {
+          "title": "Insidious",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Wicked Within",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Carrie",
+          "year": 2013,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Ouija",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Halloween",
+          "year": 1978,
+          "label": "Relevant"
+        },
+        {
+          "title": "Insidious",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Wicked Within",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Carrie",
+          "year": 2013,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "western",
+      "type": "genre",
+      "filter_removed": 9,
+      "filter_total": 25,
+      "filter_pct": 36,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 96,
+      "p1": [
+        {
+          "title": "Once Upon a Time in the West",
+          "year": 1968,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Good, the Bad and the Ugly",
+          "year": 1966,
+          "label": "Relevant"
+        },
+        {
+          "title": "Django Unchained",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Meek's Cutoff",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "3:10 to Yuma",
+          "year": 2007,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Once Upon a Time in the West",
+          "year": 1968,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Good, the Bad and the Ugly",
+          "year": 1966,
+          "label": "Relevant"
+        },
+        {
+          "title": "Django Unchained",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Meek's Cutoff",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "3:10 to Yuma",
+          "year": 2007,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "music",
+      "type": "genre",
+      "filter_removed": 10,
+      "filter_total": 30,
+      "filter_pct": 33,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 77,
+      "p1": [
+        {
+          "title": "Straight Outta Compton",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Music and Lyrics",
+          "year": 2007,
+          "label": "Relevant"
+        },
+        {
+          "title": "Cadillac Records",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Nutcracker",
+          "year": 1993,
+          "label": "Relevant"
+        },
+        {
+          "title": "Into the Woods",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Straight Outta Compton",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Music and Lyrics",
+          "year": 2007,
+          "label": "Relevant"
+        },
+        {
+          "title": "Cadillac Records",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Nutcracker",
+          "year": 1993,
+          "label": "Relevant"
+        },
+        {
+          "title": "Into the Woods",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "documentary",
+      "type": "genre",
+      "filter_removed": 20,
+      "filter_total": 32,
+      "filter_pct": 62,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Touching the Void",
+          "year": 2003,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dolphins and Whales: Tribes of the Ocean",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "Beyond the Mat",
+          "year": 1999,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Act of Killing",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Man on Wire",
+          "year": 2008,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Touching the Void",
+          "year": 2003,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dolphins and Whales: Tribes of the Ocean",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "Beyond the Mat",
+          "year": 1999,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Act of Killing",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Man on Wire",
+          "year": 2008,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "action adventure",
+      "type": "compound",
+      "filter_removed": 4,
+      "filter_total": 35,
+      "filter_pct": 11,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 91,
+      "p1": [
+        {
+          "title": "The Rock",
+          "year": 1996,
+          "label": "Relevant"
+        },
+        {
+          "title": "30 Minutes or Less",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Nothing to Lose",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "Avatar",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Lone Ranger",
+          "year": 2013,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Rock",
+          "year": 1996,
+          "label": "Relevant"
+        },
+        {
+          "title": "30 Minutes or Less",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Nothing to Lose",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "Avatar",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Lone Ranger",
+          "year": 2013,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "action thriller",
+      "type": "compound",
+      "filter_removed": 7,
+      "filter_total": 37,
+      "filter_pct": 19,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 97,
+      "p1": [
+        {
+          "title": "Unknown",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Jason Bourne",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Taken",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Bourne Legacy",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Specialist",
+          "year": 1994,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Unknown",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Jason Bourne",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Taken",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Bourne Legacy",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Specialist",
+          "year": 1994,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "drama thriller",
+      "type": "compound",
+      "filter_removed": 10,
+      "filter_total": 38,
+      "filter_pct": 26,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 95,
+      "p1": [
+        {
+          "title": "Abandon",
+          "year": 2002,
+          "label": "Relevant"
+        },
+        {
+          "title": "O",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Prestige",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Room",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Revenant",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Abandon",
+          "year": 2002,
+          "label": "Relevant"
+        },
+        {
+          "title": "O",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Prestige",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Room",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Revenant",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "action science fiction",
+      "type": "compound",
+      "filter_removed": 3,
+      "filter_total": 35,
+      "filter_pct": 9,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "The Matrix",
+          "year": 1999,
+          "label": "Relevant"
+        },
+        {
+          "title": "Lucy",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dredd",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Book of Eli",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "The World's End",
+          "year": 2013,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Matrix",
+          "year": 1999,
+          "label": "Relevant"
+        },
+        {
+          "title": "Lucy",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dredd",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Book of Eli",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "The World's End",
+          "year": 2013,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "adventure fantasy",
+      "type": "compound",
+      "filter_removed": 3,
+      "filter_total": 38,
+      "filter_pct": 8,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 95,
+      "p1": [
+        {
+          "title": "Pan",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Epic",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Wizard of Oz",
+          "year": 1939,
+          "label": "Relevant"
+        },
+        {
+          "title": "Avatar",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Hobbit: An Unexpected Journey",
+          "year": 2012,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Pan",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Epic",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Wizard of Oz",
+          "year": 1939,
+          "label": "Relevant"
+        },
+        {
+          "title": "Avatar",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Hobbit: An Unexpected Journey",
+          "year": 2012,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "drama romance",
+      "type": "compound",
+      "filter_removed": 12,
+      "filter_total": 36,
+      "filter_pct": 33,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 97,
+      "p1": [
+        {
+          "title": "Closer",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Not Easily Broken",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Me Before You",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Gone with the Wind",
+          "year": 1939,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Longest Ride",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Closer",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Not Easily Broken",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Me Before You",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Gone with the Wind",
+          "year": 1939,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Longest Ride",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "adventure science fiction",
+      "type": "compound",
+      "filter_removed": 7,
+      "filter_total": 34,
+      "filter_pct": 21,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 97,
+      "p1": [
+        {
+          "title": "Tomorrowland",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Allegiant",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "The 5th Wave",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Jurassic Park",
+          "year": 1993,
+          "label": "Relevant"
+        },
+        {
+          "title": "Interstellar",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Tomorrowland",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Allegiant",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "The 5th Wave",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Jurassic Park",
+          "year": 1993,
+          "label": "Relevant"
+        },
+        {
+          "title": "Interstellar",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "crime thriller",
+      "type": "compound",
+      "filter_removed": 6,
+      "filter_total": 34,
+      "filter_pct": 18,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 94,
+      "p1": [
+        {
+          "title": "Now You See Me",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Law Abiding Citizen",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Pulp Fiction",
+          "year": 1994,
+          "label": "Relevant"
+        },
+        {
+          "title": "A Walk Among the Tombstones",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Reservoir Dogs",
+          "year": 1992,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Now You See Me",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Law Abiding Citizen",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Pulp Fiction",
+          "year": 1994,
+          "label": "Relevant"
+        },
+        {
+          "title": "A Walk Among the Tombstones",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Reservoir Dogs",
+          "year": 1992,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "70s movies",
+      "type": "decade",
+      "filter_removed": 39,
+      "filter_total": 40,
+      "filter_pct": 98,
+      "p1_p5": 0.2,
+      "p2_p5": 0.2,
+      "p1_ndcg": 0.387,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Dark Shadows",
+          "year": 2012,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Hard Rain",
+          "year": 1998,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Straightheads",
+          "year": 2007,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "50/50",
+          "year": 2011,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Days of Heaven",
+          "year": 1978,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Days of Heaven",
+          "year": 1978,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "80s movies",
+      "type": "decade",
+      "filter_removed": 38,
+      "filter_total": 40,
+      "filter_pct": 95,
+      "p1_p5": 0.2,
+      "p2_p5": 0.4,
+      "p1_ndcg": 0.631,
+      "p2_ndcg": 1.0,
+      "delta": 0.2,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Watchmen",
+          "year": 2009,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "The Terminator",
+          "year": 1984,
+          "label": "Relevant"
+        },
+        {
+          "title": "Hard Rain",
+          "year": 1998,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Straightheads",
+          "year": 2007,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Batman v Superman: Dawn of Justice",
+          "year": 2016,
+          "label": "Irrelevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Terminator",
+          "year": 1984,
+          "label": "Relevant"
+        },
+        {
+          "title": "Time Bandits",
+          "year": 1981,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "90s movies",
+      "type": "decade",
+      "filter_removed": 38,
+      "filter_total": 40,
+      "filter_pct": 95,
+      "p1_p5": 0.0,
+      "p2_p5": 0.4,
+      "p1_ndcg": 0.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.4,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "Back to the Future",
+          "year": 1985,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Let's Be Cops",
+          "year": 2014,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Ghostbusters",
+          "year": 2016,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Men in Black 3",
+          "year": 2012,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Straightheads",
+          "year": 2007,
+          "label": "Irrelevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Love and Death on Long Island",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "Starship Troopers",
+          "year": 1997,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "00s movies",
+      "type": "decade",
+      "filter_removed": 34,
+      "filter_total": 40,
+      "filter_pct": 85,
+      "p1_p5": 0.4,
+      "p2_p5": 1.0,
+      "p1_ndcg": 0.624,
+      "p2_ndcg": 1.0,
+      "delta": 0.6,
+      "agreement": 98,
+      "p1": [
+        {
+          "title": "Dr. No",
+          "year": 1962,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "The Expendables",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Ghostbusters",
+          "year": 2016,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Batman v Superman: Dawn of Justice",
+          "year": 2016,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Straightheads",
+          "year": 2007,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Straightheads",
+          "year": 2007,
+          "label": "Relevant"
+        },
+        {
+          "title": "Pirates of the Caribbean: The Curse of the Black Pearl",
+          "year": 2003,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Dark Knight",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "Inception",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Funny Games",
+          "year": 2007,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "10s movies",
+      "type": "decade",
+      "filter_removed": 37,
+      "filter_total": 40,
+      "filter_pct": 92,
+      "p1_p5": 0.4,
+      "p2_p5": 0.4,
+      "p1_ndcg": 0.571,
+      "p2_ndcg": 0.92,
+      "delta": 0.0,
+      "agreement": 50,
+      "p1": [
+        {
+          "title": "Force 10 from Navarone",
+          "year": 1978,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "10 Cloverfield Lane",
+          "year": 2016,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Ocean's Twelve",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "9",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Hateful Eight",
+          "year": 2015,
+          "label": "Irrelevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Hunger Games: Mockingjay - Part 1",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Guardians of the Galaxy",
+          "year": 2014,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Inception",
+          "year": 2010,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "based on true story",
+      "type": "thematic",
+      "filter_removed": 14,
+      "filter_total": 36,
+      "filter_pct": 39,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 92,
+      "p1": [
+        {
+          "title": "Casino Jack",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Race",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Killer Elite",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dead Man Walking",
+          "year": 1995,
+          "label": "Relevant"
+        },
+        {
+          "title": "50/50",
+          "year": 2011,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Casino Jack",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Race",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Killer Elite",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dead Man Walking",
+          "year": 1995,
+          "label": "Relevant"
+        },
+        {
+          "title": "50/50",
+          "year": 2011,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "revenge thriller",
+      "type": "thematic",
+      "filter_removed": 22,
+      "filter_total": 35,
+      "filter_pct": 63,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 80,
+      "p1": [
+        {
+          "title": "Paparazzi",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Specialist",
+          "year": 1994,
+          "label": "Relevant"
+        },
+        {
+          "title": "Kill Bill: Vol. 2",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Expendables 2",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Skin Trade",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Paparazzi",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Specialist",
+          "year": 1994,
+          "label": "Relevant"
+        },
+        {
+          "title": "Kill Bill: Vol. 2",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Expendables 2",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Skin Trade",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "undercover cop",
+      "type": "thematic",
+      "filter_removed": 25,
+      "filter_total": 34,
+      "filter_pct": 74,
+      "p1_p5": 0.8,
+      "p2_p5": 0.8,
+      "p1_ndcg": 0.983,
+      "p2_ndcg": 0.983,
+      "delta": 0.0,
+      "agreement": 85,
+      "p1": [
+        {
+          "title": "Starsky & Hutch",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Departed",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "22 Jump Street",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Beverly Hills Cop",
+          "year": 1984,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Training Day",
+          "year": 2001,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Starsky & Hutch",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Departed",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "22 Jump Street",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Trade",
+          "year": 2007,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Bon Cop Bad Cop",
+          "year": 2006,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "childhood wish",
+      "type": "thematic",
+      "filter_removed": 35,
+      "filter_total": 39,
+      "filter_pct": 90,
+      "p1_p5": 0.8,
+      "p2_p5": 0.8,
+      "p1_ndcg": 0.956,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 74,
+      "p1": [
+        {
+          "title": "Ted",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Butterfly Effect",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Incendies",
+          "year": 2010,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Liar Liar",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dreamgirls",
+          "year": 2006,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Ted",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Liar Liar",
+          "year": 1997,
+          "label": "Relevant"
+        },
+        {
+          "title": "Cinderella",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Up",
+          "year": 2009,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "save the world",
+      "type": "thematic",
+      "filter_removed": 19,
+      "filter_total": 38,
+      "filter_pct": 50,
+      "p1_p5": 0.8,
+      "p2_p5": 1.0,
+      "p1_ndcg": 0.983,
+      "p2_ndcg": 1.0,
+      "delta": 0.2,
+      "agreement": 76,
+      "p1": [
+        {
+          "title": "Deep Impact",
+          "year": 1998,
+          "label": "Relevant"
+        },
+        {
+          "title": "Prometheus",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Green Inferno",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Saving Private Ryan",
+          "year": 1998,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "The Book of Eli",
+          "year": 2010,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Deep Impact",
+          "year": 1998,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Book of Eli",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Superman IV: The Quest for Peace",
+          "year": 1987,
+          "label": "Relevant"
+        },
+        {
+          "title": "The World's End",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "Zoom",
+          "year": 2006,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "war movie",
+      "type": "thematic",
+      "filter_removed": 21,
+      "filter_total": 39,
+      "filter_pct": 54,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 92,
+      "p1": [
+        {
+          "title": "Fury",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Jarhead",
+          "year": 2005,
+          "label": "Relevant"
+        },
+        {
+          "title": "First Blood",
+          "year": 1982,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Horseman on the Roof",
+          "year": 1995,
+          "label": "Relevant"
+        },
+        {
+          "title": "Buffalo Soldiers",
+          "year": 2001,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Fury",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Jarhead",
+          "year": 2005,
+          "label": "Relevant"
+        },
+        {
+          "title": "First Blood",
+          "year": 1982,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Horseman on the Roof",
+          "year": 1995,
+          "label": "Relevant"
+        },
+        {
+          "title": "Buffalo Soldiers",
+          "year": 2001,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "feel good movies",
+      "type": "mood",
+      "filter_removed": 27,
+      "filter_total": 39,
+      "filter_pct": 69,
+      "p1_p5": 0.2,
+      "p2_p5": 1.0,
+      "p1_ndcg": 0.387,
+      "p2_ndcg": 1.0,
+      "delta": 0.8,
+      "agreement": 92,
+      "p1": [
+        {
+          "title": "A Good Day to Die Hard",
+          "year": 2013,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Midnight in the Garden of Good and Evil",
+          "year": 1997,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "No Good Deed",
+          "year": 2014,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "The Good German",
+          "year": 2006,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Good Boy!",
+          "year": 2003,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "102 Dalmatians",
+          "year": 2000,
+          "label": "Relevant"
+        },
+        {
+          "title": "Pitch Perfect 2",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Trainwreck",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Good Dinosaur",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Sweetest Thing",
+          "year": 2002,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "dark psychological",
+      "type": "mood",
+      "filter_removed": 17,
+      "filter_total": 32,
+      "filter_pct": 53,
+      "p1_p5": 0.6,
+      "p2_p5": 1.0,
+      "p1_ndcg": 0.967,
+      "p2_ndcg": 1.0,
+      "delta": 0.4,
+      "agreement": 88,
+      "p1": [
+        {
+          "title": "The Dark Hours",
+          "year": 2005,
+          "label": "Relevant"
+        },
+        {
+          "title": "Insidious",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Conjuring",
+          "year": 2013,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Donnie Darko",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "Ouija",
+          "year": 2014,
+          "label": "Irrelevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Dark Hours",
+          "year": 2005,
+          "label": "Relevant"
+        },
+        {
+          "title": "Insidious",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Donnie Darko",
+          "year": 2001,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Wicked Within",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Beyond the Black Rainbow",
+          "year": 2010,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "mindblowing sci fi",
+      "type": "mood",
+      "filter_removed": 25,
+      "filter_total": 38,
+      "filter_pct": 66,
+      "p1_p5": 0.8,
+      "p2_p5": 1.0,
+      "p1_ndcg": 0.983,
+      "p2_ndcg": 1.0,
+      "delta": 0.2,
+      "agreement": 74,
+      "p1": [
+        {
+          "title": "Sleep Dealer",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "Eternal Sunshine of the Spotless Mind",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Inception",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Enter the Dangerous Mind",
+          "year": 2013,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Mad Max: Fury Road",
+          "year": 2015,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Sleep Dealer",
+          "year": 2008,
+          "label": "Relevant"
+        },
+        {
+          "title": "Eternal Sunshine of the Spotless Mind",
+          "year": 2004,
+          "label": "Relevant"
+        },
+        {
+          "title": "Inception",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Close Encounters of the Third Kind",
+          "year": 1977,
+          "label": "Relevant"
+        },
+        {
+          "title": "Avatar",
+          "year": 2009,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "light hearted comedy",
+      "type": "mood",
+      "filter_removed": 17,
+      "filter_total": 34,
+      "filter_pct": 50,
+      "p1_p5": 1.0,
+      "p2_p5": 1.0,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 88,
+      "p1": [
+        {
+          "title": "Men with Brooms",
+          "year": 2002,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Visitors",
+          "year": 1993,
+          "label": "Relevant"
+        },
+        {
+          "title": "Beetlejuice",
+          "year": 1988,
+          "label": "Relevant"
+        },
+        {
+          "title": "Metropolitan",
+          "year": 1990,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Sweetest Thing",
+          "year": 2002,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Men with Brooms",
+          "year": 2002,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Visitors",
+          "year": 1993,
+          "label": "Relevant"
+        },
+        {
+          "title": "Metropolitan",
+          "year": 1990,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Sweetest Thing",
+          "year": 2002,
+          "label": "Relevant"
+        },
+        {
+          "title": "L!fe Happens",
+          "year": 2011,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "animated talking animals",
+      "type": "longtail",
+      "filter_removed": 15,
+      "filter_total": 38,
+      "filter_pct": 40,
+      "p1_p5": 0.8,
+      "p2_p5": 0.8,
+      "p1_ndcg": 1.0,
+      "p2_ndcg": 1.0,
+      "delta": 0.0,
+      "agreement": 79,
+      "p1": [
+        {
+          "title": "Madagascar",
+          "year": 2005,
+          "label": "Relevant"
+        },
+        {
+          "title": "Ice Age",
+          "year": 2002,
+          "label": "Relevant"
+        },
+        {
+          "title": "Ice Age: Dawn of the Dinosaurs",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dwegons",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Spirited Away",
+          "year": 2001,
+          "label": "Irrelevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Madagascar",
+          "year": 2005,
+          "label": "Relevant"
+        },
+        {
+          "title": "Ice Age",
+          "year": 2002,
+          "label": "Relevant"
+        },
+        {
+          "title": "Ice Age: Dawn of the Dinosaurs",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Dwegons",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Spirited Away",
+          "year": 2001,
+          "label": "Irrelevant"
+        }
+      ]
+    },
+    {
+      "query": "superhero origin story",
+      "type": "longtail",
+      "filter_removed": 26,
+      "filter_total": 34,
+      "filter_pct": 76,
+      "p1_p5": 0.6,
+      "p2_p5": 1.0,
+      "p1_ndcg": 0.906,
+      "p2_ndcg": 1.0,
+      "delta": 0.4,
+      "agreement": 97,
+      "p1": [
+        {
+          "title": "Deadpool",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Iron Man 2",
+          "year": 2010,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "Megamind",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Superman",
+          "year": 1978,
+          "label": "Relevant"
+        },
+        {
+          "title": "Batman v Superman: Dawn of Justice",
+          "year": 2016,
+          "label": "Irrelevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Deadpool",
+          "year": 2016,
+          "label": "Relevant"
+        },
+        {
+          "title": "Megamind",
+          "year": 2010,
+          "label": "Relevant"
+        },
+        {
+          "title": "Superman",
+          "year": 1978,
+          "label": "Relevant"
+        },
+        {
+          "title": "Captain America: The First Avenger",
+          "year": 2011,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Incredible Hulk",
+          "year": 2008,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "epic fantasy adventure",
+      "type": "longtail",
+      "filter_removed": 22,
+      "filter_total": 37,
+      "filter_pct": 60,
+      "p1_p5": 0.6,
+      "p2_p5": 1.0,
+      "p1_ndcg": 0.947,
+      "p2_ndcg": 1.0,
+      "delta": 0.4,
+      "agreement": 92,
+      "p1": [
+        {
+          "title": "Epic",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Hobbit: An Unexpected Journey",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "Night at the Museum: Secret of the Tomb",
+          "year": 2014,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "X-Men: Days of Future Past",
+          "year": 2014,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "How to Train Your Dragon 2",
+          "year": 2014,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "Epic",
+          "year": 2013,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Hobbit: An Unexpected Journey",
+          "year": 2012,
+          "label": "Relevant"
+        },
+        {
+          "title": "How to Train Your Dragon 2",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Pan",
+          "year": 2015,
+          "label": "Relevant"
+        },
+        {
+          "title": "Hellboy II: The Golden Army",
+          "year": 2008,
+          "label": "Relevant"
+        }
+      ]
+    },
+    {
+      "query": "world war two",
+      "type": "longtail",
+      "filter_removed": 18,
+      "filter_total": 30,
+      "filter_pct": 60,
+      "p1_p5": 0.8,
+      "p2_p5": 1.0,
+      "p1_ndcg": 0.956,
+      "p2_ndcg": 1.0,
+      "delta": 0.2,
+      "agreement": 100,
+      "p1": [
+        {
+          "title": "The Good German",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Fury",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "Shutter Island",
+          "year": 2010,
+          "label": "Irrelevant"
+        },
+        {
+          "title": "The Land Girls",
+          "year": 1998,
+          "label": "Relevant"
+        },
+        {
+          "title": "Inglourious Basterds",
+          "year": 2009,
+          "label": "Relevant"
+        }
+      ],
+      "p2": [
+        {
+          "title": "The Good German",
+          "year": 2006,
+          "label": "Relevant"
+        },
+        {
+          "title": "Fury",
+          "year": 2014,
+          "label": "Relevant"
+        },
+        {
+          "title": "The Land Girls",
+          "year": 1998,
+          "label": "Relevant"
+        },
+        {
+          "title": "Inglourious Basterds",
+          "year": 2009,
+          "label": "Relevant"
+        },
+        {
+          "title": "Captain America: The First Avenger",
+          "year": 2011,
+          "label": "Relevant"
+        }
+      ]
+    }
+  ]
+}

@@ -9,6 +9,8 @@ A search relevance evaluation framework for streaming catalogs that compares two
 
 Pipeline 1 is the standard two-stage retrieval-rerank setup. Pipeline 2 adds one step: an LLM relevance filter that removes irrelevant candidates before the reranker runs. The question this eval answers is whether that extra step is worth it — and on which query types.
 
+**▶ [Live interactive demo](https://niveditabuilds.github.io/semantic-search-eval/)** — explore all 45 queries with Pipeline 1 vs Pipeline 2 side by side, scored by the independent judge.
+
 Catalog: TMDb 1000 titles. Queries: auto-generated from catalog metadata. Labels: two independent judges — Claude Sonnet drives the filter, a separate judge (Claude Haiku by default, GPT optional) scores the result.
 
 ---

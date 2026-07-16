@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Semantic Search Relevance Eval — Does an LLM filter beat reranking alone?</title>
+<meta name="description" content="A non-circular evaluation of LLM pre-filtering for streaming search. Two independent judges: one drives the filter, a different one scores it." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0c0d11; --ink2:#111318; --panel:#15171e; --panel2:#1b1e26;
+    --paper:#f3efe6; --muted:#948f84; --faint:#5f5c55;
+    --accent:#f2b134; --accent-dim:#7a5c1c;
+    --pos:#63cf93; --pos-dim:#1f3a2c; --neg:#e07189; --neg-dim:#3a2029;
+    --line:rgba(243,239,230,.10); --line2:rgba(243,239,230,.06);
+    --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --sans:"Hanken Grotesk",-apple-system,BlinkMacSystemFont,sans-serif;
+    --serif:"Fraunces",Georgia,serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--ink); color:var(--paper);
+    font-family:var(--sans); font-size:16px; line-height:1.55;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(1100px 600px at 78% -8%, rgba(242,177,52,.10), transparent 60%),
+      radial-gradient(900px 500px at 8% 4%, rgba(99,207,147,.05), transparent 55%);
+  }
+  /* subtle film grain */
+  body::after{
+    content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.035;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  .wrap{position:relative; z-index:1; max-width:1080px; margin:0 auto; padding:0 24px}
+  a{color:inherit}
+  .mono{font-family:var(--mono)}
+
+  /* ---- nav ---- */
+  nav{position:relative; z-index:3; display:flex; align-items:center; justify-content:space-between;
+    max-width:1080px; margin:0 auto; padding:22px 24px}
+  .brand{font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted)}
+  .brand b{color:var(--paper); font-weight:700}
+  .ghlink{font-family:var(--mono); font-size:12.5px; letter-spacing:.03em; text-decoration:none;
+    color:var(--paper); border:1px solid var(--line); padding:8px 14px; border-radius:999px; transition:.25s}
+  .ghlink:hover{border-color:var(--accent); color:var(--accent); transform:translateY(-1px)}
+
+  /* ---- hero ---- */
+  header{padding:56px 0 34px}
+  .eyebrow{font-family:var(--mono); font-size:12px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:22px}
+  h1{font-family:var(--serif); font-weight:400; font-size:clamp(38px,6.4vw,74px); line-height:1.02;
+    letter-spacing:-.015em; margin:0 0 24px; max-width:16ch}
+  h1 em{font-style:italic; color:var(--accent)}
+  .lede{font-size:clamp(17px,2.2vw,20px); color:#cfcabf; max-width:60ch; margin:0}
+  .lede b{color:var(--paper); font-weight:600}
+
+  .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line2);
+    border:1px solid var(--line); border-radius:16px; overflow:hidden; margin:44px 0 0}
+  .stat{background:var(--ink2); padding:22px 22px 20px}
+  .stat .k{font-family:var(--mono); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+  .stat .v{font-family:var(--serif); font-size:clamp(30px,4.4vw,44px); line-height:1; margin-top:12px; letter-spacing:-.02em}
+  .stat .v small{font-size:.5em; color:var(--muted); font-family:var(--mono); letter-spacing:0}
+  .stat.hl .v{color:var(--accent)}
+
+  section{padding:52px 0; position:relative}
+  .kicker{font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:16px; display:flex; align-items:center; gap:12px}
+  .kicker::before{content:""; width:26px; height:1px; background:var(--accent)}
+  h2{font-family:var(--serif); font-weight:400; font-size:clamp(26px,3.6vw,38px); letter-spacing:-.01em; margin:0 0 10px}
+  .sub{color:var(--muted); max-width:64ch; margin:0 0 30px}
+
+  /* ---- circularity ---- */
+  .trap{display:grid; grid-template-columns:1fr 1fr; gap:18px}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px 26px 24px}
+  .card.bad{border-color:var(--neg-dim)}
+  .card.good{border-color:var(--pos-dim)}
+  .card .tag{font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:14px}
+  .card.bad .tag{color:var(--neg)}
+  .card.good .tag{color:var(--pos)}
+  .card h3{font-family:var(--serif); font-weight:500; font-size:20px; margin:0 0 10px}
+  .card p{color:#c7c2b7; font-size:14.5px; margin:0}
+  .flow{font-family:var(--mono); font-size:12.5px; line-height:1.9; margin-top:18px; color:var(--muted)}
+  .flow b{color:var(--paper)}
+  .flow .arrow{color:var(--accent)}
+  .flow .bad-lbl{color:var(--neg)}
+  .flow .good-lbl{color:var(--pos)}
+
+  /* ---- type table ---- */
+  .rows{border:1px solid var(--line); border-radius:16px; overflow:hidden; background:var(--panel)}
+  .row-head, .trow{display:grid; grid-template-columns:1.3fr 2.2fr 84px 78px; gap:14px; align-items:center;
+    padding:14px 22px}
+  .row-head{background:var(--ink2); font-family:var(--mono); font-size:11px; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--muted)}
+  .trow{border-top:1px solid var(--line2)}
+  .trow .name{font-weight:600; text-transform:capitalize}
+  .trow .name span{display:block; font-family:var(--mono); font-size:11px; color:var(--faint); text-transform:none; font-weight:400}
+  .bars{display:flex; align-items:center; gap:10px}
+  .barwrap{flex:1; height:26px; position:relative; background:var(--ink); border-radius:6px; overflow:hidden}
+  .bar{position:absolute; top:0; bottom:0; left:0; border-radius:6px}
+  .bar.p1{background:rgba(243,239,230,.16)}
+  .bar.p2{background:linear-gradient(90deg,var(--accent-dim),var(--accent)); mix-blend-mode:normal}
+  .barnums{font-family:var(--mono); font-size:12px; color:var(--muted); white-space:nowrap; width:96px}
+  .barnums b{color:var(--paper)}
+  .delta{font-family:var(--mono); font-size:13px; text-align:right; font-weight:700}
+  .delta.z{color:var(--faint)} .delta.pos{color:var(--pos)}
+  .kap{font-family:var(--mono); font-size:13px; text-align:right}
+  .kap.low{color:var(--neg)} .kap.mid{color:var(--accent)} .kap.hi{color:var(--pos)}
+
+  /* ---- explorer ---- */
+  .explorer{background:var(--panel); border:1px solid var(--line); border-radius:20px; overflow:hidden}
+  .exp-controls{padding:22px 24px 18px; border-bottom:1px solid var(--line)}
+  .filterbar{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px}
+  .fbtn{font-family:var(--mono); font-size:11.5px; letter-spacing:.06em; text-transform:uppercase;
+    background:transparent; color:var(--muted); border:1px solid var(--line); padding:7px 13px;
+    border-radius:999px; cursor:pointer; transition:.2s}
+  .fbtn:hover{color:var(--paper); border-color:var(--faint)}
+  .fbtn.active{color:var(--ink); background:var(--accent); border-color:var(--accent); font-weight:700}
+  .chips{display:flex; flex-wrap:wrap; gap:7px}
+  .chip{font-family:var(--sans); font-size:13.5px; background:var(--ink2); color:#cfcabf;
+    border:1px solid var(--line); padding:7px 13px; border-radius:9px; cursor:pointer; transition:.16s}
+  .chip:hover{border-color:var(--faint); color:var(--paper)}
+  .chip.active{background:#2a2410; border-color:var(--accent); color:var(--accent); font-weight:600}
+
+  .exp-body{padding:24px}
+  .exp-meta{display:flex; flex-wrap:wrap; align-items:baseline; gap:12px 20px; margin-bottom:20px}
+  .exp-q{font-family:var(--serif); font-size:26px; font-style:italic}
+  .exp-type{font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--accent); border:1px solid var(--accent-dim); padding:3px 9px; border-radius:6px}
+  .exp-removed{font-family:var(--mono); font-size:12.5px; color:var(--muted); margin-left:auto}
+
+  .pipes{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  .pipe{border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--ink2)}
+  .pipe h4{margin:0; padding:14px 16px; font-family:var(--mono); font-size:11.5px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line2); font-weight:500;
+    display:flex; justify-content:space-between; align-items:center}
+  .pipe.p2 h4{color:var(--accent)}
+  .item{display:flex; align-items:flex-start; gap:11px; padding:11px 16px; border-top:1px solid var(--line2);
+    font-size:14px; animation:fadeUp .4s both}
+  .item:first-of-type{border-top:none}
+  .mark{flex:none; width:19px; height:19px; border-radius:5px; display:grid; place-items:center;
+    font-size:12px; font-weight:700; margin-top:1px}
+  .mark.y{background:var(--pos-dim); color:var(--pos)}
+  .mark.n{background:var(--neg-dim); color:var(--neg)}
+  .item .t{flex:1; min-width:0}
+  .item .t .ti{display:block; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+  .item .t .yr{font-family:var(--mono); font-size:11px; color:var(--faint)}
+  .rank{font-family:var(--mono); font-size:11px; color:var(--faint); width:14px; flex:none; margin-top:2px}
+  .empty{padding:11px 16px; border-top:1px solid var(--line2); color:var(--faint); font-family:var(--mono); font-size:12px}
+
+  .scores{display:grid; grid-template-columns:1fr 1fr auto; gap:14px; margin-top:18px; padding-top:18px;
+    border-top:1px solid var(--line); align-items:center}
+  .score{font-family:var(--mono)}
+  .score .lab{font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+  .score .val{font-size:22px; margin-top:4px}
+  .score.p2 .val{color:var(--accent)}
+  .dbadge{font-family:var(--mono); font-weight:700; font-size:15px; padding:10px 16px; border-radius:10px; text-align:center}
+  .dbadge.pos{background:var(--pos-dim); color:var(--pos)}
+  .dbadge.z{background:var(--ink); color:var(--faint); border:1px solid var(--line)}
+  .agree-note{font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:14px}
+  .agree-note b{color:var(--paper)}
+  .agree-note.warn b{color:var(--neg)}
+
+  /* ---- kappa ---- */
+  .kaprows{display:flex; flex-direction:column; gap:12px}
+  .kaprow{display:grid; grid-template-columns:110px 1fr 52px; gap:14px; align-items:center}
+  .kaprow .kn{font-family:var(--mono); font-size:13px; text-transform:capitalize; color:#cfcabf}
+  .ktrack{height:12px; background:var(--ink2); border-radius:99px; overflow:hidden; border:1px solid var(--line2)}
+  .kfill{height:100%; border-radius:99px}
+  .kval{font-family:var(--mono); font-size:13px; text-align:right; font-weight:600}
+
+  footer{padding:56px 0 70px; border-top:1px solid var(--line); margin-top:30px}
+  .foot-grid{display:flex; flex-wrap:wrap; justify-content:space-between; gap:24px; align-items:flex-end}
+  footer p{color:var(--muted); font-size:14px; max-width:52ch; margin:0}
+  footer .big{font-family:var(--serif); font-size:22px; color:var(--paper); margin-bottom:10px}
+  .disclaimer{margin-top:30px; font-family:var(--mono); font-size:11.5px; color:var(--faint); line-height:1.7}
+
+  @keyframes fadeUp{from{opacity:0; transform:translateY(6px)}to{opacity:1; transform:none}}
+  .reveal{opacity:0; transform:translateY(14px); transition:opacity .7s ease, transform .7s ease}
+  .reveal.in{opacity:1; transform:none}
+
+  @media(max-width:760px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .trap{grid-template-columns:1fr}
+    .pipes{grid-template-columns:1fr}
+    .row-head{display:none}
+    .trow{grid-template-columns:1fr auto; gap:8px 14px; row-gap:10px}
+    .trow .bars{grid-column:1/-1; order:3}
+    .exp-removed{margin-left:0; width:100%}
+  }
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand"><b>SEMANTIC&nbsp;SEARCH</b> · RELEVANCE&nbsp;EVAL</div>
+  <a class="ghlink" id="ghtop" href="#" target="_blank" rel="noopener">GitHub&nbsp;↗</a>
+</nav>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow reveal">LLM-as-judge · two-stage retrieval · TMDb 1000</div>
+    <h1 class="reveal">Does an LLM filter make reranking <em>actually</em> better?</h1>
+    <p class="lede reveal">A search-relevance eval that answers the question <b>without letting the filter grade its own homework.</b> One model drives the filter; a different model scores the result. That split turned an inflated win into an honest one.</p>
+
+    <div class="stats reveal">
+      <div class="stat hl"><div class="k">Overall P@5 lift</div><div class="v" id="s-delta">+0.09</div></div>
+      <div class="stat"><div class="k">Cross-model agreement</div><div class="v" id="s-agree">92<small>%</small></div></div>
+      <div class="stat"><div class="k">Cohen's κ (overall)</div><div class="v" id="s-kappa">0.82</div></div>
+      <div class="stat"><div class="k">Queries · labeled pairs</div><div class="v" id="s-q">45<small> / 1602</small></div></div>
+    </div>
+  </header>
+
+  <section>
+    <div class="kicker reveal">The trap it avoids</div>
+    <h2 class="reveal">A filter can't be graded by its own judge</h2>
+    <p class="sub reveal">The first version of this eval was circular: Pipeline&nbsp;2 removed every candidate the judge called irrelevant, then precision was scored against those same labels — so it could never lose. The fix is two independent judges.</p>
+    <div class="trap">
+      <div class="card bad reveal">
+        <div class="tag">✗ Circular — one judge</div>
+        <h3>Pipeline 2 could not lose</h3>
+        <p>Filter deletes everything labeled <em>Irrelevant</em>, then P@5 counts how many survivors are labeled <em>Relevant</em>. Every survivor is Relevant by construction → a structurally guaranteed win.</p>
+        <div class="flow"><b>Claude</b> <span class="arrow">→</span> label <span class="arrow">→</span> <span class="bad-lbl">filter</span> <span class="arrow">&</span> <span class="bad-lbl">score</span></div>
+      </div>
+      <div class="card good reveal">
+        <div class="tag">✓ Non-circular — two judges</div>
+        <h3>Scored by a model that never filtered</h3>
+        <p>A <b>system judge</b> (Sonnet) drives the filter. A separate <b>eval judge</b> (Haiku, GPT-swappable) is the only thing that scores P@5 — and it never sees the filter's decisions.</p>
+        <div class="flow"><b>Sonnet</b> <span class="arrow">→</span> <span class="good-lbl">filter</span> &nbsp;·&nbsp; <b>Haiku</b> <span class="arrow">→</span> <span class="good-lbl">score</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker reveal">Results by query type</div>
+    <h2 class="reveal">Where the filter earns its keep</h2>
+    <p class="sub reveal">Precision@5 for Pipeline&nbsp;1 (retrieval→rerank) vs Pipeline&nbsp;2 (+LLM filter), scored by the independent judge. Genre and compound are already at ceiling; mood, long-tail and decade carry the gains.</p>
+    <div class="rows reveal" id="typeRows">
+      <div class="row-head">
+        <div>Query type</div><div>P@5 &nbsp;·&nbsp; ▨ Pipeline 1 &nbsp; <span style="color:var(--accent)">▬ Pipeline 2</span></div>
+        <div style="text-align:right">Δ P@5</div><div style="text-align:right">κ</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker reveal">Interactive</div>
+    <h2 class="reveal">Query explorer</h2>
+    <p class="sub reveal">Pick any of the 45 queries and see the two pipelines side by side. The ✓/✗ marks and P@5 come from the <b>independent eval judge</b> — not the one that drove the filter.</p>
+    <div class="explorer reveal">
+      <div class="exp-controls">
+        <div class="filterbar" id="filterbar"></div>
+        <div class="chips" id="chips"></div>
+      </div>
+      <div class="exp-body" id="expBody"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="kicker reveal">Judge quality</div>
+    <h2 class="reveal">How much do the two judges agree?</h2>
+    <p class="sub reveal">Cohen's κ between the system judge and the independent eval judge, by type. Overall 0.82 (substantial) — but decade is the weakest (0.50), and it's also where the filter does the <em>most</em> work. The heaviest lifting sits on the shakiest labels.</p>
+    <div class="kaprows reveal" id="kapRows"></div>
+  </section>
+
+  <footer>
+    <div class="wrap" style="padding:0">
+      <div class="foot-grid">
+        <div>
+          <div class="big">Label → measure → decide.</div>
+          <p>The offline half of a production loop: label pairs, find which query types the filter helps, then distill labels into the ranker over time. Labels are cached; at serving time the filter is a dictionary lookup, not a live API call.</p>
+        </div>
+        <a class="ghlink" id="ghbot" href="#" target="_blank" rel="noopener">View source on GitHub ↗</a>
+      </div>
+      <div class="disclaimer">
+        Catalog: TMDb 1000 titles. Retrieval: BM25 + all-MiniLM-L6-v2 union → ms-marco-MiniLM cross-encoder. Judges at temperature 0.<br>
+        Labels are an LLM proxy for user satisfaction, not ground truth — real validation is an A/B against watch time. The eval judge here is cross-model (Haiku vs Sonnet); a fully cross-provider run (GPT) is one env var away.
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+const REPO = "https://github.com/niveditabuilds/semantic-search-eval";
+const TYPE_LABEL = {genre:"Genre",compound:"Compound",decade:"Decade",thematic:"Thematic",mood:"Mood",longtail:"Long-tail"};
+
+document.getElementById("ghtop").href = REPO;
+document.getElementById("ghbot").href = REPO;
+
+let DATA;
+
+function kClass(k){ return k < 0.6 ? "low" : k < 0.75 ? "mid" : "hi"; }
+
+function renderStats(){
+  const o = DATA.overall;
+  document.getElementById("s-delta").textContent = (o.delta_p5>=0?"+":"") + o.delta_p5.toFixed(2);
+  document.getElementById("s-agree").innerHTML = o.avg_cross_model_agreement_pct + "<small>%</small>";
+  document.getElementById("s-kappa").textContent = o.cohens_kappa.toFixed(2);
+  document.getElementById("s-q").innerHTML = o.count + "<small> / 1602</small>";
+}
+
+function renderTypeRows(){
+  const host = document.getElementById("typeRows");
+  DATA.type_order.forEach(t=>{
+    const a = DATA.aggregate[t]; if(!a) return;
+    const p1 = a.pipeline1_p5, p2 = a.pipeline2_p5, d = a.delta_p5, k = a.cohens_kappa;
+    const el = document.createElement("div");
+    el.className = "trow";
+    el.innerHTML = `
+      <div class="name">${TYPE_LABEL[t]}<span>${a.count} queries · ${a.avg_filter_pct}% filtered</span></div>
+      <div class="bars">
+        <div class="barwrap">
+          <div class="bar p1" style="width:${p1*100}%"></div>
+          <div class="bar p2" style="width:0%"></div>
+        </div>
+        <div class="barnums">P1 ${p1.toFixed(2)} · <b>P2 ${p2.toFixed(2)}</b></div>
+      </div>
+      <div class="delta ${d>0?"pos":"z"}">${d>0?"+":""}${d.toFixed(2)}</div>
+      <div class="kap ${kClass(k)}">${k.toFixed(2)}</div>`;
+    host.appendChild(el);
+    // animate p2 bar after mount
+    requestAnimationFrame(()=>{ setTimeout(()=>{ el.querySelector(".bar.p2").style.transition="width .9s cubic-bezier(.2,.7,.2,1)"; el.querySelector(".bar.p2").style.width=(p2*100)+"%"; }, 120); });
+  });
+}
+
+let activeFilter = "all", activeQuery = null;
+
+function renderFilterbar(){
+  const bar = document.getElementById("filterbar");
+  const types = ["all", ...DATA.type_order];
+  bar.innerHTML = "";
+  types.forEach(t=>{
+    const b = document.createElement("button");
+    b.className = "fbtn" + (t===activeFilter?" active":"");
+    b.textContent = t==="all" ? "All" : TYPE_LABEL[t];
+    b.onclick = ()=>{ activeFilter=t; renderFilterbar(); renderChips(); };
+    bar.appendChild(b);
+  });
+}
+
+function renderChips(){
+  const host = document.getElementById("chips");
+  host.innerHTML = "";
+  const list = DATA.queries.filter(q=>activeFilter==="all"||q.type===activeFilter);
+  if(!list.some(q=>q.query===activeQuery)) activeQuery = list[0] && list[0].query;
+  list.forEach(q=>{
+    const c = document.createElement("button");
+    c.className = "chip" + (q.query===activeQuery?" active":"");
+    c.textContent = q.query;
+    c.onclick = ()=>{ activeQuery=q.query; renderChips(); renderExplorer(); };
+    host.appendChild(c);
+  });
+  renderExplorer();
+}
+
+function pipeHTML(items, cls){
+  let rows = items.map((it,i)=>{
+    const y = it.label==="Relevant"?"y":"n";
+    const mk = it.label==="Relevant"?"✓":"✗";
+    const yr = it.year?`<span class="yr">${it.year}</span>`:"";
+    return `<div class="item" style="animation-delay:${i*45}ms">
+      <span class="rank">${i+1}</span>
+      <span class="mark ${y}">${mk}</span>
+      <span class="t"><span class="ti">${escapeHtml(it.title)}</span> ${yr}</span></div>`;
+  }).join("");
+  for(let i=items.length;i<5;i++) rows += `<div class="empty">— (filtered / no candidate) —</div>`;
+  return rows;
+}
+function escapeHtml(s){ return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function renderExplorer(){
+  const q = DATA.queries.find(x=>x.query===activeQuery);
+  if(!q) return;
+  const d = q.delta;
+  const decadeWarn = q.type==="decade";
+  const body = document.getElementById("expBody");
+  body.innerHTML = `
+    <div class="exp-meta">
+      <span class="exp-q">"${escapeHtml(q.query)}"</span>
+      <span class="exp-type">${TYPE_LABEL[q.type]}</span>
+      <span class="exp-removed">filter removed ${q.filter_removed}/${q.filter_total} candidates (${q.filter_pct}%)</span>
+    </div>
+    <div class="pipes">
+      <div class="pipe p1"><h4><span>Pipeline 1</span><span>Retrieval → Rerank</span></h4>${pipeHTML(q.p1,"p1")}</div>
+      <div class="pipe p2"><h4><span>Pipeline 2</span><span>+ LLM Filter</span></h4>${pipeHTML(q.p2,"p2")}</div>
+    </div>
+    <div class="scores">
+      <div class="score p1"><div class="lab">Pipeline 1 · P@5</div><div class="val">${q.p1_p5.toFixed(2)}</div></div>
+      <div class="score p2"><div class="lab">Pipeline 2 · P@5</div><div class="val">${q.p2_p5.toFixed(2)}</div></div>
+      <div class="dbadge ${d>0?"pos":"z"}">${d>0?"+":""}${d.toFixed(2)} Δ</div>
+    </div>
+    <div class="agree-note ${decadeWarn?"warn":""}">Cross-model agreement on this query: <b>${q.agreement}%</b>${decadeWarn?" — decade queries have the lowest inter-judge agreement; trust this gain the least.":""}</div>`;
+}
+
+function renderKappa(){
+  const host = document.getElementById("kapRows");
+  const rows = DATA.type_order.map(t=>[t, DATA.aggregate[t] && DATA.aggregate[t].cohens_kappa])
+                 .filter(r=>r[1]!=null).sort((a,b)=>b[1]-a[1]);
+  const col = k => k<0.6?"var(--neg)":k<0.75?"var(--accent)":"var(--pos)";
+  rows.forEach(([t,k])=>{
+    const r = document.createElement("div");
+    r.className="kaprow";
+    r.innerHTML = `<div class="kn">${TYPE_LABEL[t]}</div>
+      <div class="ktrack"><div class="kfill" style="width:0%;background:${col(k)}"></div></div>
+      <div class="kval" style="color:${col(k)}">${k.toFixed(2)}</div>`;
+    host.appendChild(r);
+    requestAnimationFrame(()=>setTimeout(()=>{ const f=r.querySelector(".kfill"); f.style.transition="width 1s cubic-bezier(.2,.7,.2,1)"; f.style.width=(k*100)+"%"; },150));
+  });
+}
+
+function initReveal(){
+  const io = new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} }),{threshold:.12});
+  document.querySelectorAll(".reveal").forEach((el,i)=>{ el.style.transitionDelay=(Math.min(i,6)*60)+"ms"; io.observe(el); });
+}
+
+fetch("./data.json").then(r=>r.json()).then(d=>{
+  DATA = d;
+  renderStats(); renderTypeRows(); renderFilterbar(); renderChips(); renderKappa(); initReveal();
+  // default to a punchy query
+  const fav = DATA.queries.find(q=>q.query==="feel good movies");
+  if(fav){ activeFilter="all"; activeQuery="feel good movies"; renderFilterbar(); renderChips(); }
+}).catch(e=>{
+  document.getElementById("expBody").innerHTML = "<p style='color:var(--neg);font-family:var(--mono)'>Could not load data.json — serve this folder over HTTP.</p>";
+});
+</script>
+</body>
+</html>
