@@ -166,6 +166,30 @@
   .agree-note b{color:var(--paper)}
   .agree-note.warn b{color:var(--neg)}
 
+  /* ---- flow map ---- */
+  .flowmap{max-width:640px; margin:0 auto}
+  .fstage{background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:16px 22px; display:flex; align-items:center; gap:20px}
+  .fnum{font-family:var(--serif); font-size:36px; line-height:.95; color:var(--accent);
+    min-width:104px; text-align:right; letter-spacing:-.02em}
+  .fnum small{display:block; font-family:var(--mono); font-size:10px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--muted); margin-top:7px; font-weight:400}
+  .fbody h4{margin:0 0 3px; font-weight:600; font-size:15px}
+  .fbody p{margin:0; font-size:13px; color:var(--muted); line-height:1.4}
+  .fbody .pill{display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.04em;
+    background:var(--ink); border:1px solid var(--line); border-radius:5px; padding:2px 7px; margin:5px 5px 0 0; color:#cfcabf}
+  .fconn{display:flex; flex-direction:column; align-items:center; gap:3px; padding:7px 0; color:var(--faint)}
+  .fconn .line{width:2px; height:16px; background:linear-gradient(var(--accent-dim),var(--line))}
+  .fconn .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+  .fconn .car{font-size:11px; color:var(--accent)}
+  .fbranch{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  .fpipe{background:var(--ink2); border:1px solid var(--line); border-radius:12px; padding:16px 18px}
+  .fpipe.p2{border-color:var(--accent-dim)}
+  .fpipe .ph{font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:8px; color:var(--muted)}
+  .fpipe.p2 .ph{color:var(--accent)}
+  .fpipe .steps{font-size:13px; color:#cfcabf; line-height:1.6}
+  .fpipe .steps b{color:var(--paper)}
+
   /* ---- kappa ---- */
   .kaprows{display:flex; flex-direction:column; gap:12px}
   .kaprow{display:grid; grid-template-columns:110px 1fr 52px; gap:14px; align-items:center}
@@ -214,6 +238,56 @@
       <div class="stat"><div class="k">Queries · labeled pairs</div><div class="v" id="s-q">45<small> / 1602</small></div></div>
     </div>
   </header>
+
+  <section>
+    <div class="kicker reveal">How it works</div>
+    <h2 class="reveal">From 1,000 movies to one P@5 score</h2>
+    <p class="sub reveal">The funnel for a single query — retrieval casts a wide net, both judges label every candidate, the two pipelines diverge on one step, and the same judge grades both.</p>
+    <div class="flowmap reveal">
+
+      <div class="fstage">
+        <div class="fnum">1,000<small>movies</small></div>
+        <div class="fbody"><h4>Catalog</h4><p>TMDb titles — the searchable library, with title, genres, plot and release year.</p></div>
+      </div>
+      <div class="fconn"><span class="lbl">generate queries</span><span class="line"></span><span class="car">▼</span></div>
+
+      <div class="fstage">
+        <div class="fnum">45<small>queries</small></div>
+        <div class="fbody"><h4>Query set</h4><p>Genre / compound / decade from catalog statistics; thematic / mood / long-tail from an LLM. No hand-picking.</p></div>
+      </div>
+      <div class="fconn"><span class="lbl">for each query · retrieve</span><span class="line"></span><span class="car">▼</span></div>
+
+      <div class="fstage">
+        <div class="fnum">~35<small>candidates</small></div>
+        <div class="fbody"><h4>Retrieval — wide net for recall</h4><p>BM25 (keyword) ∪ semantic (embeddings), top-20 each, merged &amp; de-duplicated.</p><span class="pill">BM25 top-20</span><span class="pill">semantic top-20</span></div>
+      </div>
+      <div class="fconn"><span class="lbl">both judges label all ~35</span><span class="line"></span><span class="car">▼</span></div>
+
+      <div class="fstage">
+        <div class="fnum">×2<small>judges</small></div>
+        <div class="fbody"><h4>Independent labeling</h4><p>Every candidate is labeled Relevant / Irrelevant twice — once by each model.</p><span class="pill">Sonnet → drives filter</span><span class="pill">Haiku → scores result</span></div>
+      </div>
+      <div class="fconn"><span class="lbl">two pipelines diverge on one step</span><span class="line"></span><span class="car">▼</span></div>
+
+      <div class="fbranch">
+        <div class="fpipe p1">
+          <div class="ph">Pipeline 1</div>
+          <div class="steps">~35 candidates<br>→ <b>cross-encoder rerank</b><br>→ top 5</div>
+        </div>
+        <div class="fpipe p2">
+          <div class="ph">Pipeline 2</div>
+          <div class="steps">~35 candidates<br>→ <b>Sonnet filter</b> drops Irrelevant<br>→ cross-encoder rerank<br>→ top 5</div>
+        </div>
+      </div>
+      <div class="fconn"><span class="lbl">Haiku grades both top-5 · same yardstick</span><span class="line"></span><span class="car">▼</span></div>
+
+      <div class="fstage">
+        <div class="fnum">5<small>shown → P@5</small></div>
+        <div class="fbody"><h4>Score</h4><p><b style="color:var(--paper)">P@5 = relevant ÷ 5</b>, counted by Haiku for each pipeline. The gap between the two is the filter's effect.</p></div>
+      </div>
+
+    </div>
+  </section>
 
   <section>
     <div class="kicker reveal">How it's measured</div>
