@@ -2,7 +2,7 @@
 Interactive search relevance explorer.
 Type any query — see Pipeline1 vs Pipeline2 side by side.
 
-Two independent judges, matching the non-circular eval:
+Two independent judges, matching the eval design:
   - system judge (Sonnet, system_labels.json) drives the Pipeline 2 filter
   - eval judge  (Haiku/GPT, eval_labels.json)  scores the ✓/✗ marks and P@5
 
