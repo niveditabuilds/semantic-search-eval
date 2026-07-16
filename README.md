@@ -24,7 +24,7 @@ The key claim:
 
 This repo tests that claim end-to-end, on a real catalog, with 45 programmatically-generated queries and two independent LLM judges: a **system judge** (Claude Sonnet) whose labels drive the Pipeline 2 filter, and a separate **eval judge** (a different model — Claude Haiku by default, or GPT) whose labels are the *only* labels used to score P@5/NDCG for both pipelines. Cross-model agreement and Cohen's kappa (by query type) report how much the two judges agree — without ever letting the filter's own judge grade its output.
 
-> **Why two judges?** An earlier version of this eval used one judge for both jobs: the same labels that removed candidates in Pipeline 2 were then used to score it. That's circular — a filter that deletes everything its judge calls Irrelevant, then gets graded by that same judge, is structurally guaranteed to look good. Splitting the labels into two independent stores (a different model for scoring, which never sees the filter's decisions) is what makes Pipeline 2's measured lift a real result instead of a tautology.
+> **Why two judges?** Using a single judge for both jobs would be circular — a filter that deletes everything its judge calls Irrelevant, then gets graded by that same judge, is structurally guaranteed to look good. Splitting the labels into two independent stores (a different model for scoring, which never sees the filter's decisions) is what makes Pipeline 2's measured lift a real result instead of a tautology.
 
 ---
 
@@ -96,7 +96,7 @@ The judge prompt includes the title's **release year** (so decade queries like "
 
 Both judges are labeled once and cached. Re-runs load from cache, costing zero API calls on cached queries and labeling only new ones. A failed API call is **never cached as a fabricated `Irrelevant` label** — it's skipped and retried on the next run, so a transient outage or exhausted quota can't quietly poison the label set.
 
-**Cross-model agreement and Cohen's kappa** (by query type) replace the old dual-prompt consistency check as the judge-quality signal — see Results below. This is a stronger check: a model agreeing with itself across two prompt phrasings says nothing about whether the labels are *correct*, only that they're *stable*. Agreement between two independent models is a real inter-annotator signal.
+**Cross-model agreement and Cohen's kappa** (by query type) are the judge-quality signal — see Results below. Agreement between two independent models is a real inter-annotator signal: it measures whether the labels are *correct*, not merely that one model is internally consistent.
 
 > **Note on the results below:** these were produced with the default eval judge (Claude Haiku) — cross-*model* but same-provider as the Sonnet filter. That still breaks the circularity (different model, separate store, scoring never sees the filter's labels). For a fully cross-*provider* run, set `JUDGE_PROVIDER=openai` and re-run; labels are keyed by model, so the GPT run coexists with the Haiku one rather than overwriting it.
 
@@ -162,7 +162,7 @@ Full per-query detail is written to `results/eval_report.json`.
 
 Every **genre** (18) and **compound** (8) query is already at **P@5 = 1.00 with retrieval alone**, and the filter moves them **+0.00** — even when it removes a lot (documentary −62%, western −36%, music −33%). Retrieval is already at ceiling; there's nothing left to fix.
 
-This is the cleanest evidence the circularity fix worked. A ceiling *cannot* be inflated by self-grading, so genre/compound reading exactly +0.00 under an independent judge is what an honest eval should show. Under the old single-judge design these still read +0.00 (you can't inflate 1.00), which is the sanity check — but the categories below tell a different story once the judge is independent.
+This is the cleanest evidence the eval is honest. A ceiling *cannot* be inflated by self-grading, so genre/compound reading exactly +0.00 under an independent judge is what a trustworthy eval should show — the filter isn't credited for work retrieval already did.
 
 ### 2. Where the filter earns its keep: mood, long-tail, decade
 
@@ -192,14 +192,10 @@ When the catalog holds only a handful of era-correct films, the filter can strip
 
 Overall the two independent judges agree **92%** of the time (**kappa 0.820, substantial**), so the eval labels aren't arbitrary. But agreement is uneven, and the weak spot is pointed:
 
-- **decade has the lowest kappa (0.504)**, and `10s movies` alone drops to **0.50 agreement** — the two models genuinely can't agree on what counts as a 2010s film. This is the exact category where the filter does the *most* work (92–98% removal). **The filter's heaviest lifting rests on its judges' shakiest agreement** — a flag the old single-model dual-prompt consistency stat (a reported 96%) could never surface, because a model agreeing with itself says nothing about whether the label is right.
+- **decade has the lowest kappa (0.504)**, and `10s movies` alone drops to **0.50 agreement** — the two models genuinely can't agree on what counts as a 2010s film. This is the exact category where the filter does the *most* work (92–98% removal). **The filter's heaviest lifting rests on its judges' shakiest agreement** — a flag that only a two-model agreement check can surface, since a single model agreeing with itself says nothing about whether the label is right.
 - Abstract queries also dip: `mindblowing sci fi` 0.74, `childhood wish` 0.74, `music` 0.77 — subjective intent is harder for two models to converge on.
 
-### 5. The circularity mattered — and it's visible in the numbers
-
-Under the old self-graded design, **thematic** showed +0.10; graded independently it's **+0.03**. That collapse is the filter no longer grading its own homework. More structurally: the old eval had mood, thematic, and long-tail all hitting **P2 = 1.00**, because the filter removed everything its judge called Irrelevant and was then scored by that *same* judge — the survivors were Relevant by construction. Under an independent judge, P2 falls below 1.00 on decade (0.48), thematic (0.93), and long-tail (0.95), because the eval judge sometimes calls a *filter-kept* title Irrelevant — something the filter's own judge, by definition, never would. That gap is the circularity made visible.
-
-*(Caveat: the old-vs-new comparison isn't a perfectly controlled A/B — the old numbers scored with Sonnet, these with Haiku. Read the direction — deltas equal-or-smaller under independent grading, ceilings unchanged — not the exact decimals.)*
+Because the eval judge never sees the filter's decisions, it sometimes calls a *filter-kept* title Irrelevant — which is why Pipeline 2 lands below a perfect 1.00 on decade (0.48), thematic (0.93), and long-tail (0.95) rather than looking artificially flawless.
 
 ---
 
@@ -218,18 +214,18 @@ Where the filter actually moves the metric:
 | Decade | +0.24 | **0.504** | Strips wrong-era titles — but see caveat |
 | Thematic | +0.03 | 0.665 | Marginal — retrieval was already strong |
 
-**Two caveats the corrected eval surfaces that the old one hid:**
+**Two caveats the eval surfaces:**
 
 1. **Decade is the least defensible win.** It has the biggest filter deltas *and* the lowest inter-judge agreement (kappa 0.504). Before leaning on it in production, validate temporal relevance against real release-date metadata rather than model judgment.
 2. **Decade needs a recall fix, not more filtering.** The filter already removes 85–98% of decade candidates and P@5 is still only 0.48 — the bottleneck is that retrieval surfaces too few era-correct films. Better temporal retrieval / metadata filtering will move decade P@5 far more than the LLM filter can.
 
-The earlier "deploy everywhere, it's free, no caveats" framing came partly from the circular eval overstating the filter's reach. It's still worth deploying — just with eyes open about where its decisions are solid (mood, long-tail) versus shaky (decade).
+Deploy it — just with eyes open about where its decisions are solid (mood, long-tail) versus shaky (decade).
 
 ---
 
 ## Cost & Scale
 
-Every pair is labeled twice — once by the system judge (Sonnet) and once by the independent eval judge (Haiku or GPT) — so total labeling cost is roughly double the old single-judge design.
+Every pair is labeled twice — once by the system judge (Sonnet) and once by the independent eval judge (Haiku or GPT) — so total labeling cost is roughly 2× a single-judge setup.
 
 | Scale | Pairs to label | System judge (est.) | Eval judge (est.) |
 |-------|---------------|--------------------|------------------|

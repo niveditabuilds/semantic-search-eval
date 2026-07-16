@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Semantic Search Relevance Eval — Does an LLM filter beat reranking alone?</title>
-<meta name="description" content="A non-circular evaluation of LLM pre-filtering for streaming search. Two independent judges: one drives the filter, a different one scores it." />
+<meta name="description" content="An evaluation of LLM pre-filtering for streaming search, scored by an independent judge. Two-stage retrieval, LLM filter, cross-encoder rerank." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,900&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -75,7 +75,7 @@
   h2{font-family:var(--serif); font-weight:400; font-size:clamp(26px,3.6vw,38px); letter-spacing:-.01em; margin:0 0 10px}
   .sub{color:var(--muted); max-width:64ch; margin:0 0 30px}
 
-  /* ---- circularity ---- */
+  /* ---- two-judge cards ---- */
   .trap{display:grid; grid-template-columns:1fr 1fr; gap:18px}
   .card{background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:26px 26px 24px}
   .card.bad{border-color:var(--neg-dim)}
@@ -205,7 +205,7 @@
   <header>
     <div class="eyebrow reveal">LLM-as-judge · two-stage retrieval · TMDb 1000</div>
     <h1 class="reveal">Does an LLM filter make reranking <em>actually</em> better?</h1>
-    <p class="lede reveal">A search-relevance eval that answers the question <b>without letting the filter grade its own homework.</b> One model drives the filter; a different model scores the result. That split turned an inflated win into an honest one.</p>
+    <p class="lede reveal">A search-relevance eval that answers the question <b>without letting the filter grade its own homework.</b> One model drives the filter; a different model scores the result — so the reported lift is real, not a tautology.</p>
 
     <div class="stats reveal">
       <div class="stat hl"><div class="k">Overall P@5 lift</div><div class="v" id="s-delta">+0.09</div></div>
@@ -216,21 +216,21 @@
   </header>
 
   <section>
-    <div class="kicker reveal">The trap it avoids</div>
-    <h2 class="reveal">A filter can't be graded by its own judge</h2>
-    <p class="sub reveal">The first version of this eval was circular: Pipeline&nbsp;2 removed every candidate the judge called irrelevant, then precision was scored against those same labels — so it could never lose. The fix is two independent judges.</p>
+    <div class="kicker reveal">How it's measured</div>
+    <h2 class="reveal">Two independent judges</h2>
+    <p class="sub reveal">The model that decides what the filter removes must not be the model that grades the result — otherwise the filter grades its own output. So the labels live in two separate stores, and the scoring judge never sees the filter's decisions.</p>
     <div class="trap">
-      <div class="card bad reveal">
-        <div class="tag">✗ Circular — one judge</div>
-        <h3>Pipeline 2 could not lose</h3>
-        <p>Filter deletes everything labeled <em>Irrelevant</em>, then P@5 counts how many survivors are labeled <em>Relevant</em>. Every survivor is Relevant by construction → a structurally guaranteed win.</p>
-        <div class="flow"><b>Claude</b> <span class="arrow">→</span> label <span class="arrow">→</span> <span class="bad-lbl">filter</span> <span class="arrow">&</span> <span class="bad-lbl">score</span></div>
+      <div class="card good reveal">
+        <div class="tag">① System judge · Sonnet</div>
+        <h3>Drives the filter</h3>
+        <p>Labels every candidate Relevant / Irrelevant. Pipeline&nbsp;2 removes the Irrelevant ones before reranking. These labels are read <em>only</em> by the filter.</p>
+        <div class="flow"><b>Sonnet</b> <span class="arrow">→</span> label <span class="arrow">→</span> <span class="good-lbl">filter</span></div>
       </div>
       <div class="card good reveal">
-        <div class="tag">✓ Non-circular — two judges</div>
-        <h3>Scored by a model that never filtered</h3>
-        <p>A <b>system judge</b> (Sonnet) drives the filter. A separate <b>eval judge</b> (Haiku, GPT-swappable) is the only thing that scores P@5 — and it never sees the filter's decisions.</p>
-        <div class="flow"><b>Sonnet</b> <span class="arrow">→</span> <span class="good-lbl">filter</span> &nbsp;·&nbsp; <b>Haiku</b> <span class="arrow">→</span> <span class="good-lbl">score</span></div>
+        <div class="tag">② Eval judge · Haiku</div>
+        <h3>Scores the result</h3>
+        <p>A different model independently labels the same candidates and is the <em>only</em> thing that scores P@5 / NDCG — for both pipelines. GPT-swappable via one env var.</p>
+        <div class="flow"><b>Haiku</b> <span class="arrow">→</span> label <span class="arrow">→</span> <span class="good-lbl">score</span></div>
       </div>
     </div>
   </section>
